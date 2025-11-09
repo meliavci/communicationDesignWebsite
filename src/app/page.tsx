@@ -18,17 +18,19 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('doomscrolling');
 
   const renderPage = () => {
-    return <ProtoPage bgColor={tabColors[activeTab]} />;
+    return <ProtoPage />;
   };
 
+  const mainBgColor = tabColors[activeTab];
+
   return (
-    <div className="h-screen flex bg-white">
-      <div className="flex-1 overflow-y-auto p-8 flex">
+    <div className={`h-screen flex flex-col ${mainBgColor}`}>
+      <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="flex-1 overflow-y-auto flex">
         <div className="animate-fadeIn flex-1">
           {renderPage()}
         </div>
       </div>
-      <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }
