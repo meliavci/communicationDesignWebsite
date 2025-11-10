@@ -24,9 +24,9 @@ export default function Home() {
   const mainBgColor = tabColors[activeTab];
 
   return (
-    <div className={`h-screen flex flex-col ${mainBgColor}`}>
+    <div className={`flex flex-col min-h-screen ${mainBgColor}`}>
       <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="flex-1 overflow-y-auto flex">
+      <div className="flex-1 flex">
         <div className="animate-fadeIn flex-1">
           {renderPage()}
         </div>

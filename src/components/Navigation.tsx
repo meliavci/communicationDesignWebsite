@@ -24,7 +24,7 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
     <nav
       className="
         flex justify-start gap-0 overflow-hidden z-20
-        mx-8 mt-4
+        mx-50 mt-10
       ">
       {tabs.map((tab, index) => (
         <button
