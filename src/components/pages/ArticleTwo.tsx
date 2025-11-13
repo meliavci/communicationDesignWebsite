@@ -6,8 +6,6 @@ import ScrollSequence2 from '@/components/ScrollSequence2';
 
 
 const articleText = `
-/* --- ERSETZE DIESEN BLOCK MIT DEM GANZEN TEXT AUS DEINEM PDF (KEEP AS-IS) --- */
-
 Screens and Childhood: Gaming vs. Doomscrolling 
 
 From iPads to endless feeds, interviews with families disclose the difference between gaming and doomscrolling in kids 
@@ -71,12 +69,38 @@ export default function ArticleTwo() {
     <div className="bg-white h-full flex flex-col relative mx-auto max-w-[85%] overflow-hidden">
       <div className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800">
         <div className="max-w-screen-xl mx-auto w-full p-8 md:p-12 lg:p-16">
-          <header className="mb-6">
-            <h1 className="text-5xl font-extrabold tracking-tight text-black"
-                style={{ fontFamily: "'Comic Neue', 'Luckiest Guy', 'Permanent Marker', sans-serif" }}>
-              Comic Article — Titel
-            </h1>
-            <p className="text-sm text-gray-600">By — Datum</p>
+
+          <header className="mb-6 comic-header">
+            <div className="header-ray-background relative overflow-visible">
+              <div className="halftone-overlay" aria-hidden="true" />
+
+              <div className="max-w-6xl mx-auto px-6 py-10 relative flex items-center justify-center">
+                <div className="explosion absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+                  <svg className="explosion-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="100,150 150,50 250,30 320,80 430,40 500,5 560,60 700,20 760,70 840,30 920,80 980,40 1050,100 1120,120 1050,200 980,250 900,230 840,270 760,210 700,260 620,230 560,280 480,240 420,290 330,250 250,280 170,240" fill="#fff7e6" stroke="#000" strokeWidth="14" strokeLinejoin="round" />
+                  </svg>
+                </div>
+
+                <div className="header-content relative z-20 text-center">
+                  <div className="inline-block bg-white border-8 border-black px-6 py-4 transform -translate-y-3">
+                    <h1
+                      className="halftone-title title-stroke font-marker"
+                      style={{
+                        fontSize: '2.25rem',
+                        lineHeight: 1,
+                        fontWeight: 900,
+                      }}
+                    >
+                      Screens and Childhood: Gaming vs. Doomscrolling
+                    </h1>
+
+                    <p className="mt-3 subtitle comic-text" style={{ fontSize: '0.95rem', maxWidth: '80%', margin: '0.5rem auto 0' }}>
+                      From iPads to endless feeds, interviews with families disclose the difference between gaming and doomscrolling in kids
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </header>
 
           <div className="comic-grid grid gap-6" style={{ gridTemplateColumns: '1fr 1fr' }}>
@@ -188,32 +212,69 @@ export default function ArticleTwo() {
           </footer>
 
           <style jsx>{`
-            .panel { background-image: linear-gradient(180deg, #fff 0%, #fff 100%); }
-            .comic-grid { }
-            .speech-bubble {
-              border-radius: 12px;
-              font-family: 'Comic Neue', sans-serif;
-              box-shadow: 6px 6px 0 #00000022;
-            }
-            .comic-bubble p { margin: 0; }
-            .panel::before {
-              content: '';
-              position: absolute;
-              inset: 0;
-              pointer-events: none;
-              background-image:
-                radial-gradient(circle at 10% 10%, rgba(0,0,0,0.06) 1px, transparent 1px),
-                radial-gradient(circle at 30% 50%, rgba(0,0,0,0.04) 1px, transparent 1px);
-              background-size: 8px 8px, 12px 12px;
-              mix-blend-mode: multiply;
-              opacity: 0.35;
-            }
-            .comic-bubble { position: relative; z-index: 2; }
-            @media (max-width: 900px) {
-              .comic-grid { grid-template-columns: 1fr; }
-              .panel-right { order: 2; }
-              .panel-large { order: 1; }
-            }
+              .panel { background-image: linear-gradient(180deg, #fff 0%, #fff 100%); }
+              .comic-grid { }
+              .speech-bubble {
+                  border-radius: 12px;
+                  font-family: 'Comic Neue', sans-serif;
+                  box-shadow: 6px 6px 0 #00000022;
+              }
+              .comic-bubble p { margin: 0; }
+              .panel::before {
+                  content: '';
+                  position: absolute;
+                  inset: 0;
+                  pointer-events: none;
+                  background-image:
+                          radial-gradient(circle at 10% 10%, rgba(0,0,0,0.06) 1px, transparent 1px),
+                          radial-gradient(circle at 30% 50%, rgba(0,0,0,0.04) 1px, transparent 1px);
+                  background-size: 8px 8px, 12px 12px;
+                  mix-blend-mode: multiply;
+                  opacity: 0.35;
+              }
+              .comic-bubble { position: relative; z-index: 2; }
+              @media (max-width: 900px) {
+                  .comic-grid { grid-template-columns: 1fr; }
+                  .panel-right { order: 2; }
+                  .panel-large { order: 1; }
+              }
+
+              /* --- Header / Comic title styles --- */
+              .comic-header { }
+              .explosion { opacity: 0.95; }
+              .explosion-svg { width: 100%; height: 220px; max-height: 260px; display: block; }
+
+              .halftone-overlay {
+                  position: absolute;
+                  inset: 0;
+                  z-index: 15;
+                  pointer-events: none;
+                  /* grobe halftone-Punkte über dem ray-background für den Comic-Look */
+                  background-image:
+                          radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 2px);
+                  background-size: 10px 10px;
+                  mix-blend-mode: multiply;
+                  opacity: 0.25;
+              }
+
+              .header-content { position: relative; z-index: 20; }
+
+              .halftone-title {
+                  color: #ff3b3b;
+                  font-family: var(--font-comic);
+                  font-weight: 900;
+                  text-transform: none;
+                  -webkit-text-stroke: 6px #000;
+                  text-stroke: 6px #000;
+                  /* starker Schlagschatten wie Comic-3D */
+                  text-shadow: 8px 8px 0 rgba(0,0,0,0.95);
+                  display: inline-block;
+                  padding: 0 0.25rem;
+                  letter-spacing: -0.02em;
+              }
+
+              .subtitle { color: #1a1a1a; font-family: var(--font-comic); }
+
           `}</style>
         </div>
       </div>
