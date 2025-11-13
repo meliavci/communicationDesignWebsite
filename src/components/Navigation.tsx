@@ -16,7 +16,8 @@ const tabs: Tab[] = [
   {id: 'addiction', label: 'Addiction', color: 'bg-blue-900'},
   {id: 'rehab', label: 'Rehab', color: 'bg-blue-800'},
   {id: 'pressure', label: 'Pressure', color: 'bg-blue-700'},
-  {id: 'socialMedia', label: 'Social Media', color: 'bg-blue-600'},
+  {id: 'gaming', label: 'Gaming/Scrolling', color: 'bg-blue-600'},
+  {id: 'socialMedia', label: 'Social Media', color: 'bg-blue-500'},
 ];
 
 export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
@@ -24,7 +25,7 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
     <nav
       className="
         flex justify-start gap-0 overflow-hidden z-20
-        mx-50 mt-10
+        mx-50 mt-10 shadow-t-2xl shawod-x-lg
       ">
       {tabs.map((tab, index) => (
         <button
@@ -51,6 +52,7 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
             overflow-hidden
             group
             font-sans
+            cursor-pointer
             ${(index === 0 && activeTab !== tab.id) ? 'rounded-tl-lg' : ''}
             ${(index === tabs.length - 1 && activeTab !== tab.id) ? 'rounded-tr-lg' : ''}
           `}

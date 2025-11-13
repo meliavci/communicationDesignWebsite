@@ -14,7 +14,7 @@ export default function ProtoPage() {
 
       <div
         ref={pageRef}
-        className="bg-white h-full flex flex-col relative z-30 shadow-2xl mx-auto max-w-[90%] overflow-hidden"
+        className="bg-[#FCFCF7] h-full flex flex-col relative z-30 mx-auto max-w-[90%] overflow-hidden"
       >
         <div className="flex-1 p-16 overflow-auto space-y-12 no-scrollbar">
           <div className="max-w-7xl mx-auto px-4">
@@ -28,7 +28,7 @@ export default function ProtoPage() {
             </header>
 
             <ScrollSequence2
-              basePath="/export/WIEDERHERGESTELLT_Syringe"
+              basePath="/Article1/syringeSequences/WIEDERHERGESTELLT_Syringe"
               frameCount={70}
               padDigits={2}
               fileType="png"
@@ -47,7 +47,7 @@ export default function ProtoPage() {
 
             <div className="flex flex-row items-start gap-8 w-full">
               <div className="flex-1 min-w-0 pt-10">
-                <h2 className="text-4xl font-bold text-black mb-5">Hooked on the scroll</h2>
+                <h2 className="text-3xl font-bold text-black mb-2">Hooked on the scroll</h2>
                 <p className="text-black whitespace-normal break-words text-justify">
                   What does right after waking up in the morning and before lying in bed have in common? Using our
                   thumbs to
@@ -63,7 +63,7 @@ export default function ProtoPage() {
               </div>
 
               <div className="flex-1 min-w-0 pt-10">
-                <h2 className="text-4xl font-bold text-black mb-5">Established during pandemic</h2>
+                <h2 className="text-3xl font-bold text-black mb-2">Established during pandemic</h2>
                 <p className="text-black whitespace-normal break-words text-justify">
                   Doomscrolling became a threat during the Covid-19 pandemic, by feeding off stress and fear from
                   individuals
@@ -150,7 +150,7 @@ export default function ProtoPage() {
 
               <div className="flex-none min-w-0 flex items-center justify-center px-10 pt-20">
                 <img
-                  src="Head.png"
+                  src="/Article1/Head.png"
                   alt="Head looking at phone"
                   className="max-h-100 h-auto w-auto rounded-lg object-contain"
                 />
@@ -172,7 +172,7 @@ export default function ProtoPage() {
             </div>
 
             <div className="flex-1 min-w-0 pt-20">
-              <h2 className="text-4xl font-bold text-black mb-5">An addiction in disguise</h2>
+              <h2 className="text-3xl font-bold text-black mb-2">An addiction in disguise</h2>
               <p className="text-black text-justify">
                 Due to phones being commonplace in the early ages, a whole generation and those after might be greatly
                 affected and have a completely different childhood than most before Covid-19. Spending a short amount of
