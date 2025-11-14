@@ -13,9 +13,9 @@ interface Tab {
 
 const tabs: Tab[] = [
   {id: 'doomscrolling', label: 'Doomscrolling', color: 'bg-blue-950'},
+  {id: 'gaming', label: 'Gaming/Scrolling', color: 'bg-blue-600'},
   {id: 'addiction', label: 'Addiction', color: 'bg-blue-900'},
   {id: 'pressure', label: 'Pressure', color: 'bg-blue-700'},
-  {id: 'gaming', label: 'Gaming/Scrolling', color: 'bg-blue-600'},
 ];
 
 export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
@@ -51,6 +51,7 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
             group
             font-sans
             cursor-pointer
+            rounded-t-lg
             ${(index === 0 && activeTab !== tab.id) ? 'rounded-tl-lg' : ''}
             ${(index === tabs.length - 1 && activeTab !== tab.id) ? 'rounded-tr-lg' : ''}
           `}

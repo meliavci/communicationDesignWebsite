@@ -26,6 +26,8 @@ const useIntersectionObserver = (ref: React.RefObject<HTMLElement>, options: Int
 
 const VisibleImage: React.FC<{ src: string; alt: string; caption: string; className?: string }> = ({src, alt, caption, className}) => {
   const imageRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const isVisible = useIntersectionObserver(imageRef, {threshold: 0.1});
 
   return (
@@ -289,7 +291,7 @@ const ArticleOne: React.FC = () => {
 
           <footer className="mt-12 pt-8 border-t-2 border-gray-300 text-center text-gray-600 text-sm font-opensans">
             <p>Communication Design 2025</p>
-            <p>Melisa Avci, Raphael Tam-Dao, Daniel Betto, Ylva Romann Aas, Ingrid</p>
+            <p>Melisa Avci, Raphael Tam-Dao, Daniel Betto, Ylva Romann Aas, Ingrid Christensen Øvrelid</p>
           </footer>
         </div>
       </div>

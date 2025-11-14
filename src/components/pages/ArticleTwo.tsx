@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ScrollSequence2 from '@/components/ScrollSequence2';
 import {ComicText} from "@/components/ui/comic-text";
-
 
 
 const articleText = `
@@ -68,34 +67,38 @@ export default function ArticleTwo() {
 
   return (
     <div className="bg-white h-full flex flex-col relative mx-auto max-w-[85%] overflow-hidden">
-      <div className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800">
+      <div
+        className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800">
         <div className="max-w-screen-xl mx-auto w-full p-8 md:p-12 lg:p-16">
 
           <header className="mb-6 comic-header">
             <div className="header-ray-background relative overflow-visible">
-              <div className="halftone-overlay" aria-hidden="true" />
+              <div className="halftone-overlay" aria-hidden="true"/>
 
               <div className="max-w-6xl mx-auto px-6 py-10 relative flex items-center justify-center">
-                <div className="explosion absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-                  <svg className="explosion-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="100,150 150,50 250,30 320,80 430,40 500,5 560,60 700,20 760,70 840,30 920,80 980,40 1050,100 1120,120 1050,200 980,250 900,230 840,270 760,210 700,260 620,230 560,280 480,240 420,290 330,250 250,280 170,240" fill="#fff7e6" stroke="#000" strokeWidth="14" strokeLinejoin="round" />
-                  </svg>
-                </div>
-
                 <div className="header-content relative z-20 text-center">
-                  <div className="inline-block bg-white border-8 border-black px-6 py-4 transform -translate-y-3">
-                    <ComicText fontSize={5}>Screens and Childhood: Gaming vs. Doomscrolling</ComicText>
-                    <p className="mt-3 subtitle comic-text" style={{ fontSize: '0.95rem', maxWidth: '80%', margin: '0.5rem auto 0' }}>
-                      From iPads to endless feeds, interviews with families disclose the difference between gaming and doomscrolling in kids
+                  <div className="inline-block px-6 py-4 transform -translate-y-3">
+                    <ComicText fontSize={5}>Screens and Childhood: </ComicText>
+                    <ComicText fontSize={3} backgroundColor="#00a2ff" dotColor="#0071b3" className="mt-5">Gaming vs.
+                      Doomscrolling</ComicText>
+                    <p className="mt-10 comic-text text-lg md:text-xl lg:text-3xl text-black">
+                      From iPads to endless feeds, interviews with families disclose the difference between gaming and
+                      doomscrolling in kids
                     </p>
                   </div>
                 </div>
               </div>
+              <div
+                className="caption absolute bottom-3 right-3 bg-white text-black px-3 py-1 font-bold text-sm rounded-sm"
+                style={{border: '4px solid #000', transform: 'skewX(-5deg)'}}>
+                November 03, 2025 | By Daniel Betto
+              </div>
             </div>
           </header>
 
-          <div className="comic-grid grid gap-6" style={{ gridTemplateColumns: '1fr 1fr' }}>
-            <div className="panel panel-large relative border-8 border-black bg-white overflow-hidden" style={{ padding: '8px' }}>
+          <div className="comic-grid grid gap-6" style={{gridTemplateColumns: '1fr 1fr'}}>
+            <div className="panel panel-large relative border-8 border-black bg-white overflow-hidden"
+                 style={{padding: '8px'}}>
               <div className="w-full h-full flex items-center justify-center">
                 <ScrollSequence2
                   basePath="/Article2/doorSequences/RECOVER_door"
@@ -105,71 +108,122 @@ export default function ArticleTwo() {
                   scrollLengthVh={60}
                   scrollSpeedFactor={1.4}
                   startFrame={0}
-                  className="w-250 h-auto ml-40 mb-80"
+                  className="w-250 h-auto mb-80"
                 />
               </div>
-              <div className="caption absolute bottom-3 left-3 bg-yellow-300 text-black px-3 py-1 font-bold text-sm rounded-sm"
-                   style={{ border: '4px solid #000', transform: 'skewX(-5deg)' }}>
+              <div
+                className="caption absolute bottom-3 left-3 bg-yellow-300 text-black px-3 py-1 font-bold text-sm rounded-sm"
+                style={{border: '4px solid #000', transform: 'skewX(-5deg)'}}>
                 Animation Panel
               </div>
             </div>
 
             <div className="panel-right flex flex-col gap-6">
-              <div className="panel side-panel border-8 border-black bg-white p-4 relative overflow-hidden" style={{ minHeight: '260px' }}>
+              <div className="panel side-panel border-8 border-black bg-white p-4 relative overflow-hidden"
+                   style={{minHeight: '260px'}}>
                 <div className="flex items-center justify-center gap-6 h-full">
                   <div
                     className={`w-1/2 transform transition-transform duration-300 ${hovered === 'boy' ? 'scale-110' : ''}`}
                     onMouseEnter={() => setHovered('boy')}
                     onMouseLeave={() => setHovered(null)}
                   >
-                    <img src="/Article2/Girl.png" alt="Girl" className="w-full h-auto object-contain rounded-sm drop-shadow" />
+                    <img src="/Article2/Girl.png" alt="Girl"
+                         className="w-full h-auto object-contain rounded-sm drop-shadow"/>
                   </div>
                   <div
                     className={`w-1/2 transform transition-transform duration-300 ${hovered === 'girl' ? 'scale-110' : ''}`}
                     onMouseEnter={() => setHovered('girl')}
                     onMouseLeave={() => setHovered(null)}
                   >
-                    <img src="/Article2/Boy.png" alt="Boy" className="w-full h-auto object-contain rounded-sm drop-shadow" />
+                    <img src="/Article2/Boy.png" alt="Boy"
+                         className="w-full h-auto object-contain rounded-sm drop-shadow"/>
                   </div>
                 </div>
 
                 <div className="absolute top-4 right-4">
-                  <div className="speech-bubble px-3 py-1 bg-white text-black font-bold" style={{ border: '4px solid #000' }}>
+                  <div className="speech-bubble px-3 py-1 bg-white text-black font-bold"
+                       style={{border: '4px solid #000'}}>
                     CHOOSE!
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
-                <div className="panel small-panel border-8 border-black bg-white p-4 relative" style={{ minHeight: '160px' }}>
-                  <div className="bubble p-3 bg-white" style={{ border: '4px solid #000' }}>
+                <div className="panel small-panel border-8 border-black bg-white p-4 relative"
+                     style={{minHeight: '160px'}}>
+                  <div className="bubble p-3 bg-white" style={{border: '4px solid #000'}}>
                     <p className="text-sm text-black font-medium">Panel Text / Speech</p>
                   </div>
                 </div>
-                <div className="panel small-panel border-8 border-black bg-white p-4 relative" style={{ minHeight: '160px' }}>
-                  <div className="bubble p-3 bg-white" style={{ border: '4px solid #000' }}>
+                <div className="panel small-panel border-8 border-black bg-white p-4 relative"
+                     style={{minHeight: '160px'}}>
+                  <div className="bubble p-3 bg-white" style={{border: '4px solid #000'}}>
                     <p className="text-sm text-black font-medium">Panel Text / Speech</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="panel-full col-span-2 grid gap-6 mt-6" style={{ gridColumn: '1 / -1' }}>
+          <div className="mt-6 comic-grid grid gap-6" style={{gridTemplateColumns: '1fr 1fr'}}>
+            <div className="col-span-2 panel border-8 border-black bg-yellow-50 p-6 relative"
+                 style={{minHeight: '220px'}}>
+              <div className="comic-bubble p-4 bg-white"
+                   style={{border: '6px solid #000', boxShadow: '6px 6px 0 #00000022'}}>
+                <h1> Two habits, one screen </h1>
+                <p>Children’s never ending screen time usage has evolved into two different habits, according to experts
+                  and observation from families; gaming focused “iPad kids” and “doomscrollers.” This article includes
+                  interviews with a grandfather experiencing the worrisome term iPad kids, and an interview with an
+                  older sister worried about her younger siblings’ excessive screentime not on iPad, but phones. The
+                  grandsons are 12 and 14, while both the twin sisters are 12. The similar experiences of the grandsons
+                  and the twin sisters reveal interesting differences in how children use screen and how it affects
+                  them.</p>
+              </div>
+              <div className="w-full h-full flex items-center justify-center">
+                <ScrollSequence2
+                  basePath="/Article2/windowSequences/RECOVER_RECOVER_vindu"
+                  frameCount={42}
+                  padDigits={2}
+                  fileType="png"
+                  scrollLengthVh={20}
+                  scrollSpeedFactor={1.4}
+                  startFrame={0}
+                  className="w-230 h-auto -mt-100"
+                />
+              </div>
+            </div>
+
+            <div className="w-full h-full flex items-center justify-center mt-100">
+              <ScrollSequence2
+                basePath="/Article2/vsSequences/vs"
+                frameCount={30}
+                padDigits={2}
+                fileType="png"
+                scrollLengthVh={60}
+                scrollSpeedFactor={1.4}
+                startFrame={0}
+                className="w-250 h-auto ml-40 mb-80"
+              />
+            </div>
+
+            <div className="panel-full col-span-2 grid gap-6 mt-6" style={{gridColumn: '1 / -1'}}>
               <div className="grid grid-cols-3 gap-6">
-                <div className="col-span-2 panel border-8 border-black bg-yellow-50 p-6 relative" style={{ minHeight: '220px' }}>
-                  <div className="comic-bubble p-4 bg-white" style={{ border: '6px solid #000', boxShadow: '6px 6px 0 #00000022' }}>
-                    {paragraphBlocks.slice(0, Math.ceil(paragraphBlocks.length / 3)).map((p, i) => (
-                      <p key={i} className="text-sm text-black mb-3" style={{ fontFamily: "'Comic Neue', sans-serif" }}>
-                        {p}
-                      </p>
-                    ))}
+                <div className="col-span-2 panel border-8 border-black bg-yellow-50 p-6 relative"
+                     style={{minHeight: '220px'}}>
+                  <div className="comic-bubble p-4 bg-white"
+                       style={{border: '6px solid #000', boxShadow: '6px 6px 0 #00000022'}}>
+                    test{paragraphBlocks.slice(0, Math.ceil(paragraphBlocks.length / 3)).map((p, i) => (
+                    <p key={i} className="text-sm text-black mb-3" style={{fontFamily: "'Comic Neue', sans-serif"}}>
+                      {p}
+                    </p>
+                  ))}
                   </div>
                 </div>
 
-                <div className="panel border-8 border-black bg-cyan-50 p-6 relative" style={{ minHeight: '220px' }}>
-                  <div className="comic-bubble p-4 bg-white" style={{ border: '6px solid #000' }}>
+                <div className="panel border-8 border-black bg-cyan-50 p-6 relative" style={{minHeight: '220px'}}>
+                  <div className="comic-bubble p-4 bg-white" style={{border: '6px solid #000'}}>
                     {paragraphBlocks.slice(Math.ceil(paragraphBlocks.length / 3), Math.ceil(2 * paragraphBlocks.length / 3)).map((p, i) => (
-                      <p key={i} className="text-sm text-black mb-3" style={{ fontFamily: "'Comic Neue', sans-serif" }}>
+                      <p key={i} className="text-sm text-black mb-3" style={{fontFamily: "'Comic Neue', sans-serif"}}>
                         {p}
                       </p>
                     ))}
@@ -178,19 +232,20 @@ export default function ArticleTwo() {
               </div>
 
               <div className="grid grid-cols-3 gap-6 mt-6">
-                <div className="panel border-8 border-black bg-lime-50 p-4" style={{ minHeight: '180px' }}>
-                  <div className="comic-bubble p-3 bg-white" style={{ border: '6px solid #000' }}>
+                <div className="panel border-8 border-black bg-lime-50 p-4" style={{minHeight: '180px'}}>
+                  <div className="comic-bubble p-3 bg-white" style={{border: '6px solid #000'}}>
                     {paragraphBlocks.slice(Math.ceil(2 * paragraphBlocks.length / 3)).map((p, i) => (
-                      <p key={i} className="text-sm text-black mb-2" style={{ fontFamily: "'Comic Neue', sans-serif" }}>
+                      <p key={i} className="text-sm text-black mb-2" style={{fontFamily: "'Comic Neue', sans-serif"}}>
                         {p}
                       </p>
                     ))}
                   </div>
                 </div>
-                <div className="col-span-2 panel border-8 border-black bg-pink-50 p-4" style={{ minHeight: '180px' }}>
-                  <div className="comic-bubble p-3 bg-white" style={{ border: '6px solid #000' }}>
-                    <p className="text-sm text-black" style={{ fontFamily: "'Comic Neue', sans-serif" }}>
-                      Weitere erklärende Blöcke, Quellenangaben oder Zitate.
+                <div className="col-span-2 panel border-8 border-black bg-pink-50 p-4" style={{minHeight: '180px'}}>
+                  <div className="comic-bubble p-3 bg-white" style={{border: '6px solid #000'}}>
+                    <p className="text-sm text-black" style={{fontFamily: "'Comic Neue', sans-serif"}}>
+                      More panel text / speech can go here to fill out the comic layout. This area can be used for
+                      additional dialogue, narration, or any other content relevant to the comic story being told.
                     </p>
                   </div>
                 </div>
@@ -198,42 +253,74 @@ export default function ArticleTwo() {
             </div>
           </div>
 
-          <footer className="mt-8 text-right">
-            <span className="text-xs text-gray-500">Comic layout — designed for article two</span>
+          <footer className="mt-12 pt-8 border-t-2 border-gray-300 text-center text-gray-600 text-sm font-opensans">
+            <p>Communication Design 2025</p>
+            <p>Melisa Avci, Raphael Tam-Dao, Daniel Betto, Ylva Romann Aas, Ingrid Christensen Øvrelid</p>
           </footer>
 
           <style jsx>{`
-              .panel { background-image: linear-gradient(180deg, #fff 0%, #fff 100%); }
-              .comic-grid { }
+              .panel {
+                  background-image: linear-gradient(180deg, #fff 0%, #fff 100%);
+              }
+
+              .comic-grid {
+              }
+
               .speech-bubble {
                   border-radius: 12px;
                   font-family: 'Comic Neue', sans-serif;
                   box-shadow: 6px 6px 0 #00000022;
               }
-              .comic-bubble p { margin: 0; }
+
+              .comic-bubble p {
+                  margin: 0;
+              }
+
               .panel::before {
                   content: '';
                   position: absolute;
                   inset: 0;
                   pointer-events: none;
-                  background-image:
-                          radial-gradient(circle at 10% 10%, rgba(0,0,0,0.06) 1px, transparent 1px),
-                          radial-gradient(circle at 30% 50%, rgba(0,0,0,0.04) 1px, transparent 1px);
+                  background-image: radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                  radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
                   background-size: 8px 8px, 12px 12px;
                   mix-blend-mode: multiply;
                   opacity: 0.35;
               }
-              .comic-bubble { position: relative; z-index: 2; }
+
+              .comic-bubble {
+                  position: relative;
+                  z-index: 2;
+              }
+
               @media (max-width: 900px) {
-                  .comic-grid { grid-template-columns: 1fr; }
-                  .panel-right { order: 2; }
-                  .panel-large { order: 1; }
+                  .comic-grid {
+                      grid-template-columns: 1fr;
+                  }
+
+                  .panel-right {
+                      order: 2;
+                  }
+
+                  .panel-large {
+                      order: 1;
+                  }
               }
 
               /* --- Header / Comic title styles --- */
-              .comic-header { }
-              .explosion { opacity: 0.95; }
-              .explosion-svg { width: 100%; height: 220px; max-height: 260px; display: block; }
+              .comic-header {
+              }
+
+              .explosion {
+                  opacity: 0.95;
+              }
+
+              .explosion-svg {
+                  width: 100%;
+                  height: 220px;
+                  max-height: 260px;
+                  display: block;
+              }
 
               .halftone-overlay {
                   position: absolute;
@@ -241,14 +328,16 @@ export default function ArticleTwo() {
                   z-index: 15;
                   pointer-events: none;
                   /* grobe halftone-Punkte über dem ray-background für den Comic-Look */
-                  background-image:
-                          radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 2px);
+                  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.14) 1px, transparent 2px);
                   background-size: 10px 10px;
                   mix-blend-mode: multiply;
                   opacity: 0.25;
               }
 
-              .header-content { position: relative; z-index: 20; }
+              .header-content {
+                  position: relative;
+                  z-index: 20;
+              }
 
               .halftone-title {
                   color: #ff3b3b;
@@ -258,13 +347,16 @@ export default function ArticleTwo() {
                   -webkit-text-stroke: 6px #000;
                   text-stroke: 6px #000;
                   /* starker Schlagschatten wie Comic-3D */
-                  text-shadow: 8px 8px 0 rgba(0,0,0,0.95);
+                  text-shadow: 8px 8px 0 rgba(0, 0, 0, 0.95);
                   display: inline-block;
                   padding: 0 0.25rem;
                   letter-spacing: -0.02em;
               }
 
-              .subtitle { color: #1a1a1a; font-family: var(--font-comic); }
+              .subtitle {
+                  color: #1a1a1a;
+                  font-family: var(--font-comic);
+              }
 
           `}</style>
         </div>

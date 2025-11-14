@@ -1,3 +1,4 @@
+// src/components/ui/comic-text.tsx
 "use client"
 
 import { CSSProperties } from "react"
@@ -10,20 +11,22 @@ type ComicTextProps = {
   className?: string
   style?: CSSProperties
   fontSize?: number
+  backgroundColor?: string
+  dotColor?: string
 }
 
 export function ComicText({
-  children,
-  className,
-  style,
-  fontSize = 5,
-}: ComicTextProps) {
+                            children,
+                            className,
+                            style,
+                            fontSize = 7,
+                            backgroundColor = "#ff4800",
+                            dotColor = "#ab2e01",
+                          }: ComicTextProps) {
   if (typeof children !== "string") {
     throw new Error("children must be a string")
   }
 
-  const dotColor = "#000000"
-  const backgroundColor = "#ff4800"
   const shadowColor = "#000000"
 
   return (
@@ -33,15 +36,16 @@ export function ComicText({
         fontSize: `${fontSize}rem`,
         fontFamily: "'Bangers', 'Comic Sans MS', 'Impact', sans-serif",
         fontWeight: "900",
-        WebkitTextStroke: `${fontSize * 0.35}px #000000`,
+        WebkitTextStroke: `${fontSize * 0.6}px #000000`,
         transform: "skewX(-10deg)",
         textTransform: "uppercase",
+        lineHeight: 1,
         filter: `
           drop-shadow(5px 5px 0px #000000) 
           drop-shadow(3px 3px 0px ${shadowColor})
         `,
         backgroundColor: backgroundColor,
-        backgroundImage: `radial-gradient(circle at 1px 1px, ${dotColor} 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at 1px 1px, ${dotColor} 3px, transparent 0)`,
         backgroundSize: "8px 8px",
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
