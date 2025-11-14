@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import ScrollSequence2 from '@/components/ScrollSequence2';
+import {ComicText} from "@/components/ui/comic-text";
 
 
 
@@ -83,17 +84,7 @@ export default function ArticleTwo() {
 
                 <div className="header-content relative z-20 text-center">
                   <div className="inline-block bg-white border-8 border-black px-6 py-4 transform -translate-y-3">
-                    <h1
-                      className="halftone-title title-stroke font-marker"
-                      style={{
-                        fontSize: '2.25rem',
-                        lineHeight: 1,
-                        fontWeight: 900,
-                      }}
-                    >
-                      Screens and Childhood: Gaming vs. Doomscrolling
-                    </h1>
-
+                    <ComicText fontSize={5}>Screens and Childhood: Gaming vs. Doomscrolling</ComicText>
                     <p className="mt-3 subtitle comic-text" style={{ fontSize: '0.95rem', maxWidth: '80%', margin: '0.5rem auto 0' }}>
                       From iPads to endless feeds, interviews with families disclose the difference between gaming and doomscrolling in kids
                     </p>

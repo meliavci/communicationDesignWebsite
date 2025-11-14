@@ -14,10 +14,8 @@ interface Tab {
 const tabs: Tab[] = [
   {id: 'doomscrolling', label: 'Doomscrolling', color: 'bg-blue-950'},
   {id: 'addiction', label: 'Addiction', color: 'bg-blue-900'},
-  {id: 'rehab', label: 'Rehab', color: 'bg-blue-800'},
   {id: 'pressure', label: 'Pressure', color: 'bg-blue-700'},
   {id: 'gaming', label: 'Gaming/Scrolling', color: 'bg-blue-600'},
-  {id: 'socialMedia', label: 'Social Media', color: 'bg-blue-500'},
 ];
 
 export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
