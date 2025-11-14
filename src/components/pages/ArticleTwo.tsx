@@ -77,15 +77,21 @@ export default function ArticleTwo() {
 
               <div className="max-w-6xl mx-auto px-6 py-10 relative flex items-center justify-center">
                 <div className="explosion absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-                  <svg className="explosion-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="100,150 150,50 250,30 320,80 430,40 500,5 560,60 700,20 760,70 840,30 920,80 980,40 1050,100 1120,120 1050,200 980,250 900,230 840,270 760,210 700,260 620,230 560,280 480,240 420,290 330,250 250,280 170,240" fill="#fff7e6" stroke="#000" strokeWidth="14" strokeLinejoin="round" />
+                  <svg className="explosion-svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <polygon 
+                      points="300,50 350,80 380,60 420,90 450,70 480,110 500,90 520,130 530,150 520,170 500,210 480,190 450,230 420,210 380,240 350,220 320,250 300,230 280,250 250,220 220,240 180,210 150,230 120,190 100,210 80,170 70,150 80,130 100,90 120,110 150,70 180,90 220,60 250,80"
+                      fill="white"
+                      stroke="#000"
+                      strokeWidth="8"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </div>
 
                 <div className="header-content relative z-20 text-center">
-                  <div className="inline-block bg-white border-8 border-black px-6 py-4 transform -translate-y-3">
-                    <ComicText fontSize={5}>Screens and Childhood: Gaming vs. Doomscrolling</ComicText>
-                    <p className="mt-3 subtitle comic-text" style={{ fontSize: '0.95rem', maxWidth: '80%', margin: '0.5rem auto 0' }}>
+                  <div className="inline-block px-8 py-6">
+                    <ComicText fontSize={4.5}>Screens and Childhood: Gaming vs. Doomscrolling</ComicText>
+                    <p className="mt-3 subtitle comic-text" style={{ fontSize: '0.95rem', maxWidth: '85%', margin: '0.75rem auto 0', fontWeight: '600' }}>
                       From iPads to endless feeds, interviews with families disclose the difference between gaming and doomscrolling in kids
                     </p>
                   </div>
@@ -232,20 +238,31 @@ export default function ArticleTwo() {
 
               /* --- Header / Comic title styles --- */
               .comic-header { }
-              .explosion { opacity: 0.95; }
-              .explosion-svg { width: 100%; height: 220px; max-height: 260px; display: block; }
+              .explosion { opacity: 1; }
+              .explosion-svg { width: 100%; height: 280px; max-height: 320px; display: block; }
+
+              /* Yellow radial rays background */
+              .header-ray-background {
+                background: 
+                  repeating-conic-gradient(
+                    from 0deg at 50% 50%,
+                    #FFD700 0deg 2deg,
+                    #FFA500 2deg 4deg
+                  );
+                position: relative;
+              }
 
               .halftone-overlay {
                   position: absolute;
                   inset: 0;
                   z-index: 15;
                   pointer-events: none;
-                  /* grobe halftone-Punkte über dem ray-background für den Comic-Look */
+                  /* halftone dots over the ray background for comic look */
                   background-image:
-                          radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 2px);
-                  background-size: 10px 10px;
+                          radial-gradient(circle, rgba(0,0,0,0.15) 1.5px, transparent 2px);
+                  background-size: 8px 8px;
                   mix-blend-mode: multiply;
-                  opacity: 0.25;
+                  opacity: 0.4;
               }
 
               .header-content { position: relative; z-index: 20; }

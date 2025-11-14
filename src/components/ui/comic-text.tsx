@@ -22,10 +22,6 @@ export function ComicText({
     throw new Error("children must be a string")
   }
 
-  const dotColor = "#000000"
-  const backgroundColor = "#ff4800"
-  const shadowColor = "#000000"
-
   return (
     <motion.div
       className={cn("text-center select-none", className)}
@@ -33,27 +29,35 @@ export function ComicText({
         fontSize: `${fontSize}rem`,
         fontFamily: "'Bangers', 'Comic Sans MS', 'Impact', sans-serif",
         fontWeight: "900",
-        WebkitTextStroke: `${fontSize * 0.35}px #000000`,
-        transform: "skewX(-10deg)",
         textTransform: "uppercase",
-        filter: `
-          drop-shadow(5px 5px 0px #000000) 
-          drop-shadow(3px 3px 0px ${shadowColor})
+        // Red to dark red gradient with halftone dots
+        background: "linear-gradient(180deg, #ff1a1a 0%, #cc0000 100%)",
+        backgroundImage: `
+          radial-gradient(circle at 2px 2px, rgba(0,0,0,0.3) 1.5px, transparent 0),
+          linear-gradient(180deg, #ff1a1a 0%, #cc0000 100%)
         `,
-        backgroundColor: backgroundColor,
-        backgroundImage: `radial-gradient(circle at 1px 1px, ${dotColor} 1px, transparent 0)`,
-        backgroundSize: "8px 8px",
+        backgroundSize: "6px 6px, 100%",
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
+        // Thick black stroke
+        WebkitTextStroke: `${Math.max(4, fontSize * 0.8)}px #000000`,
+        // Strong 3D drop-shadow effect
+        filter: `
+          drop-shadow(8px 8px 0px #000000)
+          drop-shadow(6px 6px 0px #000000)
+          drop-shadow(4px 4px 0px #000000)
+        `,
+        transform: "skewY(-2deg)",
         ...style,
       }}
-      initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+      initial={{ opacity: 0, scale: 0.85, y: -10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{
-        duration: 0.6,
-        ease: [0.175, 0.885, 0.32, 1.275],
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
         type: "spring",
+        stiffness: 100,
       }}
     >
       {children}
