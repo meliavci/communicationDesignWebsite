@@ -25,7 +25,7 @@ export default function Home() {
       case 'doomscrolling':
         return <ArticleOne />;
       case 'addiction':
-        return <ProtoPage />;
+        return <ArticleFour />;
       case 'rehab':
         return <div className="p-8 text-black">Rehab page (placeholder)</div>;
       case 'pressure':
