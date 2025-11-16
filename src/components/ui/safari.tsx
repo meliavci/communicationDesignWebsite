@@ -23,6 +23,7 @@ export interface SafariProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Safari({
+  children,
   imageSrc,
   videoSrc,
   url,
@@ -36,7 +37,7 @@ export function Safari({
 
   return (
     <div
-      className={`relative inline-block w-full align-middle leading-none ${className ?? ""}`}
+      className={`relative inline-block w-full align-middle leading-none drop-shadow-lg test-black ${className ?? ""}`}
       style={{
         aspectRatio: `${SAFARI_WIDTH}/${SAFARI_HEIGHT}`,
         ...style,
@@ -54,7 +55,7 @@ export function Safari({
           }}
         >
           <video
-            className="block size-full object-cover"
+            className="block size-full object-cover rounded-b-lg"
             src={videoSrc}
             autoPlay
             loop
@@ -81,6 +82,30 @@ export function Safari({
             alt=""
             className="block size-full object-cover object-top"
           />
+        </div>
+      )}
+
+
+      {/* Children rendered inside the screen area (on top of media, under the chrome) */}
+      {children && (
+        <div
+          className="absolute pointer-events-auto backdrop-blur-md"
+          style={{
+            left: `${LEFT_PCT}%`,
+            top: `${TOP_PCT}%`,
+            width: `${WIDTH_PCT}%`,
+            height: `${HEIGHT_PCT}%`,
+            overflow: "hidden",
+            borderRadius: "0 0 11px 11px",
+            zIndex: 20, // sits between media (z-0) and chrome (z-10)
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 12,
+            boxSizing: "border-box",
+          }}
+        >
+          <div className="w-full h-full">{children}</div>
         </div>
       )}
 

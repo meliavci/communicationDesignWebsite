@@ -68,7 +68,7 @@ export const TweetSkeleton = ({
     )}
     {...props}
   >
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 z-20">
       <Skeleton className="size-10 shrink-0 rounded-full" />
       <Skeleton className="h-10 w-full" />
     </div>

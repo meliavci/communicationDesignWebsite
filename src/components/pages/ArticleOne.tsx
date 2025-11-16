@@ -68,7 +68,7 @@ const ArticleOne: React.FC = () => {
             </p>
             <ScrollSequence2
               basePath="/Article1/syringeSequences/WIEDERHERGESTELLT_Syringe"
-              frameCount={70}
+              frameCount={69}
               padDigits={2}
               fileType="png"
               scrollLengthVh={15}

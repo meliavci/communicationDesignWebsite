@@ -1,4 +1,5 @@
-import type { HTMLAttributes } from "react"
+// File: `src/components/ui/iphone.tsx`
+import type { HTMLAttributes, ReactNode } from "react"
 
 const PHONE_WIDTH = 433
 const PHONE_HEIGHT = 882
@@ -19,21 +20,23 @@ const RADIUS_V = (SCREEN_RADIUS / SCREEN_HEIGHT) * 100
 export interface IphoneProps extends HTMLAttributes<HTMLDivElement> {
   src?: string
   videoSrc?: string
+  children?: ReactNode
 }
 
 export function Iphone({
-  src,
-  videoSrc,
-  className,
-  style,
-  ...props
-}: IphoneProps) {
+                         src,
+                         videoSrc,
+                         children,
+                         className,
+                         style,
+                         ...props
+                       }: IphoneProps) {
   const hasVideo = !!videoSrc
   const hasMedia = hasVideo || !!src
 
   return (
     <div
-      className={`relative inline-block w-full align-middle leading-none ${className}`}
+      className={`relative inline-block w-full align-middle leading-none ${className ?? ""}`}
       style={{
         aspectRatio: `${PHONE_WIDTH}/${PHONE_HEIGHT}`,
         ...style,
@@ -82,11 +85,33 @@ export function Iphone({
         </div>
       )}
 
+      {/* Children rendered inside the screen area (on top of media) */}
+      {children && (
+        <div
+          className="absolute pointer-events-auto z-20"
+          style={{
+            left: `${LEFT_PCT}%`,
+            top: `${TOP_PCT}%`,
+            width: `${WIDTH_PCT}%`,
+            height: `${HEIGHT_PCT}%`,
+            overflow: "hidden",
+            borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
+            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 8,
+          }}
+        >
+          <div className="w-full h-full">{children}</div>
+        </div>
+      )}
+
       <svg
         viewBox={`0 0 ${PHONE_WIDTH} ${PHONE_HEIGHT}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 size-full"
+        className="absolute inset-0 size-full z-10"
         style={{ transform: "translateZ(0)" }}
       >
         <g mask={hasMedia ? "url(#screenPunch)" : undefined}>

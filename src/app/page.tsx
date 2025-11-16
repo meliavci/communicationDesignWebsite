@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import ProtoPage from '../components/pages/ProtoPage';
 import ArticleOne from "@/components/pages/ArticleOne";
 import ArticleTwo from '../components/pages/ArticleTwo';
+import ArticleFour from "@/components/pages/ArticleFour";
 
 export type TabType = 'doomscrolling' | 'addiction' | 'rehab' | 'pressure' | 'gaming' | 'socialMedia';
 
