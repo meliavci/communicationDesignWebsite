@@ -1,25 +1,22 @@
 // src/components/pages/ArticleFour.tsx
 'use client';
 
-import React, {forwardRef, JSX, useEffect, useRef, useState, useCallback, useMemo} from 'react';
+import React, {forwardRef, JSX, useEffect, useRef, useState} from 'react';
 
 import {Safari} from '@/components/ui/safari';
 import {Meteors} from '@/components/ui/meteors';
 import {NumberTicker} from '@/components/ui/number-ticker';
 import {AnimatedBeam} from '@/components/ui/animated-beam';
 import {AnimatedList} from '@/components/ui/animated-list';
-import {Tree, File as FileElement, Folder, TreeViewElement} from '@/components/ui/file-tree';
-import {Terminal, AnimatedSpan} from '@/components/ui/terminal';
+import {File as FileElement, Folder, Tree, TreeViewElement} from '@/components/ui/file-tree';
+import {AnimatedSpan, Terminal} from '@/components/ui/terminal';
 import {Marquee} from '@/components/ui/marquee';
 import {Iphone} from '@/components/ui/iphone';
 import {cn} from '@/lib/utils';
 import {Tweet} from '@/components/ui/tweet';
 import {Button} from '@/components/ui/button';
-import {ArrowLeft, ArrowRight, X, Minus, Maximize, Heart, MessageCircle, Repeat2, Share, FileIcon} from 'lucide-react';
+import {ArrowRight, FileIcon} from 'lucide-react';
 import {useInView} from 'motion/react';
-import {LiquidEther} from "@/components/ui/liquidEther";
-import Aurora from "@/components/Aurora";
-import {Globe} from '@/components/ui/globe';
 
 
 // --- Configuration ---
@@ -197,7 +194,7 @@ interface BarChartComparisonProps {
   onReset: () => void;
 }
 
-const BarChartComparison: React.FC<BarChartComparisonProps> = ({ guessedValue, actualValue, onReset }) => {
+const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, actualValue, onReset}) => {
   const maxVal = Math.max(guessedValue, actualValue, 1) * 1.2;
   const guessHeight = (guessedValue / maxVal) * 100;
   const actualHeight = (actualValue / maxVal) * 100;
@@ -218,7 +215,7 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({ guessedValue, a
   const statementClass = difference > 10 ? "text-red-700" : difference > 0 ? "text-orange-500" : difference < -10 ? "text-green-600" : ACCENT_COLOR_TEXT; // Use ACCENT_COLOR_TEXT for neutral/positive cases.
 
   const chartRef = useRef(null);
-  const isInView = useInView(chartRef, { once: true, amount: 0.5 });
+  const isInView = useInView(chartRef, {once: true, amount: 0.5});
   const [isChartVisible, setIsChartVisible] = useState(false);
 
   useEffect(() => {
@@ -302,7 +299,7 @@ const BrainRotSurvey: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(prev => ({ ...prev, inputValue: e.target.value.replace(/[^0-9]/g, '') }));
+    setState(prev => ({...prev, inputValue: e.target.value.replace(/[^0-9]/g, '')}));
   };
 
   const handleNext = () => {
@@ -327,7 +324,7 @@ const BrainRotSurvey: React.FC = () => {
   };
 
   const handleReset = () => {
-    setState({ step: 1, guess: null, actual: null, inputValue: '' });
+    setState({step: 1, guess: null, actual: null, inputValue: ''});
   };
 
   const currentQuestion = state.step === 1 ? question[1] : question[2];
@@ -357,7 +354,8 @@ const BrainRotSurvey: React.FC = () => {
             <span className="text-lg font-medium text-gray-500">hours / week</span>
           </div>
 
-          <Button onClick={handleNext} disabled={isNextDisabled} className={cn("w-full text-white font-bold py-2 px-4 rounded transition-colors duration-150", ACCENT_COLOR_BG, ACCENT_COLOR_HOVER)}>
+          <Button onClick={handleNext} disabled={isNextDisabled}
+                  className={cn("w-full text-white font-bold py-2 px-4 rounded transition-colors duration-150", ACCENT_COLOR_BG, ACCENT_COLOR_HOVER)}>
             {state.step === 1 ? "Next Step" : "Show Comparison"}
             <ArrowRight className="size-4 ml-2"/>
           </Button>
@@ -430,7 +428,10 @@ export default function ArticleFour(): JSX.Element {
     "A student’s perspective",
     "To understand if this definition holds true, it is important to not only research, but also ask those who experience it.",
     "“At night I can easily get bombarded with information and overstimulated. It is hard to explain how it feels, but it is like I am tired in the brain, or my brain feels full. I don’t know”, he says. ",
-    (<>This feeling of having the brain feeling “full” can be <a href="https://www.newportinstitute.com/resources/co-occurring-disorders/brain-rot/" target="_blank" rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>caused</a> by watching YouTube, scrolling on social media, or doing both simultaneously.</>),
+    (<>This feeling of having the brain feeling “full” can be <a
+      href="https://www.newportinstitute.com/resources/co-occurring-disorders/brain-rot/" target="_blank"
+      rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>caused</a> by watching
+      YouTube, scrolling on social media, or doing both simultaneously.</>),
     " It can also come from reading negative or distressing news articles online.",
     " Any activity that leaves the user exhausted and overstimulated can be considered an experience of brain rot. ",
   ];
@@ -442,7 +443,16 @@ export default function ArticleFour(): JSX.Element {
       avatarSeed: "janesmith",
       title: "1_WhatIsBrainRot.ts",
       // Link 1 integrated here (word "definition")
-      content: (<>In 2023 and 2024, a new term has become mainstream. “Brain rot”, a phenomenon similar to doomscrolling’s negative effects, but with an added sense of mental fogginess. This article will define, explain and explore brain rot through studies and an interview with a 22-year-old student who believes he experiences it every day. Doomscrolling is defined as a vicious cycle of endlessly consuming short-form content until one is hit with exhaustion and regret. It is another phenomenon that became mainstream during Covid-19 and remained normalized afterward. Brain rot is best explained through Newsport Institute’s <a href="https://www.newportinstitute.com/resources/co-occurring-disorders/brain-rot/" target="_blank" rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>definition</a>: “Brain rot is a condition of mental fogginess, lethargy, reduced attention span, and cognitive decline that results from an overabundance of screen time”. </>) ,
+      content: (<>In 2023 and 2024, a new term has become mainstream. “Brain rot”, a phenomenon similar to
+        doomscrolling’s negative effects, but with an added sense of mental fogginess. This article will define, explain
+        and explore brain rot through studies and an interview with a 22-year-old student who believes he experiences it
+        every day. Doomscrolling is defined as a vicious cycle of endlessly consuming short-form content until one is
+        hit with exhaustion and regret. It is another phenomenon that became mainstream during Covid-19 and remained
+        normalized afterward. Brain rot is best explained through Newsport Institute’s <a
+          href="https://www.newportinstitute.com/resources/co-occurring-disorders/brain-rot/" target="_blank"
+          rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>definition</a>: “Brain
+        rot is a condition of mental fogginess, lethargy, reduced attention span, and cognitive decline that results
+        from an overabundance of screen time”. </>),
       replyCount: getRandomInt(30, 80),
       retweetCount: getRandomInt(60, 150),
       likeCount: getRandomInt(200, 500),
@@ -463,7 +473,25 @@ export default function ArticleFour(): JSX.Element {
       avatarSeed: "sarah",
       title: "3_ReclaimYourBrain.ts",
       // Link 4 integrated here (word "Experts")
-      content: (<>His struggle with focus is not unique. <a href="https://www.healthline.com/health/short-attention-span#risk-factors" target="_blank" rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>Experts</a> say that constant scrolling and consuming meaningless content can slowly reshape the brain, creating unhealthy routines and mental fatigue. Over time, this can lead to neglect and not only personal responsibilities, but also emotional and social well-being. Yet, despite how overwhelming it may sound, there are small, practical steps to begin mending what brain rot damaged and to take back control of your attention. The first step is awareness, understanding that every video, post, or reel you interact with shapes your thoughts, habits and even your mood. Choose to engage only with content that supports creativity, teaches you something new or feeds genuine generosity. To limit exposure to meaningless scrolling, unfollow accounts that post addictive or repetitive material, or make use of the “Not interested” button on platforms like Instagram, TikTok, or YouTube. These small digital boundaries can make a surprisingly big difference over time. Spending time offline is just as important. Refreshing your mind doesn’t always require grand change. It can be as simple as finally doing the dishes you’ve been avoiding. Even mundane activities like cleaning or organizing your space can restore a sense of control and reduce stress. Lastly, be mindful of what fills your social conversations. Avoid engaging in endless talk about meaningless online trends unless the goal is to reflect on leaving them behind. Instead, try reconnecting meaningful discussions like topics that make you laugh, think, and feel connected. In the end, reducing brain rot isn’t about abandoning the internet; it’s about reclaiming your time, focus and ability to find meaning in what truly matters.</>),
+      content: (<>His struggle with focus is not unique. <a
+        href="https://www.healthline.com/health/short-attention-span#risk-factors" target="_blank"
+        rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>Experts</a> say that
+        constant scrolling and consuming meaningless content can slowly reshape the brain, creating unhealthy routines
+        and mental fatigue. Over time, this can lead to neglect and not only personal responsibilities, but also
+        emotional and social well-being. Yet, despite how overwhelming it may sound, there are small, practical steps to
+        begin mending what brain rot damaged and to take back control of your attention. The first step is awareness,
+        understanding that every video, post, or reel you interact with shapes your thoughts, habits and even your mood.
+        Choose to engage only with content that supports creativity, teaches you something new or feeds genuine
+        generosity. To limit exposure to meaningless scrolling, unfollow accounts that post addictive or repetitive
+        material, or make use of the “Not interested” button on platforms like Instagram, TikTok, or YouTube. These
+        small digital boundaries can make a surprisingly big difference over time. Spending time offline is just as
+        important. Refreshing your mind doesn’t always require grand change. It can be as simple as finally doing the
+        dishes you’ve been avoiding. Even mundane activities like cleaning or organizing your space can restore a sense
+        of control and reduce stress. Lastly, be mindful of what fills your social conversations. Avoid engaging in
+        endless talk about meaningless online trends unless the goal is to reflect on leaving them behind. Instead, try
+        reconnecting meaningful discussions like topics that make you laugh, think, and feel connected. In the end,
+        reducing brain rot isn’t about abandoning the internet; it’s about reclaiming your time, focus and ability to
+        find meaning in what truly matters.</>),
       replyCount: getRandomInt(50, 100),
       retweetCount: getRandomInt(150, 400),
       likeCount: getRandomInt(500, 1200),
@@ -578,23 +606,25 @@ export default function ArticleFour(): JSX.Element {
   ];
 
   const terminalLines = [
-    { prefix: "$", text: "npm install brain-rot-cure-kit" },
-    { prefix: ">", text: "Fetching packages for mental-health-cli..." },
-    { prefix: "✓", text: "Validated: attention-span-boost@1.0.0" },
-    { prefix: "✓", text: "Validated: meaningful-content-filter@2.1.0" },
-    { prefix: "!", text: "Warning: Addiction-core module detected. Proceeding with caution.", isWarning: true },
-    { prefix: "Success!", text: "Mindful state restoration initialized." },
+    {prefix: "$", text: "npm install brain-rot-cure-kit"},
+    {prefix: ">", text: "Fetching packages for mental-health-cli..."},
+    {prefix: "✓", text: "Validated: attention-span-boost@1.0.0"},
+    {prefix: "✓", text: "Validated: meaningful-content-filter@2.1.0"},
+    {prefix: "!", text: "Warning: Addiction-core module detected. Proceeding with caution.", isWarning: true},
+    {prefix: "Success!", text: "Mindful state restoration initialized."},
   ];
 
   const terminalRef = useRef(null);
-  const isTerminalInView = useInView(terminalRef, { once: true, amount: 0.1 });
+  const isTerminalInView = useInView(terminalRef, {once: true, amount: 0.1});
 
   // Link 3 integrated here (word "attention span")
   const mentalConsequencesContent = (
     <>
       Doomscrolling is known to have harmful mental effects such as loss
       of focus and increased anxiety. A specific shared effect between doomscrolling and brain rot is
-      reduced <a href="https://www.healthline.com/health/short-attention-span#risk-factors" target="_blank" rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>attention span</a>. According to Healthline, short attention span can cause poor performance at
+      reduced <a href="https://www.healthline.com/health/short-attention-span#risk-factors" target="_blank"
+                 rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>attention
+      span</a>. According to Healthline, short attention span can cause poor performance at
       school, difficulty completing tasks, communication problems, and even trouble watching a full film
       without checking one’s phone.<br/><br/>
       “Sometimes I notice I struggle to concentrate on movies. All I want is
@@ -608,7 +638,8 @@ export default function ArticleFour(): JSX.Element {
   return (
     // Responsive container padding adjustment
     <div className="bg-white h-full flex flex-col relative z-10 mx-auto max-w-[85%] overflow-hidden">
-      <div className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
+      <div
+        className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
         <div className="max-w-screen-xl mx-auto w-full p-0 md:p-12 lg:p-16 flex flex-col items-center gap-12">
 
           {/* Safari (top) */}
@@ -664,7 +695,8 @@ export default function ArticleFour(): JSX.Element {
             </span>
           </div>
 
-          <p className="text-center text-lg font-opensans text-gray-600 -mb-15 max-w-2xl px-4 sm:px-0">Endless scrolling, mindless videos and
+          <p className="text-center text-lg font-opensans text-gray-600 -mb-15 max-w-2xl px-4 sm:px-0">Endless
+            scrolling, mindless videos and
             toxic
             online trends aren&apos;t just killing time, but also wearing
             down your focus, fogging your thoughts and rewiring your brain. Experts and a student reveal the warning
@@ -739,7 +771,8 @@ export default function ArticleFour(): JSX.Element {
             {/* Split Panel for File Tree and Content */}
             <div className="flex w-full min-h-[400px] flex-col lg:flex-row">
               {/* File Tree / Sidebar */}
-              <div className="w-full max-w-full lg:max-w-[300px] bg-gray-50 border-r border-gray-300 p-2 overflow-auto text-sm text-gray-700 font-mono flex-shrink-0">
+              <div
+                className="w-full max-w-full lg:max-w-[300px] bg-gray-50 border-r border-gray-300 p-2 overflow-auto text-sm text-gray-700 font-mono flex-shrink-0">
                 <Tree
                   elements={fileTreeElements}
                   initialExpandedItems={['root', 'components', 'pages', 'article-four-main', 'public']}
@@ -750,29 +783,39 @@ export default function ArticleFour(): JSX.Element {
                     <Folder value="components" element="components">
                       <Folder value="pages" element="pages">
                         {/* Article Files as siblings */}
-                        <FileElement value="article-one" fileIcon={<FileIcon className="size-3 text-blue-500" />}>ArticleOne.tsx</FileElement>
-                        <FileElement value="article-two" fileIcon={<FileIcon className="size-3 text-blue-500" />}>ArticleTwo.tsx</FileElement>
+                        <FileElement value="article-one" fileIcon={<FileIcon
+                          className="size-3 text-blue-500"/>}>ArticleOne.tsx</FileElement>
+                        <FileElement value="article-two" fileIcon={<FileIcon
+                          className="size-3 text-blue-500"/>}>ArticleTwo.tsx</FileElement>
                         {/* Current Article Folder structure */}
                         <Folder value="article-four-main" element="ArticleFour.tsx">
-                          <FileElement value={tweetData[0].title} fileIcon={<FileIcon className="size-3 text-blue-500" />}>{tweetData[0].title}</FileElement>
-                          <FileElement value={tweetData[1].title} fileIcon={<FileIcon className="size-3 text-blue-500" />}>{tweetData[1].title}</FileElement>
-                          <FileElement value={tweetData[2].title} fileIcon={<FileIcon className="size-3 text-blue-500" />}>{tweetData[2].title}</FileElement>
-                          <FileElement value={tweetData[3].title} fileIcon={<FileIcon className="size-3 text-blue-500" />}>{tweetData[3].title}</FileElement>
-                          <FileElement value="terminal-log" fileIcon={<FileIcon className="size-3 text-red-500" />}>terminal.log</FileElement>
+                          <FileElement value={tweetData[0].title} fileIcon={<FileIcon
+                            className="size-3 text-blue-500"/>}>{tweetData[0].title}</FileElement>
+                          <FileElement value={tweetData[1].title} fileIcon={<FileIcon
+                            className="size-3 text-blue-500"/>}>{tweetData[1].title}</FileElement>
+                          <FileElement value={tweetData[2].title} fileIcon={<FileIcon
+                            className="size-3 text-blue-500"/>}>{tweetData[2].title}</FileElement>
+                          <FileElement value={tweetData[3].title} fileIcon={<FileIcon
+                            className="size-3 text-blue-500"/>}>{tweetData[3].title}</FileElement>
+                          <FileElement value="terminal-log"
+                                       fileIcon={<FileIcon className="size-3 text-red-500"/>}>terminal.log</FileElement>
                         </Folder>
-                        <FileElement value="proto-page" fileIcon={<FileIcon className="size-3 text-blue-500" />}>ProtoPage.tsx</FileElement>
+                        <FileElement value="proto-page"
+                                     fileIcon={<FileIcon className="size-3 text-blue-500"/>}>ProtoPage.tsx</FileElement>
                       </Folder>
                     </Folder>
                   </Folder>
                   <Folder value="public" element="public">
-                    <FileElement value="brain.png" fileIcon={<FileIcon className="size-3 text-green-500" />}>brain.png</FileElement>
+                    <FileElement value="brain.png"
+                                 fileIcon={<FileIcon className="size-3 text-green-500"/>}>brain.png</FileElement>
                   </Folder>
                 </Tree>
               </div>
 
               {/* Content / Editor Area, Link 3 integrated in mentalConsequencesContent */}
               <div className="flex-1 bg-white p-6 overflow-y-auto">
-                <h1 className="text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and focus</h1>
+                <h1 className="text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and
+                  focus</h1>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   {mentalConsequencesContent}
                 </p>
@@ -781,7 +824,12 @@ export default function ArticleFour(): JSX.Element {
 
             {/* Terminal (Full Width) */}
             <div className="w-full" ref={terminalRef}>
-              <Terminal className="min-h-[140px] w-full max-w-full rounded-t-none rounded-b-lg border-t-gray-300 border-t-2" sequence startOnView={isTerminalInView}>
+              <Terminal
+                className="min-h-[140px] w-full max-w-full rounded-t-none rounded-b-lg border-t-gray-300 border-t-2"
+                sequence
+                startOnView
+                externalInView={isTerminalInView}
+              >
                 {terminalLines.map((line, index) => (
                   <AnimatedSpan key={index} delay={index === 0 ? 500 : 300}>
                     <span className={cn("font-bold mr-2", line.isWarning ? "text-yellow-500" : "text-green-500")}>
@@ -793,6 +841,8 @@ export default function ArticleFour(): JSX.Element {
                   </AnimatedSpan>
                 ))}
               </Terminal>
+
+
             </div>
           </div>
 
@@ -826,7 +876,7 @@ export default function ArticleFour(): JSX.Element {
 
           {/* Survey component (Uses BarChartComparison now) */}
           <div className="w-full flex justify-center mt-20 px-4 sm:px-0">
-            <BrainRotSurvey />
+            <BrainRotSurvey/>
           </div>
 
           {/* Marquee with definitions (UPDATED STYLING) */}

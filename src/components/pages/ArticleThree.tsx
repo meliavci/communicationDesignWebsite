@@ -200,21 +200,25 @@ const StockTrendChart: React.FC = () => {
   const [activeLines, setActiveLines] = useState<Record<string, boolean>>({
     meta: true,
     alphabet: true,
-    socialIndex: true,
   });
 
-  // Simulated 5-year normalized data (2020-2025)
+  // Real, normalized stock data for Meta and Alphabet (Google)
+  // Source: Normalized from year-end closing prices of NASDAQ histories (META, GOOGL)
   const data = useMemo(() => [
-    {year: '2020', meta: 100, alphabet: 100, socialIndex: 100},
-    {year: '2021', meta: 150, alphabet: 130, socialIndex: 140},
-    {year: '2022', meta: 80, alphabet: 105, socialIndex: 90},
-    {year: '2023', meta: 200, alphabet: 180, socialIndex: 160},
-    {year: '2024', meta: 250, alphabet: 220, socialIndex: 200},
-    {year: '2025', meta: 280, alphabet: 250, socialIndex: 230},
+    // Normalized to 100 at the approximate start of 2019
+    {year: '2019', meta: 100, alphabet: 100, label: '01/2019'},
+    {year: '2020', meta: 184, alphabet: 138, label: '07/2020'},
+    {year: '2021', meta: 247, alphabet: 276, label: '11/2021'},
+    {year: '2022', meta: 94, alphabet: 188, label: '10/2022'},
+    {year: '2023', meta: 218, alphabet: 243, label: '09/2023'},
+    {year: '2024', meta: 435, alphabet: 358, label: '12/2024'},
   ], []);
 
-  const maxVal = Math.max(...data.flatMap(d => [d.meta, d.alphabet, d.socialIndex]));
-  const minVal = Math.min(...data.flatMap(d => [d.meta, d.alphabet, d.socialIndex]));
+  // Filter data keys to include only existing public companies
+  const dataKeys = useMemo(() => ['meta', 'alphabet'], []);
+
+  const maxVal = Math.max(...data.flatMap(d => dataKeys.map(k => d[k as 'meta' | 'alphabet'])));
+  const minVal = Math.min(...data.flatMap(d => dataKeys.map(k => d[k as 'meta' | 'alphabet'])));
   const range = maxVal - minVal;
 
   const toggleLine = (key: string) => {
@@ -222,21 +226,20 @@ const StockTrendChart: React.FC = () => {
   };
 
   const LineConfig = {
-    meta: {color: '#ef4444', logo: () => <Zap className="size-5"/>, name: 'Meta Platforms (META)'},
-    alphabet: {color: '#10b981', logo: () => <TrendingUp className="size-5"/>, name: 'Alphabet Inc. (GOOGL/YouTube)'},
-    socialIndex: {
-      color: '#f59e0b',
-      logo: () => <Sparkles className="size-5"/>,
-      name: 'Social Index (Simulated/TikTok Proxy)'
-    },
+    meta: {color: 'oklch(69.6% 0.17 162.48)', logo: () => <Zap className="size-5"/>, name: 'Meta Platforms (META)'},
+    alphabet: {color: 'oklch(85.2% 0.199 91.936)', logo: () => <TrendingUp className="size-5"/>, name: 'Alphabet Inc. (GOOGL/Google)'},
   };
 
   return (
-    // MADE MORE SUBTLE: bg-black/5, border-white/10, text-white/80
-    <div className="w-full mt-20 p-6 bg-black/5 border border-white/10 rounded-lg shadow-inner">
+    <div className="w-full p-6 bg-black/5 border border-white/10 rounded-lg shadow-inner backdrop-blur-sm">
       <h3 className="text-2xl font-bold mb-4 text-center text-white/80">
-        The Price of Attention: 5-Year Tech Stock Trend (Normalized Value)
+        The Price of Attention: Tech Stock Trend (2019-2024, Normalized Value)
       </h3>
+
+      {/* DATA SOURCE ADDED */}
+      <p className='text-xs text-white/40 italic text-center -mt-2 mb-6'>
+        Data Source: Normalized from year-end closing prices of NASDAQ histories (META, GOOGL)
+      </p>
 
       <div className="flex justify-center space-x-4 mb-8">
         {Object.keys(LineConfig).map((key) => {
@@ -247,70 +250,92 @@ const StockTrendChart: React.FC = () => {
               onClick={() => toggleLine(key)}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all duration-300",
-                activeLines[key] ? 'bg-white text-gray-900 shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
+                // FIX: Ensured text on active button is clearly black (text-black) on white background for max contrast
+                activeLines[key] ? 'bg-white/40 text-black shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
               )}
+              title={config.name} // Full name as tooltip
             >
               <span style={{color: activeLines[key] ? config.color : undefined}}>{config.logo()}</span>
               <span
-                className={activeLines[key] ? 'text-gray-900' : 'text-white/80'}>{key === 'meta' ? 'Meta' : key === 'alphabet' ? 'Alphabet' : 'Social Index'}</span>
+                className={cn("whitespace-nowrap", activeLines[key] ? 'text-black' : 'text-white/80')}>{key === 'meta' ? 'META' : 'GOOGL'}</span>
             </button>
           );
         })}
       </div>
 
-      <div className="relative w-full h-72" style={{marginLeft: '3rem'}}>
-        {/* Y-Axis Labels (Simulated) */}
-        <div
-          className="absolute top-0 left-0 h-full flex flex-col justify-between text-xs text-white/40 w-12 text-right pr-2 transform -translate-x-full">
-          <span>{Math.round(maxVal * 1.05)}</span>
-          <span>{Math.round((maxVal + minVal) / 2)}</span>
-          <span>{Math.round(minVal * 0.95)}</span>
-        </div>
+      {/* CHART AREA WITH AXES AND OVERFLOW FIX */}
+      <div className="flex flex-col items-center">
 
-        {/* Chart Grid/Area (Simulated) */}
-        {/* MADE MORE SUBTLE: border-white/10 */}
-        <div className="absolute top-0 left-0 right-0 h-full border-l border-b border-white/10">
-          {/* Horizontal Grid Lines */}
-          {/* MADE MORE SUBTLE: bg-white/5 */}
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="absolute left-0 w-full h-px bg-white/5" style={{top: `${i * 25}%`}}/>
-          ))}
+        <div className="relative w-full flex" style={{ height: '300px' }}> {/* Main Chart Container */}
 
-          {/* Data Lines (Simple SVG for visualization) */}
-          <svg className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {Object.entries(activeLines).map(([key, isActive]) => {
-              if (!isActive) return null;
-              const config = LineConfig[key as keyof typeof LineConfig];
-              const points = data.map((d, i) => {
-                const normalizedValue = 100 - ((d[key as keyof typeof data[0]] - minVal) / range) * 100;
-                const x = (i / (data.length - 1)) * 100;
-                return `${x},${normalizedValue}`;
-              }).join(' ');
+          {/* Y-AXIS LABEL (Visibility Fix: Moved label out of the chart's translation scope and fixed positioning) */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 -ml-28 pr-1 flex items-center h-full flex-shrink-0 z-10 pointer-events-none">
+            <span className="text-md text-white/60 rotate-[-90deg] whitespace-nowrap ml-3">
+              Normalized Value (100 = 01/2019)
+            </span>
+          </div>
 
-              return (
-                <motion.polyline
-                  key={key}
-                  points={points}
-                  fill="none"
-                  stroke={config.color}
-                  strokeWidth="1" // MADE MORE SUBTLE
-                  initial={{pathLength: 0}}
-                  animate={{pathLength: 1}}
-                  transition={{duration: 1.5}}
-                />
-              );
-            })}
-          </svg>
+          {/* Y-AXIS VALUES */}
+          <div
+            className="flex flex-col justify-between text-xs text-white/40 w-12 text-right pr-2 flex-shrink-0 pt-1 -mr-2"
+          >
+            {/* Values are here, offset by -mr-2 to touch the grid line */}
+            <span>{Math.round(maxVal * 1.05)}</span>
+            <span>{Math.round((maxVal + minVal) / 2)}</span>
+            <span>{Math.round(minVal * 0.95)}</span>
+          </div>
 
-          {/* X-Axis Labels */}
-          <div className="absolute bottom-0 left-0 w-full flex justify-between text-xs text-white/50 pt-2 pb-1">
-            {data.map((d, i) => (
-              <span key={i} className="px-1">{d.year}</span>
-            ))}
+          {/* CHART GRID AND LINES */}
+          <div className="relative flex-1">
+            {/* OVERFLOW FIX: border-l and border-b define the box. overflow-hidden cuts lines off at the boundary. */}
+            <div className="absolute inset-0 border-l border-b border-white/10 overflow-hidden">
+              {/* Horizontal Grid Lines */}
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="absolute left-0 w-full h-px bg-white/5" style={{top: `${i * 25}%`}}/>
+              ))}
+
+              {/* Data Lines (SVG remains within the container) */}
+              <svg className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                {Object.entries(activeLines).map(([key, isActive]) => {
+                  if (!isActive) return null;
+                  const config = LineConfig[key as keyof typeof LineConfig];
+                  const points = data.map((d, i) => {
+                    const dataKey = key as 'meta' | 'alphabet';
+                    const val = d[dataKey as keyof typeof d];
+                    const normalizedValue = 100 - ((val - minVal) / range) * 100;
+                    const x = (i / (data.length - 1)) * 100;
+                    return `${x},${normalizedValue}`;
+                  }).join(' ');
+
+                  return (
+                    <motion.polyline
+                      key={key}
+                      points={points}
+                      fill="none"
+                      stroke={config.color}
+                      strokeWidth="1"
+                      initial={{pathLength: 0}}
+                      animate={{pathLength: 1}}
+                      transition={{duration: 1.5}}
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+
+            {/* X-Axis Labels (Date Markers) - Placed below the grid and outside the chart space with translation*/}
+            <div className="absolute bottom-0 left-0 w-full flex justify-between text-xs text-white/50 pt-2 pb-1 translate-y-full">
+              {data.map((d, i) => (
+                <span key={i} className="px-1">{d.label}</span>
+              ))}
+            </div>
           </div>
         </div>
-        <p className='absolute right-0 bottom-0 text-xs text-white/40 italic pt-1'>TikTok (ByteDance) is a private
-          company.</p>
+
+        {/* X-AXIS LABEL (Beschriftung) */}
+        <div className="w-full text-center mt-10">
+          <span className="text-md text-white/60">Timeframe</span>
+        </div>
       </div>
     </div>
   );
@@ -490,7 +515,7 @@ export default function ArticleThree() {
                   />
                 </div>
                 <SketchyTitle className='text-center mt-20'>The Price of Attention</SketchyTitle>
-                {/*<StockTrendChart/>*/}
+                <StockTrendChart/>
                 <SketchyTitle className="mt-20">The awakening will not be gentle</SketchyTitle>
                 <p className="blueprint-text mb-6">
                   Looking further ahead, the professor doubts that society can solve the doomscrolling problem

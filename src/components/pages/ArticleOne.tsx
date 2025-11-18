@@ -233,7 +233,7 @@ const ArticleOne: React.FC = () => {
               </p>
             </section>
 
-            <div className="-mt-53">
+            <div className="-mt-68">
               <ScrollSequence2
                 basePath="/Article1/bongSequences/bong"
                 frameCount={24}
@@ -247,7 +247,7 @@ const ArticleOne: React.FC = () => {
             </div>
           </div>
 
-          <section className="mt-12 w-full mb-30">
+          <section className="mt-15 w-full mb-30">
             <div className="border-2 border-gray-300 rounded-lg overflow-hidden">
               <button
                 type="button"

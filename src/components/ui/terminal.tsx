@@ -187,6 +187,12 @@ interface TerminalProps {
   className?: string
   sequence?: boolean
   startOnView?: boolean
+  /**
+   * Optional external in-view flag. When provided, Terminal will use this
+   * flag to decide visibility/start instead of its internal IntersectionObserver.
+   * Useful when the terminal sits inside a custom scroll container.
+   */
+  externalInView?: boolean
 }
 
 export const Terminal = ({
@@ -194,15 +200,19 @@ export const Terminal = ({
                            className,
                            sequence = true,
                            startOnView = true,
+                           externalInView,
                          }: TerminalProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const isInView = useInView(containerRef as React.RefObject<Element>, {
+  const internalIsInView = useInView(containerRef as React.RefObject<Element>, {
     amount: 0.3,
     once: true,
   })
 
+  // use externalInView when provided, otherwise fall back to internal detection
+  const effectiveInView = externalInView ?? internalIsInView
+
   const [activeIndex, setActiveIndex] = useState(0)
-  const sequenceHasStarted = sequence ? !startOnView || isInView : false
+  const sequenceHasStarted = sequence ? !startOnView || effectiveInView : false
 
   const contextValue = useMemo<SequenceContextValue | null>(() => {
     if (!sequence) return null
