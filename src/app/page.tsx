@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -6,6 +7,7 @@ import ProtoPage from '../components/pages/ProtoPage';
 import ArticleOne from "@/components/pages/ArticleOne";
 import ArticleTwo from '../components/pages/ArticleTwo';
 import ArticleFour from "@/components/pages/ArticleFour";
+import ArticleThree from "@/components/pages/ArticleThree"; // Wichtig: Import hinzugefügt
 
 export type TabType = 'doomscrolling' | 'addiction' | 'rehab' | 'pressure' | 'gaming' | 'socialMedia';
 
@@ -14,8 +16,8 @@ const tabColors: Record<TabType, string> = {
   addiction: 'bg-blue-900',
   rehab: 'bg-blue-800',
   pressure: 'bg-blue-700',
-  gaming: 'bg-blue-600', // NEU
-  socialMedia: 'bg-blue-500', // Farbe angepasst
+  gaming: 'bg-blue-600',
+  socialMedia: 'bg-blue-500',
 };
 
 export default function Home() {
@@ -30,9 +32,9 @@ export default function Home() {
       case 'rehab':
         return <div className="p-8 text-black">Rehab page (placeholder)</div>;
       case 'pressure':
-        return <div className="p-8 text-black">Pressure page (placeholder)</div>;
+        return <ArticleThree />; // ArticleThree wird hier gerendert
       case 'gaming':
-        return <ArticleTwo />; // NEU: Zeige ArticleTwo
+        return <ArticleTwo />;
       case 'socialMedia':
         return <div className="p-8 text-black">Social Media page (placeholder)</div>;
       default:

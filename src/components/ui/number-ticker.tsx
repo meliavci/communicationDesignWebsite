@@ -12,6 +12,7 @@ interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
   delay?: number
   decimalPlaces?: number
   duration?: number // seconds
+  startOnView?: boolean // Added to prop interface
 }
 
 export function NumberTicker({
@@ -22,6 +23,7 @@ export function NumberTicker({
                                className,
                                decimalPlaces = 0,
                                duration = 0.8, // default duration in seconds
+                               startOnView = true, // Destructured here
                                ...props
                              }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -30,15 +32,18 @@ export function NumberTicker({
   )
   const isInView = useInView(ref, { once: true, margin: "0px" })
 
+  // Use isInView only if startOnView is true, otherwise treat it as always starting
+  const shouldStart = startOnView ? isInView : true;
+
   useEffect(() => {
-    if (isInView) {
+    if (shouldStart) {
       const timer = setTimeout(() => {
         const target = direction === "down" ? startValue : value
         animate(motionValue, target, { duration, easing: "easeOut" })
       }, delay * 1000)
       return () => clearTimeout(timer)
     }
-  }, [motionValue, isInView, delay, value, direction, startValue, duration])
+  }, [motionValue, shouldStart, delay, value, direction, startValue, duration])
 
   useEffect(() => {
     const unsubscribe = motionValue.on("change", (latest) => {

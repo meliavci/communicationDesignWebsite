@@ -1,3 +1,4 @@
+// src/components/ui/terminal.tsx
 "use client"
 
 import {
@@ -34,12 +35,12 @@ interface AnimatedSpanProps extends MotionProps {
 }
 
 export const AnimatedSpan = ({
-  children,
-  delay = 0,
-  className,
-  startOnView = false,
-  ...props
-}: AnimatedSpanProps) => {
+                               children,
+                               delay = 0,
+                               className,
+                               startOnView = false,
+                               ...props
+                             }: AnimatedSpanProps) => {
   const elementRef = useRef<HTMLDivElement | null>(null)
   const isInView = useInView(elementRef as React.RefObject<Element>, {
     amount: 0.3,
@@ -89,14 +90,14 @@ interface TypingAnimationProps extends MotionProps {
 }
 
 export const TypingAnimation = ({
-  children,
-  className,
-  duration = 60,
-  delay = 0,
-  as: Component = "span",
-  startOnView = true,
-  ...props
-}: TypingAnimationProps) => {
+                                  children,
+                                  className,
+                                  duration = 60,
+                                  delay = 0,
+                                  as: Component = "span",
+                                  startOnView = true,
+                                  ...props
+                                }: TypingAnimationProps) => {
   if (typeof children !== "string") {
     throw new Error("TypingAnimation: children must be a string. Received:")
   }
@@ -168,7 +169,7 @@ export const TypingAnimation = ({
     return () => {
       clearInterval(typingEffect)
     }
-  }, [children, duration, started])
+  }, [children, duration, started, sequence, itemIndex])
 
   return (
     <MotionComponent
@@ -189,11 +190,11 @@ interface TerminalProps {
 }
 
 export const Terminal = ({
-  children,
-  className,
-  sequence = true,
-  startOnView = true,
-}: TerminalProps) => {
+                           children,
+                           className,
+                           sequence = true,
+                           startOnView = true,
+                         }: TerminalProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const isInView = useInView(containerRef as React.RefObject<Element>, {
     amount: 0.3,
@@ -228,7 +229,8 @@ export const Terminal = ({
     <div
       ref={containerRef}
       className={cn(
-        "border-border bg-background z-0 h-full max-h-[400px] w-full max-w-lg rounded-xl border",
+        // Ensure readable text colors and allow parent overrides via className
+        "border-border bg-background z-0 h-full max-h-[400px] w-full rounded-xl border text-gray-900 dark:text-gray-100",
         className
       )}
     >
@@ -239,8 +241,10 @@ export const Terminal = ({
           <div className="h-2 w-2 rounded-full bg-green-500"></div>
         </div>
       </div>
-      <pre className="p-4">
-        <code className="grid gap-y-1 overflow-auto">{wrappedChildren}</code>
+      <pre className="p-4 overflow-auto">
+        <code className="grid gap-y-1 text-sm text-gray-900 dark:text-gray-100">
+          {wrappedChildren}
+        </code>
       </pre>
     </div>
   )

@@ -1,6 +1,10 @@
+// src/app/layout.tsx
 import type {Metadata} from "next";
 import {Geist, Geist_Mono, Merriweather, Open_Sans, PT_Sans} from "next/font/google";
 import "./globals.css";
+
+// ADD Schoolbell font import
+import { Schoolbell, Pangolin, Playwrite_DE_Grund_Guides, Kranky, Permanent_Marker, Gloria_Hallelujah, Nothing_You_Could_Do, Cabin_Sketch } from "next/font/google";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -19,6 +23,58 @@ const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
+
+// ADD Schoolbell font definition
+const schoolbell = Schoolbell({
+  variable: "--font-schoolbell",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+
+// ADD new fonts (Group 1 + Group 2)
+const pangolin = Pangolin({
+  variable: "--font-pangolin",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const playwriteDGG = Playwrite_DE_Grund_Guides({
+  variable: "--font-playwrite-d-g-g",
+  weight: ["400"],
+});
+
+const kranky = Kranky({
+  variable: "--font-kranky",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const permanentMarker = Permanent_Marker({
+  variable: "--font-permanent-marker",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const gloriaHallelujah = Gloria_Hallelujah({
+  variable: "--font-gloria-hallelujah",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const nothingYouCouldDo = Nothing_You_Could_Do({
+  variable: "--font-nothing-you-could-do",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+// ADD Cabin Sketch font definition
+const cabinSketch = Cabin_Sketch({
+  variable: "--font-cabin-sketch",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +99,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} antialiased`}
+        className={`${openSans.variable} ${merriweather.variable} ${ptSans.variable} ${schoolbell.variable} ${pangolin.variable} ${playwriteDGG.variable} ${kranky.variable} ${permanentMarker.variable} ${gloriaHallelujah.variable} ${nothingYouCouldDo.variable} ${cabinSketch.variable} antialiased`}
       >
         {children}
       </body>
