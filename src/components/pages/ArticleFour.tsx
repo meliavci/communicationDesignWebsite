@@ -607,16 +607,16 @@ export default function ArticleFour(): JSX.Element {
           <div className="w-full px-4 sm:px-0">
             <Safari videoSrc="/Article4/blurredCollage.mp4">
               <div
-                className="relative w-full h-full flex flex-col items-center justify-center p-2 sm:p-4 text-center z-40">
+                className="relative w-full h-full flex flex-col items-center justify-center p-4 text-center z-40 -mt-5">
 
                 <span
-                  className="text-lg sm:text-2xl md:text-4xl xl:text-6xl font-bold text-white/90 leading-snug mt-4 drop-shadow text-shadow-lg">
-                  <span className="text-lg sm:text-2xl md:text-4xl font-extrabold text-white inline-block text-shadow-lg">
+                  className="text-xl sm:text-3xl md:text-5xl xl:text-6xl font-bold text-white/90 leading-snug mt-4 drop-shadow text-shadow-lg">
+                  <span className="text-xl sm:text-3xl font-extrabold text-white inline-block text-shadow-lg">
                     40 VIDEOS.
                   </span>
                 </span>
 
-                <span className="text-lg sm:text-2xl md:text-4xl xl:text-6xl text-white leading-none drop-shadow-lg text-shadow-lg">
+                <span className="text-xl sm:text-3xl md:text-5xl xl:text-6xl text-white leading-none drop-shadow-lg text-shadow-lg">
                   <NumberTicker
                     value={320}
                     duration={3}
@@ -624,7 +624,7 @@ export default function ArticleFour(): JSX.Element {
                   />{' '}SECONDS.
                 </span>
 
-                <span className="text-xs md:text-lg lg:text-xl font-medium text-white mt-3 max-w-lg text-shadow-lg px-2">
+                <span className="text-sm md:text-xl lg:text-3xl font-medium text-white mt-5 max-w-lg text-shadow-lg">
                   That&apos;s the amount of content you consume before your consciousness registers the scrolling
                   impulse.
                 </span>
@@ -655,13 +655,13 @@ export default function ArticleFour(): JSX.Element {
             </span>
           </div>
 
-          <p className="text-center text-base font-opensans text-gray-600 max-w-2xl px-4 sm:px-0">Endless
+          <p className="text-center text-lg font-opensans text-gray-600 max-w-2xl px-4 sm:px-0">Endless
             scrolling, mindless videos and
             toxic
             online trends aren&apos;t just killing time, but also wearing
             down your focus, fogging your thoughts and rewiring your brain. Experts and a student reveal the warning
             signs and how to fight back </p>
-          <p className="text-sm font-opensans text-gray-600 border-t border-gray-300 pt-3 px-4 sm:px-20 mt-10">
+          <p className="text-md font-opensans text-gray-600 border-t border-gray-300 pt-3 px-4 sm:px-20 mt-10">
             November 13, 2025 | By Daniel Betto
           </p>
 
@@ -684,9 +684,9 @@ export default function ArticleFour(): JSX.Element {
           </div>
 
           <div className="w-full flex justify-center mt-10 sm:mt-20 px-4 sm:px-0">
-            <div className="w-full max-w-[400px] sm:max-w-[480px]">
+            <div className="w-full max-w-[500px] md:max-w-[480px]">
               <Iphone src="/Article4/iphoneBg.png">
-                <div className="space-y-4 p-1 pt-12 sm:pt-16">
+                <div className="space-y-4 p-2 mt-17">
                   <AnimatedList delay={300} className="w-full z-50 overflow-visible" startOnView={true}>
                     {[...brainRotText].reverse().map((text, index) => (
                       <div
@@ -762,7 +762,7 @@ export default function ArticleFour(): JSX.Element {
               </div>
 
               <div className="flex-1 bg-white p-6 overflow-y-auto">
-                <h1 className="text-xl sm:text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and
+                <h1 className="text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and
                   focus</h1>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   {mentalConsequencesContent}

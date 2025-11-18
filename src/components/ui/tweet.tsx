@@ -16,7 +16,7 @@ export function Tweet({
                         username = "John Doe",
                         handle = "@johndoe",
                         timestamp = "2h",
-                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                         avatarUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
                         replyCount = 12,
                         retweetCount = 34,
@@ -46,8 +46,8 @@ export function Tweet({
             {content}
           </p>
 
-          <div className="flex items-center justify-between mt-3 w-full sm:max-w-md">
-            <button className="flex items-center gap-2 group">
+          <div className="flex items-center justify-between mt-3 w-full max-w-full sm:max-w-md flex-wrap gap-2">
+            <button className="flex items-center gap-2 group flex-shrink-0">
               <div className="p-2 rounded-full group-hover:bg-blue-50 transition-colors">
                 <MessageCircle className="h-[18px] w-[18px] text-gray-500 group-hover:text-blue-500 transition-colors" />
               </div>
@@ -56,7 +56,7 @@ export function Tweet({
               </span>
             </button>
 
-            <button className="flex items-center gap-2 group">
+            <button className="flex items-center gap-2 group flex-shrink-0">
               <div className="p-2 rounded-full group-hover:bg-green-50 transition-colors">
                 <Repeat2 className="h-[18px] w-[18px] text-gray-500 group-hover:text-green-500 transition-colors" />
               </div>
@@ -65,7 +65,7 @@ export function Tweet({
               </span>
             </button>
 
-            <button className="flex items-center gap-2 group">
+            <button className="flex items-center gap-2 group flex-shrink-0">
               <div className="p-2 rounded-full group-hover:bg-pink-50 transition-colors">
                 <Heart className="h-[18px] w-[18px] text-gray-500 group-hover:text-pink-500 transition-colors" />
               </div>
@@ -74,7 +74,7 @@ export function Tweet({
               </span>
             </button>
 
-            <button className="flex items-center gap-2 group">
+            <button className="flex items-center gap-2 group flex-shrink-0">
               <div className="p-2 rounded-full group-hover:bg-blue-50 transition-colors">
                 <Share className="h-[18px] w-[18px] text-gray-500 group-hover:text-blue-500 transition-colors" />
               </div>

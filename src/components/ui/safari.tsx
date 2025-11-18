@@ -95,10 +95,11 @@ export function Safari({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            padding: 12,
             boxSizing: "border-box",
           }}
         >
-          {children}
+          <div className="w-full h-full">{children}</div>
         </div>
       )}
 

@@ -53,7 +53,7 @@ export function Iphone({
           }}
         >
           <video
-            className="block size-full object-cover"
+            className="block size-full w-full h-full object-contain md:object-cover"
             src={videoSrc}
             autoPlay
             loop
@@ -78,14 +78,14 @@ export function Iphone({
           <img
             src={src}
             alt=""
-            className="block size-full object-cover object-top"
+            className="block size-full w-full h-full object-contain md:object-cover object-top"
           />
         </div>
       )}
 
       {children && (
         <div
-          className="absolute pointer-events-auto z-20"
+          className="absolute pointer-events-auto z-20 flex items-center justify-center p-1 sm:p-2 md:p-2"
           style={{
             left: `${LEFT_PCT}%`,
             top: `${TOP_PCT}%`,
@@ -94,10 +94,6 @@ export function Iphone({
             overflow: "hidden",
             borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
             boxSizing: "border-box",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 8,
           }}
         >
           <div className="w-full h-full">{children}</div>
@@ -145,7 +141,7 @@ export function Iphone({
         />
 
         <path
-          d={`M${SCREEN_X} 75C${SCREEN_X} 44.2101 46.2101 ${SCREEN_Y} 77 ${SCREEN_Y}H355C385.79 ${SCREEN_Y} 410.75 44.2101 410.75 75V807C410.75 837.79 385.79 862.75 355 862.75H77C46.2101 862.75 ${SCREEN_X} 837.79 ${SCREEN_X} 807V75Z`}
+          d={`M${SCREEN_X} 75C${SCREEN_X} 44.2101 46.2101 ${SCREEN_Y} 77 ${SCREEN_Y}H355C385.79 ${SCREEN_Y} 410.75 44.2101 410.75 75V807C410.75 837.79 385.79 862.75 355 862.75H77C46.2101 862.75 21.25 837.79 21.25 807V75Z`}
           className="fill-[#0D0D0D] stroke-black stroke-[0.5] dark:fill-[#0D0D0D] dark:stroke-white/10"
           mask={hasMedia ? "url(#screenPunch)" : undefined}
         />
