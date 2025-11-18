@@ -1,4 +1,5 @@
 import {TabType} from '@/app/page';
+import {cn} from '@/lib/utils';
 
 interface NavigationProps {
   activeTab: TabType;
@@ -12,19 +13,20 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  {id: 'doomscrolling', label: 'DRUG', color: 'bg-blue-950'}, // 950 (Dunkelste)
-  {id: 'gaming', label: 'HABITS', color: 'bg-blue-900'},    // 900
-  {id: 'pressure', label: 'SYSTEM', color: 'bg-blue-800'},    // 800 (Um SYSTEM in die logische Reihenfolge zu bringen)
-  {id: 'addiction', label: 'ROT', color: 'bg-blue-700'},    // 700 (Hellste der Reihe)
+  {id: 'doomscrolling', label: 'DRUG', color: 'bg-blue-950'},
+  {id: 'gaming', label: 'HABITS', color: 'bg-blue-900'},
+  {id: 'pressure', label: 'SYSTEM', color: 'bg-blue-800'},
+  {id: 'addiction', label: 'ROT', color: 'bg-blue-700'},
 ];
 
 export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
   return (
     <nav
-      className="
-        flex justify-start gap-0 overflow-hidden z-20
-        mx-50 mt-10 shadow-t-2xl shawod-x-lg
-      ">
+      className={cn(
+        "flex justify-start gap-0 overflow-hidden z-20 mt-4 sm:mt-10 shadow-t-2xl shadow-x-lg",
+        "w-full max-w-screen-xl px-0 sm:px-4 lg:px-50"
+      )}
+    >
       {tabs.map((tab, index) => (
         <button
           key={tab.id}
@@ -34,9 +36,9 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
             ? 'bg-white text-blue-950 shadow-xl rounded-t-lg translate-y-0'
             : `${tab.color} text-blue-50 translate-y-0 hover:translate-y-0`
           }
-            w-40
-            px-4
-            h-12
+            flex-1
+            px-1 sm:px-4
+            h-10 sm:h-12
             relative
             transition-all
             duration-300
@@ -45,7 +47,7 @@ export default function Navigation({activeTab, setActiveTab}: NavigationProps) {
             items-center
             justify-center
             font-light
-            text-md
+            text-xs sm:text-lg
             tracking-wider
             overflow-hidden
             group

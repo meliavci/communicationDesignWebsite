@@ -11,16 +11,7 @@
     --font-merriweather: "Merriweather", Georgia, serif;
     --font-open-sans: "Open Sans", "Helvetica Neue", Arial, sans-serif;
     --font-comic: "Comic Sans MS", "Chalkboard SE", "Marker Felt", sans-serif;
-    --font-schoolbell: "Schoolbell", cursive; /* ADD Schoolbell variable */
-
-    /* ADD new font variables (Group 1) */
-    --font-pangolin: "Pangolin", cursive;
-    --font-playwrite-d-g-g: "Playwrite Deutschland Grundschrift Guides", cursive;
-    --font-kranky: "Kranky", cursive;
-    /* ADD new font variables (Group 2) */
-    --font-permanent-marker: "Permanent Marker", cursive;
-    --font-gloria-hallelujah: "Gloria Hallelujah", cursive;
-    --font-nothing-you-could-do: "Nothing You Could Do", cursive;
+    --font-schoolbell: "Schoolbell", cursive;
     --font-cabin-sketch: "Cabin Sketch", cursive;
 
     --radius: 0.625rem;
@@ -209,17 +200,17 @@ p, .prose {
     padding: 1.5rem;
     margin-bottom: 2rem;
     position: relative;
-    font-family: var(--font-comic);
+    font-family: var(--font-comic), serif;
 }
 
 .comic-text {
-    font-family: var(--font-comic);
+    font-family: var(--font-comic), serif;
     text-shadow: 1px 1px 0 #fff;
     line-height: 1.2;
 }
 
 .comic-heading {
-    font-family: var(--font-comic);
+    font-family: var(--font-comic), serif;
     font-weight: 900;
     text-transform: uppercase;
     color: #c53030;
@@ -229,7 +220,7 @@ p, .prose {
 }
 
 .font-marker {
-    font-family: var(--font-comic);
+    font-family: var(--font-comic), serif;
 }
 
 .header-ray-background {
@@ -244,38 +235,35 @@ p, .prose {
     text-stroke: 4px black;
 }
 
-/* --- New Blueprint Styles --- */
+/* --- Blueprint Styles --- */
 .blueprint-bg {
-    background-color: #10397F; /* UPDATED COLOR */
+    background-color: #10397F;
     background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.1) 26%, transparent 27%),
     linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.1) 26%, transparent 27%);
-    background-size: 50px 50px; /* Grid size */
+    background-size: 50px 50px;
 }
 
 .blueprint-text {
-    color: #E0FFFF; /* Cyan/white for text on dark background */
-    font-family: var(--font-schoolbell), cursive; /* UPDATED FONT FAMILY */
+    color: #E0FFFF;
+    font-family: var(--font-schoolbell), cursive;
     font-weight: 400;
     line-height: 1.6;
 }
 
 .blueprint-heading {
-    /* Mimics the hand-drawn, sketched text from the inspo images */
-    color: #E0FFFF; /* White/Cyan */
+    color: #E0FFFF;
     font-family: monospace, var(--font-geist-mono), sans-serif;
     font-weight: 700;
-    text-shadow: 0 0 5px rgba(224, 255, 255, 0.5); /* Subtle glow for sketch effect */
-    /* Hand-drawn look using a filter */
+    text-shadow: 0 0 5px rgba(224, 255, 255, 0.5);
     filter: url(#rough-filter);
     line-height: 1.1;
 }
 
-/* Custom link color for the blueprint theme */
 .blueprint-link {
-    color: #4CB0FF; /* Lighter blue for links */
+    color: #4CB0FF;
     text-decoration-color: #4CB0FF;
 }
-/* --- End New Blueprint Styles --- */
+/* --- End Blueprint Styles --- */
 
 .dark {
 

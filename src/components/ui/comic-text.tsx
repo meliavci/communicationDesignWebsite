@@ -1,44 +1,43 @@
-// src/components/ui/comic-text.tsx
-"use client"
+'use client';
 
-import { CSSProperties } from "react"
-import { motion } from "motion/react"
+import { CSSProperties } from 'react';
+import { motion } from 'motion/react';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 type ComicTextProps = {
-  children: string
-  className?: string
-  style?: CSSProperties
-  fontSize?: number
-  backgroundColor?: string
-  dotColor?: string
-}
+  children: string;
+  className?: string;
+  style?: CSSProperties;
+  fontSize: number;
+  backgroundColor?: string;
+  dotColor?: string;
+};
 
 export function ComicText({
                             children,
                             className,
                             style,
-                            fontSize = 7,
-                            backgroundColor = "#ff4800",
-                            dotColor = "#ab2e01",
+                            fontSize,
+                            backgroundColor = '#ff4800',
+                            dotColor = '#ab2e01',
                           }: ComicTextProps) {
-  if (typeof children !== "string") {
-    throw new Error("children must be a string")
+  if (typeof children !== 'string') {
+    throw new Error('children must be a string');
   }
 
-  const shadowColor = "#000000"
+  const shadowColor = '#000000';
+  const baseStrokePx = fontSize * 0.6;
 
   return (
     <motion.div
       className={cn("text-center select-none", className)}
       style={{
-        fontSize: `${fontSize}rem`,
         fontFamily: "'Bangers', 'Comic Sans MS', 'Impact', sans-serif",
-        fontWeight: "900",
-        WebkitTextStroke: `${fontSize * 0.6}px #000000`,
-        transform: "skewX(-10deg)",
-        textTransform: "uppercase",
+        fontWeight: '900',
+        WebkitTextStroke: `${baseStrokePx}px #000000`,
+        transform: 'skewX(-10deg)',
+        textTransform: 'uppercase',
         lineHeight: 1,
         filter: `
           drop-shadow(5px 5px 0px #000000) 
@@ -46,10 +45,10 @@ export function ComicText({
         `,
         backgroundColor: backgroundColor,
         backgroundImage: `radial-gradient(circle at 1px 1px, ${dotColor} 3px, transparent 0)`,
-        backgroundSize: "8px 8px",
-        backgroundClip: "text",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
+        backgroundSize: '8px 8px',
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
         ...style,
       }}
       initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
@@ -57,10 +56,10 @@ export function ComicText({
       transition={{
         duration: 0.6,
         ease: [0.175, 0.885, 0.32, 1.275],
-        type: "spring",
+        type: 'spring',
       }}
     >
       {children}
     </motion.div>
-  )
+  );
 }

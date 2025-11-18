@@ -19,7 +19,6 @@ export default function ScrollSequence2({
                                           fileType = "png",
                                           padDigits = 4,
                                           scrollLengthVh = 200,
-                                          scrollSpeedFactor = 1.0,
                                           className = "",
                                           startFrame = 0,
                                         }: ScrollSequenceProps) {
@@ -120,7 +119,6 @@ export default function ScrollSequence2({
       try {
         ctx.drawImage(img, 0, 0);
       } catch {
-        // noop
       }
     };
 

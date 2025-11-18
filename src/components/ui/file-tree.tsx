@@ -292,7 +292,6 @@ const File = forwardRef<
     {
       value,
       className,
-      handleSelect,
       isSelectable = true,
       isSelect,
       fileIcon,
@@ -338,7 +337,7 @@ const CollapseButton = forwardRef<
 >(({ className, elements, expandAll = false, children, ...props }, ref) => {
   const { expandedItems, setExpandedItems } = useTree()
 
-  const expendAllTree = useCallback((elements: TreeViewElement[]) => {
+  const expandAllTree = useCallback((elements: TreeViewElement[]) => {
     const expandTree = (element: TreeViewElement) => {
       const isSelectable = element.isSelectable ?? true
       if (isSelectable && element.children && element.children.length > 0) {
@@ -355,11 +354,10 @@ const CollapseButton = forwardRef<
   }, [])
 
   useEffect(() => {
-    console.log(expandAll)
     if (expandAll) {
-      expendAllTree(elements)
+      expandAllTree(elements)
     }
-  }, [expandAll])
+  }, [expandAll, elements, expandAllTree])
 
   return (
     <Button
@@ -368,7 +366,7 @@ const CollapseButton = forwardRef<
       onClick={
         expandedItems && expandedItems.length > 0
           ? closeAll
-          : () => expendAllTree(elements)
+          : () => expandAllTree(elements)
       }
       ref={ref}
       {...props}

@@ -13,27 +13,24 @@ interface TweetProps {
 }
 
 export function Tweet({
-                                username = "John Doe",
-                                handle = "@johndoe",
-                                timestamp = "2h",
-                                content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-                                avatarUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
-                                replyCount = 12,
-                                retweetCount = 34,
-                                likeCount = 156,
-                              }: TweetProps) {
+                        username = "John Doe",
+                        handle = "@johndoe",
+                        timestamp = "2h",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+                        avatarUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
+                        replyCount = 12,
+                        retweetCount = 34,
+                        likeCount = 156,
+                      }: TweetProps) {
   return (
     <article className="bg-white border border-gray-200 p-4 hover:bg-gray-50 transition-colors cursor-pointer">
       <div className="flex gap-3">
-        {/* Avatar */}
         <Avatar className="h-12 w-12 flex-shrink-0">
           <AvatarImage src={avatarUrl} alt={username} />
           <AvatarFallback>{username.charAt(0)}</AvatarFallback>
         </Avatar>
 
-        {/* Tweet Content */}
         <div className="flex-1 min-w-0">
-          {/* Header */}
           <div className="flex items-center gap-1 flex-wrap">
             <span className="font-bold text-gray-900 hover:underline">
               {username}
@@ -45,14 +42,11 @@ export function Tweet({
             </span>
           </div>
 
-          {/* Tweet Text */}
           <p className="text-gray-900 mt-1 text-[15px] leading-5 whitespace-pre-wrap break-words">
             {content}
           </p>
 
-          {/* Interaction Bar */}
-          <div className="flex items-center justify-between mt-3 max-w-md">
-            {/* Reply */}
+          <div className="flex items-center justify-between mt-3 w-full sm:max-w-md">
             <button className="flex items-center gap-2 group">
               <div className="p-2 rounded-full group-hover:bg-blue-50 transition-colors">
                 <MessageCircle className="h-[18px] w-[18px] text-gray-500 group-hover:text-blue-500 transition-colors" />
@@ -62,7 +56,6 @@ export function Tweet({
               </span>
             </button>
 
-            {/* Retweet */}
             <button className="flex items-center gap-2 group">
               <div className="p-2 rounded-full group-hover:bg-green-50 transition-colors">
                 <Repeat2 className="h-[18px] w-[18px] text-gray-500 group-hover:text-green-500 transition-colors" />
@@ -72,7 +65,6 @@ export function Tweet({
               </span>
             </button>
 
-            {/* Like */}
             <button className="flex items-center gap-2 group">
               <div className="p-2 rounded-full group-hover:bg-pink-50 transition-colors">
                 <Heart className="h-[18px] w-[18px] text-gray-500 group-hover:text-pink-500 transition-colors" />
@@ -82,7 +74,6 @@ export function Tweet({
               </span>
             </button>
 
-            {/* Share */}
             <button className="flex items-center gap-2 group">
               <div className="p-2 rounded-full group-hover:bg-blue-50 transition-colors">
                 <Share className="h-[18px] w-[18px] text-gray-500 group-hover:text-blue-500 transition-colors" />

@@ -5,16 +5,15 @@ import ScrollSequence2 from '@/components/ScrollSequence2';
 import {ComicText} from "@/components/ui/comic-text";
 import {LineShadowText} from "@/components/ui/line-shadow-text";
 
-
 export default function ArticleTwo() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <div className="bg-white h-full flex flex-col relative mx-auto max-w-[85%] overflow-hidden halftone-overlay">
+    <div className="bg-white h-full flex flex-col relative mx-auto max-w-full xl:max-w-[85%] overflow-x-hidden halftone-overlay">
       <div
         className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800 ">
         <div className="absolute inset-0 halftone-overlay" aria-hidden="true" />
-        <div className="max-w-screen-xl mx-auto w-full p-8 md:p-12 lg:p-16">
+        <div className="max-w-screen-xl mx-auto w-full md:p-12 lg:p-16">
 
           <header className="mb-6 comic-header">
             <div className="header-ray-background relative overflow-visible">
@@ -23,9 +22,22 @@ export default function ArticleTwo() {
               <div className="max-w-6xl mx-auto px-6 py-10 relative flex items-center justify-center">
                 <div className="header-content relative z-20 text-center">
                   <div className="inline-block px-6 py-4 transform -translate-y-3">
-                    <ComicText fontSize={5}>Screens and Childhood: </ComicText>
-                    <ComicText fontSize={3} backgroundColor="#00a2ff" dotColor="#0071b3" className="mt-5">Gaming vs.
-                      Doomscrolling</ComicText>
+                    <ComicText
+                      fontSize={5}
+                      className="text-4xl sm:text-6xl xl:text-[5rem]"
+                      style={{WebkitTextStroke: '2px #000000'}}
+                    >
+                      Screens and Childhood:
+                    </ComicText>
+                    <ComicText
+                      fontSize={3}
+                      backgroundColor="#00a2ff"
+                      dotColor="#0071b3"
+                      className="mt-5 text-2xl sm:text-4xl xl:text-[3rem]"
+                      style={{WebkitTextStroke: '1px #000000'}}
+                    >
+                      Gaming vs. Doomscrolling
+                    </ComicText>
                     <p className="mt-10 comic-text text-lg md:text-xl lg:text-3xl text-black">
                       From iPads to endless feeds, interviews with families disclose the difference between gaming and
                       doomscrolling in kids
@@ -43,7 +55,7 @@ export default function ArticleTwo() {
 
           <div className="mt-6">
             <div
-              className="border-8 border-black bg-[#FFC400FF] p-6 relative flex flex-col items-center gap-6 overflow-visible pb-190"
+              className="border-8 border-black bg-[#FFC400FF] p-6 relative flex flex-col items-center gap-6 overflow-visible pb-32 sm:pb-48 xl:pb-[760px]"
               style={{minHeight: 0}}
             >
               <div className="comic-bubble p-4 bg-white"
@@ -74,7 +86,7 @@ export default function ArticleTwo() {
                   scrollLengthVh={20}
                   scrollSpeedFactor={2}
                   startFrame={0}
-                  className="w-300 h-auto mt-0"
+                  className="w-full h-auto -mt-160 md:mt-0 max-w-[1200px]"
                 />
               </div>
             </div>
@@ -107,7 +119,7 @@ export default function ArticleTwo() {
           </div>
 
 
-          <div className="comic-grid grid grid-cols-3 gap-6 mt-6">
+          <div className="comic-grid grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
             <div
               className="border-8 border-black bg-[#70ff8f] col-span-1 p-6 relative flex flex-col items-center gap-6 overflow-visible">
               <h1
@@ -126,7 +138,7 @@ export default function ArticleTwo() {
             </div>
 
 
-            <div className="col-span-2 panel-right flex flex-col gap-6 h-full">
+            <div className="md:col-span-2 panel-right flex flex-col gap-6 h-full">
               <div className="panel side-panel border-8 border-black bg-white relative overflow-hidden"
                    style={{minHeight: '260px'}}>
                 <div className="flex items-center justify-center gap-6 h-full bg-[#ff6347] cursor-pointer">
@@ -135,6 +147,7 @@ export default function ArticleTwo() {
                     onMouseEnter={() => setHovered('boy')}
                     onMouseLeave={() => setHovered(null)}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/Article2/Girl.png" alt="Girl"
                          className="w-full h-auto object-contain rounded-sm drop-shadow"/>
                   </div>
@@ -143,6 +156,7 @@ export default function ArticleTwo() {
                     onMouseEnter={() => setHovered('girl')}
                     onMouseLeave={() => setHovered(null)}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/Article2/Boy.png" alt="Boy"
                          className="w-full h-auto object-contain rounded-sm drop-shadow"/>
                   </div>
@@ -157,9 +171,9 @@ export default function ArticleTwo() {
               </div>
             </div>
           </div>
-          <div className="comic-grid grid gap-6" style={{gridTemplateColumns: '1fr 1fr'}}>
-            <div className="panel-full col-span-2 grid gap-6 mt-6" style={{gridColumn: '1 / -1'}}>
-              <div className="grid grid-cols-2 gap-6">
+          <div className="comic-grid w-full grid gap-6 mt-6 grid-cols-1 lg:grid-cols-2">
+            <div className="panel-full col-span-full grid gap-6 mt-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="col-span-1 border-8 border-black bg-[#70cbff] p-6 gap-6 relative overflow-hidden"
                      style={{minHeight: '220px'}}>
                   <div className="p-4 bg-white"
@@ -190,7 +204,7 @@ export default function ArticleTwo() {
                       sisters react is noticeable.
                     </p>
                   </div>
-                  <div className="-mt-70">
+                  <div className="-mt-90 lg:-mt-[280px]">
                     <ScrollSequence2
                       basePath="/Article2/vsSequences/vs"
                       frameCount={30}
@@ -199,13 +213,13 @@ export default function ArticleTwo() {
                       scrollLengthVh={60}
                       scrollSpeedFactor={1.4}
                       startFrame={0}
-                      className="w-170 h-auto"
+                      className="w-full h-auto max-w-[680px]"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-1 relative border-8 border-black bg-[#8861ff] overflow-hidden">
-                  <div className="w-full flex items-center justify-center -mt-50">
+                  <div className="w-full flex items-center justify-center -mt-80 lg:-mt-[200px]">
                     <ScrollSequence2
                       basePath="/Article2/doorSequences/RECOVER_door"
                       frameCount={25}
@@ -214,7 +228,7 @@ export default function ArticleTwo() {
                       scrollLengthVh={60}
                       scrollSpeedFactor={1.4}
                       startFrame={0}
-                      className="w-190 h-auto ml-25"
+                      className="w-full h-auto max-w-[760px] mx-auto lg:ml-24"
                     />
                   </div>
                   <div
@@ -243,18 +257,18 @@ export default function ArticleTwo() {
               </div>
             </div>
           </div>
-          <div className="comic-grid w-full grid gap-6 mt-6 border-8 border-black header-ray-background p-6" style={{gridTemplateColumns: '1fr 1fr'}}>
-              <div className="w-full flex items-center justify-center -mt-45 pb-45">
-                <ScrollSequence2
-                  basePath="/Article2/controllerWinsSequences/controller-winns-over-phone-vrs1-2_"
-                  frameCount={41}
-                  padDigits={2}
-                  fileType="png"
-                  scrollLengthVh={60}
-                  scrollSpeedFactor={2}
-                  startFrame={1000}
-                  className="w-272 h-auto"
-                />
+          <div className="comic-grid w-full grid gap-6 mt-6 border-8 border-black header-ray-background p-6 grid-cols-1">
+            <div className="w-full flex items-center justify-center -mt-100 lg:-mt-[180px] lg:pb-[180px]">
+              <ScrollSequence2
+                basePath="/Article2/controllerWinsSequences/controller-winns-over-phone-vrs1-2_"
+                frameCount={41}
+                padDigits={2}
+                fileType="png"
+                scrollLengthVh={60}
+                scrollSpeedFactor={2}
+                startFrame={1000}
+                className="w-full h-auto max-w-[1088px]"
+              />
             </div>
           </div>
           <footer className="mt-12 pt-8 border-t-2 border-gray-300 text-center text-gray-600 text-sm font-opensans">
@@ -299,10 +313,6 @@ export default function ArticleTwo() {
             }
 
             @media (max-width: 900px) {
-                .comic-grid {
-                    grid-template-columns: 1fr;
-                }
-
                 .panel-right {
                     order: 2;
                 }

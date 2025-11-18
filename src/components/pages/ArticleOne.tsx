@@ -1,4 +1,3 @@
-// src/components/pages/ArticleOne.tsx
 import React, {useEffect, useRef, useState} from 'react';
 import ScrollSequence2 from "@/components/ScrollSequence2";
 
@@ -41,6 +40,7 @@ const VisibleImage: React.FC<{ src: string; alt: string; caption: string; classN
       ref={imageRef}
       className={`mb-10 transition-transform duration-1000 ease-out flex flex-col items-center ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1/4 opacity-0'}`}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} className={`w-[90%] h-auto grayscale-100 ${className || ''}`}/>
       <figcaption className="text-xs text-gray-500 mt-2 text-center w-[90%]">
         {caption}
@@ -54,21 +54,21 @@ const ArticleOne: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-white h-full flex flex-col relative mx-auto max-w-[85%] overflow-hidden">
+    <div className="bg-white h-full flex flex-col relative mx-auto max-w-full xl:max-w-[85%] overflow-hidden">
       <div
-        className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800">
+        className="min-h-screen bg-white flex flex-col items-center pt-0 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 font-merriweather text-gray-800">
         <div
-          className="max-w-screen-xl mx-auto w-full p-8 md:p-12 lg:p-16">
+          className="max-w-screen-xl mx-auto w-full p-4 sm:p-8 md:p-12 lg:p-16">
 
-          <header className="mb-10 border-b-4 border-gray-900 pb-6">
+          <header className="mb-10 border-b-4 border-gray-900 pb-6 mt-8">
             <h1
-              className="text-5xl md:text-6xl lg:text-7xl font-playfair font-extrabold leading-tight mb-3 uppercase tracking-tight">
+              className="text-4xl md:text-6xl lg:text-7xl font-playfair font-extrabold leading-tight mb-3 uppercase tracking-tight">
               You are looking at a drug, right now.
             </h1>
-            <p className="text-xl md:text-2xl font-playfair italic mb-5 text-gray-700">
+            <p className="text-lg md:text-2xl font-playfair italic mb-5 text-gray-700">
               Adolescents’ chosen drug
             </p>
-            <p className="text-md font-opensans text-gray-600 border-t border-gray-300 pt-3  -mb-55">
+            <p className="text-xs md:text-md font-opensans text-gray-600 border-t border-gray-300 pt-3  -mb-55">
               October 8, 2025 | By Daniel Betto
             </p>
             <ScrollSequence2
@@ -82,7 +82,7 @@ const ArticleOne: React.FC = () => {
               className="w-full grayscale-100"
             />
 
-            <p className="text-md italic text-gray-600 mt-150">
+            <p className="text-sm md:text-md italic text-gray-600 mt-150">
               Once a coping mechanism during Covid-19, doomscrolling has evolved into a daily addiction for many teens.
             </p>
           </header>
@@ -92,7 +92,7 @@ const ArticleOne: React.FC = () => {
 
             <div className="md:col-span-2">
               <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-10">
-                <div className="w-full -mt-78">
+                <div className="w-full order-2 -mt-90 md:order-1 pt-10 md:-mt-78">
                   <ScrollSequence2
                     basePath="/Article1/armSequences/RECOVER_RECOVER_RECOVER_arm_"
                     frameCount={25}
@@ -104,8 +104,8 @@ const ArticleOne: React.FC = () => {
                     className="!w-5/8 !h-auto z-10 grayscale-100"
                   />
                 </div>
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
+                <div className="order-1 md:order-2">
+                  <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
                     Hooked on the scroll
                   </h2>
                   <p className="mb-6 leading-relaxed text-sm break-words text-justify">
@@ -119,7 +119,7 @@ const ArticleOne: React.FC = () => {
                 </div>
               </section>
 
-              <section className="mt-25 w-full mb-20 z-20">
+              <section className="mt-90 md:mt-8 sm:mt-25 w-full mb-20 z-20">
                 <div className="border-2 border-gray-300 overflow-hidden">
                   <div
                     role="button"
@@ -127,19 +127,16 @@ const ArticleOne: React.FC = () => {
                     onClick={() => setIsExpanded(v => !v)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault(); // Prevent default scroll for space key
+                        e.preventDefault();
                         setIsExpanded(v => !v);
                       }
                     }}
-                    // ADDED: relative z-30 (für Stacking Context) und pointer-events-auto
                     className="w-full flex items-center justify-between p-4 focus:outline-none cursor-pointer hover:bg-gray-100 transition-colors relative z-30 pointer-events-auto"
                   >
-                    {/* ADDED: pointer-events-none, um Klicks an das übergeordnete Div weiterzuleiten */}
-                    <h2 className="text-3xl md:text-4xl font-playfair font-bold pointer-events-none">
+                    <h2 className="text-xl md:text-4xl font-playfair font-bold pointer-events-none">
                       Grew larger during pandemic
                     </h2>
 
-                    {/* ADDED: pointer-events-none */}
                     <svg
                       className={`w-6 h-6 text-gray-600 transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'} pointer-events-none`}
                       fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -168,8 +165,8 @@ const ArticleOne: React.FC = () => {
 
 
               <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-10">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
+                <div className="order-2 md:order-1 md:mt-0 mt-60">
+                  <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
                     Fear to boredom
                   </h2>
                   <p className="mb-6 leading-relaxed text-sm break-words text-justify">
@@ -183,7 +180,7 @@ const ArticleOne: React.FC = () => {
                     no matter how much they already <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9580444/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline font-bold ml-1">absorbed</a>.
                   </p>
                 </div>
-                <div className="w-full -mt-68">
+                <div className="w-full pt-10 -mt-100 md:-mt-68 order-1 md:order-2">
                   <ScrollSequence2
                     basePath="/Article1/messagesSequences/messages"
                     frameCount={25}
@@ -199,13 +196,13 @@ const ArticleOne: React.FC = () => {
             </div>
 
             <aside className="md:col-span-1">
-              <div className="border-l-2 border-gray-300 pl-8 h-full">
+              <div className="md:border-l-2 md:border-gray-300 md:pl-8 h-full">
                 <VisibleImage
                   src="/Article1/Head.png"
                   alt="Image of a brain with a frustrated face"
                   className="grayscale-100" caption={""}                />
 
-                <h3 className="text-2xl font-playfair font-bold mb-4 border-b-2 border-gray-400 pb-2">
+                <h3 className="text-xl md:text-2xl font-playfair font-bold mb-4 border-b-2 border-gray-400 pb-2">
                   Hidden mental price
                 </h3>
                 <p className="leading-relaxed text-sm break-words text-justify mb-5">
@@ -233,10 +230,10 @@ const ArticleOne: React.FC = () => {
 
 
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-12 mt-12 items-start border-t-2 pt-6 border-gray-300 z-20">
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start border-t-2 pt-6 border-gray-300 z-20">
 
             <section className="clear-right md:col-span-2 relative z-30">
-              <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2 z-20">
+              <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2 z-20">
                 An addiction in disguise
               </h2>
               <p className="mb-6 leading-relaxed text-sm break-words text-justify">
@@ -261,8 +258,7 @@ const ArticleOne: React.FC = () => {
                 tomorrow.
               </p>
             </section>
-
-            <div className="-mt-68">
+            <div className="-mt-68 md:-mt-58 md:pb-0 pb-150">
               <ScrollSequence2
                 basePath="/Article1/bongSequences/bong"
                 frameCount={24}

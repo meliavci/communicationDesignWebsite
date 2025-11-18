@@ -1,4 +1,3 @@
-// src/components/ui/terminal.tsx
 "use client"
 
 import {
@@ -51,19 +50,16 @@ export const AnimatedSpan = ({
   const itemIndex = useItemIndex()
   const [hasStarted, setHasStarted] = useState(false)
 
-  // Sequence Logic
   useEffect(() => {
     if (!sequence || itemIndex === null) return
-    if (!sequence.sequenceStarted) return // Wait until the sequence officially begins
+    if (!sequence.sequenceStarted) return
     if (hasStarted) return
 
-    // Start animation if this item is the currently active index
     if (sequence.activeIndex === itemIndex) {
       setHasStarted(true)
     }
   }, [sequence?.activeIndex, sequence?.sequenceStarted, hasStarted, itemIndex])
 
-  // Determine if animation should run (based on sequence status or local view status)
   const shouldAnimate = sequence ? hasStarted : startOnView ? isInView : true
 
   return (
@@ -77,7 +73,6 @@ export const AnimatedSpan = ({
         if (!sequence) return
         if (itemIndex === null) return
 
-        // Only call complete if this was the item that was just set to start
         if (sequence.activeIndex === itemIndex) {
           sequence.completeItem(itemIndex)
         }
@@ -130,10 +125,8 @@ export const TypingAnimation = ({
   const sequence = useSequence()
   const itemIndex = useItemIndex()
 
-  // Sequence Logic: Wait for the correct index
   useEffect(() => {
     if (!sequence || itemIndex === null) {
-      // Local start logic for non-sequenced use
       if (!startOnView) {
         const startTimeout = setTimeout(() => setStarted(true), delay)
         return () => clearTimeout(startTimeout)
@@ -145,8 +138,7 @@ export const TypingAnimation = ({
       return
     }
 
-    // Sequence start logic
-    if (!sequence.sequenceStarted) return // Wait for sequence to be running
+    if (!sequence.sequenceStarted) return
     if (started) return
 
     if (sequence.activeIndex === itemIndex) {
@@ -173,7 +165,6 @@ export const TypingAnimation = ({
       } else {
         clearInterval(typingEffect)
         if (sequence && itemIndex !== null) {
-          // Only call complete if this was the active item that finished
           if (sequence.activeIndex === itemIndex) {
             sequence.completeItem(itemIndex)
           }
@@ -223,22 +214,18 @@ export const Terminal = ({
     once: true,
   })
 
-  // use externalInView when provided, otherwise fall back to internal detection
   const effectiveInView = externalInView ?? internalIsInView
 
-  // State to manage the sequence progression. Start at -1 if waiting for view.
   const [activeIndex, setActiveIndex] = useState(startOnView ? -1 : 0)
-  // State to track if the sequence has officially started running
   const [sequenceHasBegun, setSequenceHasBegun] = useState(!startOnView);
 
 
   useEffect(() => {
     if (!sequence || !startOnView) return;
 
-    // Trigger sequence start when in view for the first time
     if (effectiveInView && activeIndex === -1) {
       setSequenceHasBegun(true);
-      setActiveIndex(0); // Start the first item
+      setActiveIndex(0);
     }
   }, [sequence, startOnView, effectiveInView, activeIndex])
 
@@ -247,11 +234,10 @@ export const Terminal = ({
     if (!sequence) return null
     return {
       completeItem: (index: number) => {
-        // Only proceed if the completed item is the currently active one
         setActiveIndex((current) => (index === current ? current + 1 : current))
       },
       activeIndex,
-      sequenceStarted: sequenceHasBegun, // Use the new state
+      sequenceStarted: sequenceHasBegun,
     }
   }, [sequence, activeIndex, sequenceHasBegun])
 
@@ -269,7 +255,6 @@ export const Terminal = ({
     <div
       ref={containerRef}
       className={cn(
-        // Ensure readable text colors and allow parent overrides via className
         "border-border bg-background z-0 h-full max-h-[400px] w-full rounded-xl border text-gray-900 dark:text-gray-100",
         className
       )}

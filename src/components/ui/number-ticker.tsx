@@ -1,4 +1,3 @@
-// src/components/ui/number-ticker.tsx
 import { ComponentPropsWithoutRef, useEffect, useRef } from "react"
 import { useInView, useMotionValue } from "motion/react"
 import { animate } from "motion"
@@ -11,8 +10,8 @@ interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
   direction?: "up" | "down"
   delay?: number
   decimalPlaces?: number
-  duration?: number // seconds
-  startOnView?: boolean // Added to prop interface
+  duration?: number
+  startOnView?: boolean
 }
 
 export function NumberTicker({
@@ -22,8 +21,8 @@ export function NumberTicker({
                                delay = 0,
                                className,
                                decimalPlaces = 0,
-                               duration = 0.8, // default duration in seconds
-                               startOnView = true, // Destructured here
+                               duration = 0.8,
+                               startOnView = true,
                                ...props
                              }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -32,13 +31,13 @@ export function NumberTicker({
   )
   const isInView = useInView(ref, { once: true, margin: "0px" })
 
-  // Use isInView only if startOnView is true, otherwise treat it as always starting
   const shouldStart = startOnView ? isInView : true;
 
   useEffect(() => {
     if (shouldStart) {
       const timer = setTimeout(() => {
         const target = direction === "down" ? startValue : value
+        // @ts-ignore
         animate(motionValue, target, { duration, easing: "easeOut" })
       }, delay * 1000)
       return () => clearTimeout(timer)
@@ -61,7 +60,7 @@ export function NumberTicker({
     <span
       ref={ref}
       className={cn(
-        "inline-block tracking-wider text-black text-9xl font-bold tabular-nums dark:text-white",
+        "inline-block tracking-wider text-black text-5xl md:text-8xl xl:text-9xl font-bold tabular-nums dark:text-white",
         className
       )}
       {...props}

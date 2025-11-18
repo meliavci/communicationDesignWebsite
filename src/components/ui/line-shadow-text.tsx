@@ -12,12 +12,12 @@ interface LineShadowTextProps
 }
 
 export function LineShadowText({
-  children,
-  shadowColor = "black",
-  className,
-  as: Component = "span",
-  ...props
-}: LineShadowTextProps) {
+                                 children,
+                                 shadowColor = "black",
+                                 className,
+                                 as: Component = "span",
+                                 ...props
+                               }: LineShadowTextProps) {
   const MotionComponent = motion.create(Component)
   const content = typeof children === "string" ? children : null
 

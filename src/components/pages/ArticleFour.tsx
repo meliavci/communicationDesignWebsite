@@ -1,47 +1,32 @@
-// src/components/pages/ArticleFour.tsx
-'use client';
+"use client";
 
-import React, {forwardRef, JSX, useEffect, useRef, useState} from 'react';
+import React, { forwardRef, useEffect, useRef, useState, useMemo } from "react";
+import { useInView } from "motion/react";
+import { ArrowRight, FileIcon } from "lucide-react";
+import { Safari } from "@/components/ui/safari";
+import { Meteors } from "@/components/ui/meteors";
+import { NumberTicker } from "@/components/ui/number-ticker";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { AnimatedList } from "@/components/ui/animated-list";
+import { File as FileElement, Folder, Tree, type TreeViewElement } from "@/components/ui/file-tree";
+import { AnimatedSpan, Terminal } from "@/components/ui/terminal";
+import { Marquee } from "@/components/ui/marquee";
+import { Iphone } from "@/components/ui/iphone";
+import { cn } from "@/lib/utils";
+import { Tweet } from "@/components/ui/tweet";
+import { Button } from "@/components/ui/button";
 
-import {Safari} from '@/components/ui/safari';
-import {Meteors} from '@/components/ui/meteors';
-import {NumberTicker} from '@/components/ui/number-ticker';
-import {AnimatedBeam} from '@/components/ui/animated-beam';
-import {AnimatedList} from '@/components/ui/animated-list';
-import {File as FileElement, Folder, Tree, TreeViewElement} from '@/components/ui/file-tree';
-import {AnimatedSpan, Terminal} from '@/components/ui/terminal';
-import {Marquee} from '@/components/ui/marquee';
-import {Iphone} from '@/components/ui/iphone';
-import {cn} from '@/lib/utils';
-import {Tweet} from '@/components/ui/tweet';
-import {Button} from '@/components/ui/button';
-import {ArrowRight, FileIcon} from 'lucide-react';
-import {useInView} from 'motion/react';
-
-
-// --- Configuration ---
-// Determined from src/app/page.tsx: 'addiction' tab uses bg-blue-900
-const ACCENT_COLOR_BG = "bg-blue-900"; // Background for buttons
+const ACCENT_COLOR_BG = "bg-blue-900";
 const ACCENT_COLOR_HOVER = "hover:bg-blue-800";
-const ACCENT_COLOR_TEXT = "text-blue-900"; // Text for accents/links/marquee titles
+const ACCENT_COLOR_TEXT = "text-blue-900";
 
-
-// Helper function to generate random metrics for realistic tweets
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 const getRandomAvatar = (seed: string) => `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffdfbf,ffd5dc`;
-const getRandomName = (index: number) => {
-  const names = ["MindlessMapper", "DopamineDrainer", "TheReelAddict", "FocusFighter", "DigitalDetoxer"];
-  return names[index % names.length] + getRandomInt(10, 99);
-};
-const getRandomHandle = (name: string) => `@${name.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
-
-
-// --- Components for ArticleFour ---
 
 const Circle = forwardRef<
   HTMLDivElement,
   { className?: string; children?: React.ReactNode }
->(({className, children}, ref) => {
+>(({ className, children }, ref) => {
   return (
     <div
       ref={ref}
@@ -58,24 +43,16 @@ const Circle = forwardRef<
 Circle.displayName = "Circle";
 
 const Icons = {
-  instagram: () => <img src="/Article4/Logos/Instagram.svg" alt="Instagram" className="w-5 h-5"/>,
-  snapchat: () => <img src="/Article4/Logos/Snapchat.svg" alt="Snapchat" className="w-5 h-5"/>,
-  tiktok: () => <img src="/Article4/Logos/TikTok.svg" alt="TikTok" className="w-5 h-5"/>,
-  whatsapp: () => <img src="/Article4/Logos/Whatsapp.svg" alt="WhatsApp" className="w-5 h-5"/>,
-  youtube: () => <img src="/Article4/Logos/Yotube.svg" alt="Youtube" className="w-5 h-5"/>,
-  messenger: () => <img src="/Article4/Logos/Messenger.svg" alt="Messenger" className="w-5 h-5"/>,
+  instagram: () => <img src="/Article4/Logos/Instagram.svg" alt="Instagram" className="w-5 h-5" />,
+  snapchat: () => <img src="/Article4/Logos/Snapchat.svg" alt="Snapchat" className="w-5 h-5" />,
+  tiktok: () => <img src="/Article4/Logos/TikTok.svg" alt="TikTok" className="w-5 h-5" />,
+  whatsapp: () => <img src="/Article4/Logos/Whatsapp.svg" alt="WhatsApp" className="w-5 h-5" />,
+  youtube: () => <img src="/Article4/Logos/Yotube.svg" alt="Youtube" className="w-5 h-5" />,
+  messenger: () => <img src="/Article4/Logos/Messenger.svg" alt="Messenger" className="w-5 h-5" />,
 };
 
 function AnimatedBeamSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const div1Ref = useRef<HTMLDivElement>(null);
-  const div2Ref = useRef<HTMLDivElement>(null);
-  const div3Ref = useRef<HTMLDivElement>(null);
-  const div4Ref = useRef<HTMLDivElement>(null);
-  const div5Ref = useRef<HTMLDivElement>(null);
-  const div6Ref = useRef<HTMLDivElement>(null);
-  const div7Ref = useRef<HTMLDivElement>(null);
-
   const anchor1Ref = useRef<HTMLDivElement>(null);
   const anchor2Ref = useRef<HTMLDivElement>(null);
   const anchor3Ref = useRef<HTMLDivElement>(null);
@@ -86,65 +63,65 @@ function AnimatedBeamSection() {
 
   return (
     <div
-      className="relative flex h-[300px] w-full items-center justify-center overflow-hidden p-10"
+      className="relative flex h-[300px] w-full items-center justify-center overflow-hidden p-4 md:p-10"
       ref={containerRef}
     >
       <div className="flex size-full max-h-[200px] w-full flex-col items-stretch justify-between gap-10">
         <div className="flex flex-row items-center justify-between">
-          <Circle ref={div1Ref} className="relative">
-            <Icons.instagram/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.instagram />
             <div ref={anchor1Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
 
-          <Circle ref={div5Ref} className="relative">
-            <Icons.snapchat/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.snapchat />
             <div ref={anchor5Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
         </div>
 
         <div className="flex flex-row items-center justify-between">
-          <Circle ref={div2Ref} className="relative">
-            <Icons.tiktok/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.tiktok />
             <div ref={anchor2Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
 
-          <Circle ref={div4Ref} className="size-16 relative">
+          <Circle ref={useRef(null)} className="size-16 relative">
             <img
               src="/Article4/Logos/brain.png"
               alt="Brain icon representing addiction/focus"
               className="size-full object-contain"
             />
             <div ref={anchor4Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
 
-          <Circle ref={div6Ref} className="relative">
-            <Icons.whatsapp/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.whatsapp />
             <div ref={anchor6Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
         </div>
 
         <div className="flex flex-row items-center justify-between">
-          <Circle ref={div3Ref} className="relative">
-            <Icons.youtube/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.youtube />
             <div ref={anchor3Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
 
-          <Circle ref={div7Ref} className="relative">
-            <Icons.messenger/>
+          <Circle ref={useRef(null)} className="relative">
+            <Icons.messenger />
             <div ref={anchor7Ref} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[1px] h-[1px]"/>
+              <div className="w-[1px] h-[1px]" />
             </div>
           </Circle>
         </div>
@@ -157,7 +134,7 @@ function AnimatedBeamSection() {
         curvature={-75}
         endYOffset={-10}
       />
-      <AnimatedBeam containerRef={containerRef} fromRef={anchor2Ref} toRef={anchor4Ref}/>
+      <AnimatedBeam containerRef={containerRef} fromRef={anchor2Ref} toRef={anchor4Ref} />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={anchor3Ref}
@@ -173,7 +150,7 @@ function AnimatedBeamSection() {
         endYOffset={-10}
         reverse
       />
-      <AnimatedBeam containerRef={containerRef} fromRef={anchor6Ref} toRef={anchor4Ref} reverse/>
+      <AnimatedBeam containerRef={containerRef} fromRef={anchor6Ref} toRef={anchor4Ref} reverse />
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={anchor7Ref}
@@ -186,22 +163,19 @@ function AnimatedBeamSection() {
   );
 }
 
-// --- NEW Bar Chart Component for Survey ---
-
 interface BarChartComparisonProps {
   guessedValue: number;
   actualValue: number;
   onReset: () => void;
 }
 
-const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, actualValue, onReset}) => {
+const BarChartComparison: React.FC<BarChartComparisonProps> = ({ guessedValue, actualValue, onReset }) => {
   const maxVal = Math.max(guessedValue, actualValue, 1) * 1.2;
   const guessHeight = (guessedValue / maxVal) * 100;
   const actualHeight = (actualValue / maxVal) * 100;
 
   const difference = actualValue - guessedValue;
 
-  // UPDATED: More impactful statement
   const statement = difference > 30 ?
     "DIGITAL ALARM: Your digital consumption is far beyond what you perceive. This level of self-deception is a CRITICAL sign of disengagement." :
     difference > 10 ?
@@ -212,10 +186,10 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
           "EXCEPTIONAL SELF-AWARENESS: You are well-insulated from brain rot. Your mindful habits are working effectively. Keep it up!" :
           "ACCURATE PERCEPTION: Your guess aligns closely with reality. You possess a strong degree of digital mindfulness.";
 
-  const statementClass = difference > 10 ? "text-blue-900" : difference > 0 ? "text-blue-700" : difference < -10 ? "text-blue-500" : ACCENT_COLOR_TEXT; // Use ACCENT_COLOR_TEXT for neutral/positive cases.
+  const statementClass = difference > 10 ? "text-blue-900" : difference > 0 ? "text-blue-700" : difference < -10 ? "text-blue-500" : ACCENT_COLOR_TEXT;
 
   const chartRef = useRef(null);
-  const isInView = useInView(chartRef, {once: true, amount: 0.5});
+  const isInView = useInView(chartRef, { once: true, amount: 0.5 });
   const [isChartVisible, setIsChartVisible] = useState(false);
 
   useEffect(() => {
@@ -231,7 +205,6 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
 
       <div className="w-full flex justify-around items-end h-[150px] max-w-sm border-b-2 border-gray-300">
 
-        {/* Bar 1: Guess */}
         <div className="flex flex-col items-center justify-end h-full">
           <div
             className="bg-blue-500 rounded-t-md transition-all duration-1000 ease-out"
@@ -245,7 +218,6 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
           <p className="text-xs font-medium text-gray-500">Your Guess</p>
         </div>
 
-        {/* Bar 2: Actual */}
         <div className="flex flex-col items-center justify-end h-full">
           <div
             className="bg-blue-900 rounded-t-md transition-all duration-1000 ease-out"
@@ -294,12 +266,12 @@ const BrainRotSurvey: React.FC = () => {
   };
 
   const question: Record<1 | 2, string> = {
-    1: "Guess how much screentime you have in hours per week",
-    2: "Now look at your phone and tell me how much screentime you actually have (hours per week)",
+    1: "Guess your weekly screen time in hours",
+    2: "Now check your phone's screen time (hours per week)",
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(prev => ({...prev, inputValue: e.target.value.replace(/[^0-9]/g, '')}));
+    setState(prev => ({ ...prev, inputValue: e.target.value.replace(/[^0-9]/g, '') }));
   };
 
   const handleNext = () => {
@@ -324,7 +296,7 @@ const BrainRotSurvey: React.FC = () => {
   };
 
   const handleReset = () => {
-    setState({step: 1, guess: null, actual: null, inputValue: ''});
+    setState({ step: 1, guess: null, actual: null, inputValue: '' });
   };
 
   const currentQuestion = state.step === 1 ? question[1] : question[2];
@@ -357,7 +329,7 @@ const BrainRotSurvey: React.FC = () => {
           <Button onClick={handleNext} disabled={isNextDisabled}
                   className={cn("w-full text-white font-bold py-2 px-4 rounded transition-colors duration-150 cursor-pointer", ACCENT_COLOR_BG, ACCENT_COLOR_HOVER)}>
             {state.step === 1 ? "Next Step" : "Show Comparison"}
-            <ArrowRight className="size-4 ml-2"/>
+            <ArrowRight className="size-4 ml-2" />
           </Button>
         </div>
       ) : (
@@ -371,17 +343,14 @@ const BrainRotSurvey: React.FC = () => {
   );
 };
 
-// --- Main ArticleFour Component ---
-
 export default function ArticleFour(): JSX.Element {
-  // --- Start: Logic for Audio Toggle ---
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [volume, setVolume] = useState<number>(() => {
     try {
       const v = typeof window !== "undefined" ? localStorage.getItem("article4_volume") : null;
-      return v !== null ? Math.max(0, Math.min(1, Number(v))) : 0.15; // default quieter 15%
+      return v !== null ? Math.max(0, Math.min(1, Number(v))) : 0.15;
     } catch {
       return 0.15;
     }
@@ -398,6 +367,7 @@ export default function ArticleFour(): JSX.Element {
     try {
       localStorage.setItem("article4_volume", String(volume));
     } catch {
+
     }
   }, [volume]);
 
@@ -406,13 +376,11 @@ export default function ArticleFour(): JSX.Element {
       audioRef.current.loop = true;
       audioRef.current.volume = volume;
       if (isAudioPlaying) {
-        // Handle play promise to avoid uncaught exception errors
-        void audioRef.current.play().catch(e => console.error("Audio play failed:", e));
+        void audioRef.current.play().catch(e => {});
       } else {
         audioRef.current.pause();
       }
     }
-    // Cleanup function to pause audio on unmount
     return () => {
       audioRef.current?.pause();
     };
@@ -421,10 +389,8 @@ export default function ArticleFour(): JSX.Element {
   const toggleAudio = () => {
     setIsAudioPlaying(prev => !prev);
   };
-  // --- End: Logic for Audio Toggle ---
 
-  // Link 2 integrated here (word "caused")
-  const brainRotText = [
+  const brainRotText = useMemo(() => [
     "A student’s perspective",
     "To understand if this definition holds true, it is important to not only research, but also ask those who experience it.",
     "“At night I can easily get bombarded with information and overstimulated. It is hard to explain how it feels, but it is like I am tired in the brain, or my brain feels full. I don’t know”, he says. ",
@@ -434,15 +400,14 @@ export default function ArticleFour(): JSX.Element {
       YouTube, scrolling on social media, or doing both simultaneously.</>),
     " It can also come from reading negative or distressing news articles online.",
     " Any activity that leaves the user exhausted and overstimulated can be considered an experience of brain rot. ",
-  ];
+  ], [ACCENT_COLOR_TEXT]);
 
-  const tweetData = [
+  const tweetData = useMemo(() => [
     {
       username: "What is brain rot? ",
       handle: "@whatisbrainrot",
       avatarSeed: "janesmith",
       title: "1_WhatIsBrainRot.ts",
-      // Link 1 integrated here (word "definition")
       content: (<>In 2023 and 2024, a new term has become mainstream. “Brain rot”, a phenomenon similar to
         doomscrolling’s negative effects, but with an added sense of mental fogginess. This article will define, explain
         and explore brain rot through studies and an interview with a 22-year-old student who believes he experiences it
@@ -472,7 +437,6 @@ export default function ArticleFour(): JSX.Element {
       handle: "@smallstepstoreclaimyourbrain",
       avatarSeed: "sarah",
       title: "3_ReclaimYourBrain.ts",
-      // Link 4 integrated here (word "Experts")
       content: (<>His struggle with focus is not unique. <a
         href="https://www.healthline.com/health/short-attention-span#risk-factors" target="_blank"
         rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>Experts</a> say that
@@ -506,9 +470,9 @@ export default function ArticleFour(): JSX.Element {
       retweetCount: getRandomInt(20, 90),
       likeCount: getRandomInt(80, 250),
     },
-  ];
+  ], [ACCENT_COLOR_TEXT]);
 
-  const fileTreeElements: TreeViewElement[] = [
+  const fileTreeElements: TreeViewElement[] = useMemo(() => [
     {
       id: "root",
       name: "src",
@@ -574,10 +538,10 @@ export default function ArticleFour(): JSX.Element {
         }
       ]
     }
-  ];
+  ], [tweetData]);
 
 
-  const marqueeDefinitions = [
+  const marqueeDefinitions = useMemo(() => [
     {
       term: "Rizz",
       definition: " A shortened form of the word ‘charisma’, having ‘rizz’ indicated charm, attractiveness and the ability to attract a romantic partner. ",
@@ -599,25 +563,24 @@ export default function ArticleFour(): JSX.Element {
       link: "https://www.bbc.co.uk/bitesize/articles/zx6qg2p#zwpx9ty",
     },
     {
-      term: "Italien brainrot",
+      term: "Italian brainrot",
       definition: " A sub-genre of ‘brain rot’ which features exaggerated AI characters with Italian-sounding names.",
       link: "https://www.bbc.co.uk/bitesize/articles/zx6qg2p#zwpx9ty",
     },
-  ];
+  ], []);
 
-  const terminalLines = [
-    {prefix: "$", text: "npm install brain-rot-cure-kit"},
-    {prefix: ">", text: "Fetching packages for mental-health-cli..."},
-    {prefix: "✓", text: "Validated: attention-span-boost@1.0.0"},
-    {prefix: "✓", text: "Validated: meaningful-content-filter@2.1.0"},
-    {prefix: "!", text: "Warning: Addiction-core module detected. Proceeding with caution.", isWarning: true},
-    {prefix: "Success!", text: "Mindful state restoration initialized."},
-  ];
+  const terminalLines = useMemo(() => [
+    { prefix: "$", text: "npm install brain-rot-cure-kit" },
+    { prefix: ">", text: "Fetching packages for mental-health-cli..." },
+    { prefix: "✓", text: "Validated: attention-span-boost@1.0.0" },
+    { prefix: "✓", text: "Validated: meaningful-content-filter@2.1.0" },
+    { prefix: "!", text: "Warning: Addiction-core module detected. Proceeding with caution.", isWarning: true },
+    { prefix: "Success!", text: "Mindful state restoration initialized." },
+  ], []);
 
   const terminalRef = useRef(null);
-  const isTerminalInView = useInView(terminalRef, {once: true, amount: 0.1});
+  const isTerminalInView = useInView(terminalRef, { once: true, amount: 0.1 });
 
-  // Link 3 integrated here (word "attention span")
   const mentalConsequencesContent = (
     <>
       Doomscrolling is known to have harmful mental effects such as loss
@@ -626,36 +589,34 @@ export default function ArticleFour(): JSX.Element {
                  rel="noopener noreferrer" className={cn("underline font-semibold", ACCENT_COLOR_TEXT)}>attention
       span</a>. According to Healthline, short attention span can cause poor performance at
       school, difficulty completing tasks, communication problems, and even trouble watching a full film
-      without checking one’s phone.<br/><br/>
+      without checking one’s phone.<br /><br />
       “Sometimes I notice I struggle to concentrate on movies. All I want is
       to grab my phone, but I can’t because I usually watch it with my dad. I just have to suffer through
       the long, boring parts. I 100% notice my attention span is horrible”, he says. “I can’t watch anything
       longer than two minutes without at 2x speed. That’s why I skip any reels that last longer than one
       minute and a half, because Instagram does not let me speed them up”.
     </>
-  )
+  );
 
   return (
-    // Responsive container padding adjustment
-    <div className="bg-white h-full flex flex-col relative z-10 mx-auto max-w-[85%] overflow-hidden">
+    <div className="bg-white h-full flex flex-col relative z-10 mx-auto max-w-full xl:max-w-[85%] overflow-hidden">
       <div
         className="min-h-screen bg-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
-        <div className="max-w-screen-xl mx-auto w-full p-0 md:p-12 lg:p-16 flex flex-col items-center gap-12">
+        <div className="max-w-screen-xl mx-auto w-full p-0 md:p-12 lg:p-16 flex flex-col items-center gap-12 overflow-x-hidden">
 
-          {/* Safari (top) */}
           <div className="w-full px-4 sm:px-0">
             <Safari videoSrc="/Article4/blurredCollage.mp4">
               <div
-                className="relative w-full h-full flex flex-col items-center justify-center p-4 text-center z-40 -mt-5">
+                className="relative w-full h-full flex flex-col items-center justify-center p-2 sm:p-4 text-center z-40">
 
                 <span
-                  className="text-3xl md:text-6xl font-bold text-white/90 leading-snug mt-4 drop-shadow text-shadow-lg">
-                  <span className="text-3xl md:text-4xl font-extrabold text-white inline-block text-shadow-lg">
+                  className="text-lg sm:text-2xl md:text-4xl xl:text-6xl font-bold text-white/90 leading-snug mt-4 drop-shadow text-shadow-lg">
+                  <span className="text-lg sm:text-2xl md:text-4xl font-extrabold text-white inline-block text-shadow-lg">
                     40 VIDEOS.
                   </span>
                 </span>
 
-                <span className="text-3xl md:text-6xl text-white leading-none drop-shadow-lg text-shadow-lg">
+                <span className="text-lg sm:text-2xl md:text-4xl xl:text-6xl text-white leading-none drop-shadow-lg text-shadow-lg">
                   <NumberTicker
                     value={320}
                     duration={3}
@@ -663,12 +624,12 @@ export default function ArticleFour(): JSX.Element {
                   />{' '}SECONDS.
                 </span>
 
-                <span className="text-lg md:text-3xl font-medium text-white mt-5 max-w-lg text-shadow-lg">
+                <span className="text-xs md:text-lg lg:text-xl font-medium text-white mt-3 max-w-lg text-shadow-lg px-2">
                   That&apos;s the amount of content you consume before your consciousness registers the scrolling
                   impulse.
                 </span>
 
-                <audio ref={audioRef} src={audioPath} loop preload="auto"/>
+                <audio ref={audioRef} src={audioPath} loop preload="auto" />
 
                 <button
                   onClick={toggleAudio}
@@ -685,33 +646,31 @@ export default function ArticleFour(): JSX.Element {
             </Safari>
           </div>
 
-          {/* Meteors Title/Header */}
           <div
-            className="relative flex h-auto w-full flex-col items-center justify-center overflow-hidden rounded-lg mt-20 px-4 sm:px-0">
-            <Meteors number={30}/>
+            className="relative flex h-auto w-full flex-col items-center justify-center overflow-hidden rounded-lg mt-10 sm:mt-20 lg:mt-40 px-4 sm:px-0">
+            <Meteors number={30} />
             <span
-              className="pointer-events-none bg-gradient-to-b from-black to-gray-500/80 bg-clip-text text-center text-5xl sm:text-7xl lg:text-8xl leading-none font-semibold whitespace-pre-wrap text-transparent dark:from-white dark:to-slate-900/10">
+              className="pointer-events-none bg-gradient-to-b from-black to-gray-500/80 bg-clip-text text-center text-3xl sm:text-5xl lg:text-8xl leading-none font-semibold whitespace-pre-wrap text-transparent dark:from-white dark:to-slate-900/10">
               Your brain&apos;s rotting, and you call it entertainment
             </span>
           </div>
 
-          <p className="text-center text-lg font-opensans text-gray-600 -mb-15 max-w-2xl px-4 sm:px-0">Endless
+          <p className="text-center text-base font-opensans text-gray-600 max-w-2xl px-4 sm:px-0">Endless
             scrolling, mindless videos and
             toxic
             online trends aren&apos;t just killing time, but also wearing
             down your focus, fogging your thoughts and rewiring your brain. Experts and a student reveal the warning
             signs and how to fight back </p>
-          <p className="text-md font-opensans text-gray-600 border-t border-gray-300 pt-3 px-4 sm:px-20 mt-10">
+          <p className="text-sm font-opensans text-gray-600 border-t border-gray-300 pt-3 px-4 sm:px-20 mt-10">
             November 13, 2025 | By Daniel Betto
           </p>
 
           <div className="w-full px-4 sm:px-0">
-            <AnimatedBeamSection/>
+            <AnimatedBeamSection />
           </div>
 
 
-          {/* Tweet 1: What is brain rot? */}
-          <div className="w-full mt-40 px-4 sm:px-20">
+          <div className="w-full mt-10 sm:mt-20 lg:mt-40 px-4 sm:px-6 md:px-12 lg:px-20">
             <Tweet
               username={tweetData[0].username}
               handle={tweetData[0].handle}
@@ -724,20 +683,16 @@ export default function ArticleFour(): JSX.Element {
             />
           </div>
 
-          {/* iPhone with AnimatedList and TweetSkeleton (Messages/Notifications) */}
-          <div className="w-full flex justify-center mt-20 px-4 sm:px-0">
-            <div className="w-full max-w-[500px] md:max-w-[480px]">
+          <div className="w-full flex justify-center mt-10 sm:mt-20 px-4 sm:px-0">
+            <div className="w-full max-w-[400px] sm:max-w-[480px]">
               <Iphone src="/Article4/iphoneBg.png">
-                <div className="space-y-4 p-2 mt-17">
+                <div className="space-y-4 p-1 pt-12 sm:pt-16">
                   <AnimatedList delay={300} className="w-full z-50 overflow-visible" startOnView={true}>
-                    {/* Messages/Notifications, Link 2 integrated in brainRotText */}
                     {[...brainRotText].reverse().map((text, index) => (
                       <div
                         key={index}
-                        // UPDATED CLASSNAME for glassmorphism/notification look
                         className="w-full bg-white/80 border border-white/50 text-gray-900 rounded-xl p-3 shadow-lg backdrop-blur-md relative z-10 transition-shadow hover:shadow-xl"
                       >
-                        {/* Simulate a notification/message header */}
                         <div className="flex justify-between items-center mb-1">
                           <span className={cn("text-xs font-semibold", ACCENT_COLOR_TEXT)}>New Insight</span>
                           <span className="text-xs text-gray-500">just now</span>
@@ -751,8 +706,7 @@ export default function ArticleFour(): JSX.Element {
             </div>
           </div>
 
-          {/* Tweet 2: The appeal of meaningless content */}
-          <div className="w-full mt-20 px-4 sm:px-20">
+          <div className="w-full mt-10 sm:mt-20 px-4 sm:px-6 md:px-12 lg:px-20">
             <Tweet
               username={tweetData[1].username}
               handle={tweetData[1].handle}
@@ -766,13 +720,10 @@ export default function ArticleFour(): JSX.Element {
           </div>
 
 
-          {/* File tree (Tree) + plain div (IDE-like layout) */}
-          <div className="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg mt-20 max-w-full">
-            {/* Split Panel for File Tree and Content */}
+          <div className="w-full border border-gray-300 rounded-lg overflow-hidden shadow-lg mt-10 sm:mt-20 max-w-full">
             <div className="flex w-full min-h-[400px] flex-col lg:flex-row">
-              {/* File Tree / Sidebar */}
               <div
-                className="w-full max-w-full lg:max-w-[300px] bg-gray-50 border-r border-gray-300 p-2 overflow-auto text-sm text-gray-700 font-mono flex-shrink-0">
+                className="w-full max-w-full lg:max-w-[300px] bg-gray-50 border-b border-gray-300 lg:border-r lg:border-b-0 p-2 overflow-auto text-sm text-gray-700 font-mono flex-shrink-0">
                 <Tree
                   elements={fileTreeElements}
                   initialExpandedItems={['root', 'components', 'pages', 'article-four-main', 'public']}
@@ -782,39 +733,36 @@ export default function ArticleFour(): JSX.Element {
                   <Folder value="root" element="src">
                     <Folder value="components" element="components">
                       <Folder value="pages" element="pages">
-                        {/* Article Files as siblings */}
                         <FileElement value="article-one" fileIcon={<FileIcon
-                          className="size-3 text-blue-500"/>}>ArticleOne.tsx</FileElement>
+                          className="size-3 text-blue-500" />}>ArticleOne.tsx</FileElement>
                         <FileElement value="article-two" fileIcon={<FileIcon
-                          className="size-3 text-blue-500"/>}>ArticleTwo.tsx</FileElement>
-                        {/* Current Article Folder structure */}
+                          className="size-3 text-blue-500" />}>ArticleTwo.tsx</FileElement>
                         <Folder value="article-four-main" element="ArticleFour.tsx">
                           <FileElement value={tweetData[0].title} fileIcon={<FileIcon
-                            className="size-3 text-blue-500"/>}>{tweetData[0].title}</FileElement>
+                            className="size-3 text-blue-500" />}>{tweetData[0].title}</FileElement>
                           <FileElement value={tweetData[1].title} fileIcon={<FileIcon
-                            className="size-3 text-blue-500"/>}>{tweetData[1].title}</FileElement>
+                            className="size-3 text-blue-500" />}>{tweetData[1].title}</FileElement>
                           <FileElement value={tweetData[2].title} fileIcon={<FileIcon
-                            className="size-3 text-blue-500"/>}>{tweetData[2].title}</FileElement>
+                            className="size-3 text-blue-500" />}>{tweetData[2].title}</FileElement>
                           <FileElement value={tweetData[3].title} fileIcon={<FileIcon
-                            className="size-3 text-blue-500"/>}>{tweetData[3].title}</FileElement>
+                            className="size-3 text-blue-500" />}>{tweetData[3].title}</FileElement>
                           <FileElement value="terminal-log"
-                                       fileIcon={<FileIcon className="size-3 text-red-500"/>}>terminal.log</FileElement>
+                                       fileIcon={<FileIcon className="size-3 text-red-500" />}>terminal.log</FileElement>
                         </Folder>
                         <FileElement value="proto-page"
-                                     fileIcon={<FileIcon className="size-3 text-blue-500"/>}>ProtoPage.tsx</FileElement>
+                                     fileIcon={<FileIcon className="size-3 text-blue-500" />}>ProtoPage.tsx</FileElement>
                       </Folder>
                     </Folder>
                   </Folder>
                   <Folder value="public" element="public">
                     <FileElement value="brain.png"
-                                 fileIcon={<FileIcon className="size-3 text-green-500"/>}>brain.png</FileElement>
+                                 fileIcon={<FileIcon className="size-3 text-green-500" />}>brain.png</FileElement>
                   </Folder>
                 </Tree>
               </div>
 
-              {/* Content / Editor Area, Link 3 integrated in mentalConsequencesContent */}
               <div className="flex-1 bg-white p-6 overflow-y-auto">
-                <h1 className="text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and
+                <h1 className="text-xl sm:text-2xl font-bold mb-3 border-b pb-2">Mental consequences: reduced attention and
                   focus</h1>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   {mentalConsequencesContent}
@@ -822,7 +770,6 @@ export default function ArticleFour(): JSX.Element {
               </div>
             </div>
 
-            {/* Terminal (Full Width) */}
             <div className="w-full" ref={terminalRef}>
               <Terminal
                 className="min-h-[140px] w-full max-w-full rounded-t-none rounded-b-lg border-t-gray-300 border-t-2"
@@ -846,8 +793,7 @@ export default function ArticleFour(): JSX.Element {
             </div>
           </div>
 
-          {/* Tweet 3: Small steps to reclaim your brain, Link 4 integrated in tweetData[2].content */}
-          <div className="w-full mt-20 px-4 sm:px-20">
+          <div className="w-full mt-10 sm:mt-20 px-4 sm:px-6 md:px-12 lg:px-20">
             <Tweet
               username={tweetData[2].username}
               handle={tweetData[2].handle}
@@ -860,8 +806,7 @@ export default function ArticleFour(): JSX.Element {
             />
           </div>
 
-          {/* Tweet 4: Reality check */}
-          <div className="w-full px-4 sm:px-20">
+          <div className="w-full px-4 sm:px-6 md:px-12 lg:px-20">
             <Tweet
               username={tweetData[3].username}
               handle={tweetData[3].handle}
@@ -874,19 +819,17 @@ export default function ArticleFour(): JSX.Element {
             />
           </div>
 
-          {/* Survey component (Uses BarChartComparison now) */}
-          <div className="w-full flex justify-center mt-20 px-4 sm:px-0">
-            <BrainRotSurvey/>
+          <div className="w-full flex justify-center mt-10 sm:mt-20 px-4 sm:px-0">
+            <BrainRotSurvey />
           </div>
 
-          {/* Marquee with definitions (UPDATED STYLING) */}
-          <div className="w-full mt-20 px-4 sm:px-0">
+          <div className="w-full mt-10 sm:mt-20 px-4 sm:px-0">
             <Marquee className="py-6 border-y border-gray-300" pauseOnHover>
               {marqueeDefinitions.map((item, i) => (
                 <a
                   key={i}
                   href={item.link}
-                  className="inline-flex flex-col px-4 py-3 bg-gray-100/80 hover:bg-gray-200 transition-colors rounded-lg text-sm mx-4 border border-gray-300 shadow-sm min-w-[200px] max-w-[250px] min-h-[100px] cursor-pointer justify-center"
+                  className="inline-flex flex-col px-4 py-3 bg-gray-100/80 hover:bg-gray-200 transition-colors rounded-lg text-sm mx-2 sm:mx-4 border border-gray-300 shadow-sm min-w-[150px] sm:min-w-[200px] max-w-[250px] min-h-[100px] cursor-pointer justify-center"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

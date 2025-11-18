@@ -1,4 +1,3 @@
-// src/components/ui/animated-list.tsx
 "use client"
 
 import React, {
@@ -30,8 +29,8 @@ export function AnimatedListItem({ children }: { children: React.ReactNode }) {
 
 export interface AnimatedListProps extends ComponentPropsWithoutRef<"div"> {
   children: React.ReactNode
-  delay?: number // Time in ms to wait before starting the sequence
-  startOnView?: boolean // NEW: Start the animation only when visible
+  delay?: number
+  startOnView?: boolean
 }
 
 export const AnimatedList = React.memo(
@@ -43,10 +42,10 @@ export const AnimatedList = React.memo(
     const listRef = useRef<HTMLDivElement>(null)
     const isInView = useInView(listRef, {
       amount: 0.1,
-      once: true, // Only start animation once
+      once: true,
     });
 
-    const [index, setIndex] = useState(-1); // Start with -1 so first item is index 0
+    const [index, setIndex] = useState(-1);
     const [hasStarted, setHasStarted] = useState(false);
 
     useEffect(() => {
@@ -54,7 +53,7 @@ export const AnimatedList = React.memo(
         setHasStarted(true);
       } else if (isInView && !hasStarted) {
         setHasStarted(true);
-        setIndex(0); // Start the sequence immediately when in view
+        setIndex(0);
       }
     }, [isInView, startOnView, hasStarted]);
 
@@ -72,7 +71,6 @@ export const AnimatedList = React.memo(
     }, [index, delay, childrenArray.length, hasStarted])
 
     const itemsToShow = useMemo(() => {
-      // Show all if not starting on view or animation finished, otherwise show sequentially
       const finalIndex = hasStarted ? index : (startOnView ? -1 : childrenArray.length - 1);
       const result = childrenArray.slice(0, finalIndex + 1).reverse();
       return result
