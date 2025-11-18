@@ -249,7 +249,7 @@ const StockTrendChart: React.FC = () => {
               key={key}
               onClick={() => toggleLine(key)}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all duration-300",
+                "flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all duration-300 cursor-pointer",
                 // FIX: Ensured text on active button is clearly black (text-black) on white background for max contrast
                 activeLines[key] ? 'bg-white/40 text-black shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
               )}

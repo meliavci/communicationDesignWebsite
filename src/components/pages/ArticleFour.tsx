@@ -212,7 +212,7 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
           "EXCEPTIONAL SELF-AWARENESS: You are well-insulated from brain rot. Your mindful habits are working effectively. Keep it up!" :
           "ACCURATE PERCEPTION: Your guess aligns closely with reality. You possess a strong degree of digital mindfulness.";
 
-  const statementClass = difference > 10 ? "text-red-700" : difference > 0 ? "text-orange-500" : difference < -10 ? "text-green-600" : ACCENT_COLOR_TEXT; // Use ACCENT_COLOR_TEXT for neutral/positive cases.
+  const statementClass = difference > 10 ? "text-blue-900" : difference > 0 ? "text-blue-700" : difference < -10 ? "text-blue-500" : ACCENT_COLOR_TEXT; // Use ACCENT_COLOR_TEXT for neutral/positive cases.
 
   const chartRef = useRef(null);
   const isInView = useInView(chartRef, {once: true, amount: 0.5});
@@ -234,28 +234,28 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
         {/* Bar 1: Guess */}
         <div className="flex flex-col items-center justify-end h-full">
           <div
-            className="bg-indigo-600 rounded-t-md transition-all duration-1000 ease-out"
+            className="bg-blue-500 rounded-t-md transition-all duration-1000 ease-out"
             style={{
               height: isChartVisible ? `${guessHeight}%` : '0%',
               width: '40px',
               transitionDelay: isChartVisible ? '0ms' : '0ms',
             }}
           ></div>
-          <p className="mt-2 text-sm font-bold text-indigo-600">{guessedValue}h</p>
+          <p className="mt-2 text-sm font-bold text-blue-500">{guessedValue}h</p>
           <p className="text-xs font-medium text-gray-500">Your Guess</p>
         </div>
 
         {/* Bar 2: Actual */}
         <div className="flex flex-col items-center justify-end h-full">
           <div
-            className="bg-red-600 rounded-t-md transition-all duration-1000 ease-out"
+            className="bg-blue-900 rounded-t-md transition-all duration-1000 ease-out"
             style={{
               height: isChartVisible ? `${actualHeight}%` : '0%',
               width: '40px',
               transitionDelay: isChartVisible ? '300ms' : '0ms',
             }}
           ></div>
-          <p className="mt-2 text-sm font-bold text-red-600">{actualValue}h</p>
+          <p className="mt-2 text-sm font-bold text-blue-900">{actualValue}h</p>
           <p className="text-xs font-medium text-gray-500">Actual Value</p>
         </div>
       </div>
@@ -264,7 +264,7 @@ const BarChartComparison: React.FC<BarChartComparisonProps> = ({guessedValue, ac
         {statement}
       </p>
 
-      <Button onClick={onReset} variant="outline" className="mt-4">
+      <Button onClick={onReset} variant="outline" className="mt-4 cursor-pointer">
         Start Again
       </Button>
     </div>
@@ -355,7 +355,7 @@ const BrainRotSurvey: React.FC = () => {
           </div>
 
           <Button onClick={handleNext} disabled={isNextDisabled}
-                  className={cn("w-full text-white font-bold py-2 px-4 rounded transition-colors duration-150", ACCENT_COLOR_BG, ACCENT_COLOR_HOVER)}>
+                  className={cn("w-full text-white font-bold py-2 px-4 rounded transition-colors duration-150 cursor-pointer", ACCENT_COLOR_BG, ACCENT_COLOR_HOVER)}>
             {state.step === 1 ? "Next Step" : "Show Comparison"}
             <ArrowRight className="size-4 ml-2"/>
           </Button>

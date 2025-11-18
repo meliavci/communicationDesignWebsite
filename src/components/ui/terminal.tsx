@@ -50,15 +50,20 @@ export const AnimatedSpan = ({
   const sequence = useSequence()
   const itemIndex = useItemIndex()
   const [hasStarted, setHasStarted] = useState(false)
+
+  // Sequence Logic
   useEffect(() => {
     if (!sequence || itemIndex === null) return
-    if (!sequence.sequenceStarted) return
+    if (!sequence.sequenceStarted) return // Wait until the sequence officially begins
     if (hasStarted) return
+
+    // Start animation if this item is the currently active index
     if (sequence.activeIndex === itemIndex) {
       setHasStarted(true)
     }
   }, [sequence?.activeIndex, sequence?.sequenceStarted, hasStarted, itemIndex])
 
+  // Determine if animation should run (based on sequence status or local view status)
   const shouldAnimate = sequence ? hasStarted : startOnView ? isInView : true
 
   return (
@@ -71,7 +76,11 @@ export const AnimatedSpan = ({
       onAnimationComplete={() => {
         if (!sequence) return
         if (itemIndex === null) return
-        sequence.completeItem(itemIndex)
+
+        // Only call complete if this was the item that was just set to start
+        if (sequence.activeIndex === itemIndex) {
+          sequence.completeItem(itemIndex)
+        }
       }}
       {...props}
     >
@@ -121,25 +130,28 @@ export const TypingAnimation = ({
   const sequence = useSequence()
   const itemIndex = useItemIndex()
 
+  // Sequence Logic: Wait for the correct index
   useEffect(() => {
-    if (sequence && itemIndex !== null) {
-      if (!sequence.sequenceStarted) return
-      if (started) return
-      if (sequence.activeIndex === itemIndex) {
-        setStarted(true)
+    if (!sequence || itemIndex === null) {
+      // Local start logic for non-sequenced use
+      if (!startOnView) {
+        const startTimeout = setTimeout(() => setStarted(true), delay)
+        return () => clearTimeout(startTimeout)
+      }
+      if (isInView) {
+        const startTimeout = setTimeout(() => setStarted(true), delay)
+        return () => clearTimeout(startTimeout)
       }
       return
     }
 
-    if (!startOnView) {
-      const startTimeout = setTimeout(() => setStarted(true), delay)
-      return () => clearTimeout(startTimeout)
+    // Sequence start logic
+    if (!sequence.sequenceStarted) return // Wait for sequence to be running
+    if (started) return
+
+    if (sequence.activeIndex === itemIndex) {
+      setStarted(true)
     }
-
-    if (!isInView) return
-
-    const startTimeout = setTimeout(() => setStarted(true), delay)
-    return () => clearTimeout(startTimeout)
   }, [
     delay,
     startOnView,
@@ -161,7 +173,10 @@ export const TypingAnimation = ({
       } else {
         clearInterval(typingEffect)
         if (sequence && itemIndex !== null) {
-          sequence.completeItem(itemIndex)
+          // Only call complete if this was the active item that finished
+          if (sequence.activeIndex === itemIndex) {
+            sequence.completeItem(itemIndex)
+          }
         }
       }
     }, duration)
@@ -211,19 +226,34 @@ export const Terminal = ({
   // use externalInView when provided, otherwise fall back to internal detection
   const effectiveInView = externalInView ?? internalIsInView
 
-  const [activeIndex, setActiveIndex] = useState(0)
-  const sequenceHasStarted = sequence ? !startOnView || effectiveInView : false
+  // State to manage the sequence progression. Start at -1 if waiting for view.
+  const [activeIndex, setActiveIndex] = useState(startOnView ? -1 : 0)
+  // State to track if the sequence has officially started running
+  const [sequenceHasBegun, setSequenceHasBegun] = useState(!startOnView);
+
+
+  useEffect(() => {
+    if (!sequence || !startOnView) return;
+
+    // Trigger sequence start when in view for the first time
+    if (effectiveInView && activeIndex === -1) {
+      setSequenceHasBegun(true);
+      setActiveIndex(0); // Start the first item
+    }
+  }, [sequence, startOnView, effectiveInView, activeIndex])
+
 
   const contextValue = useMemo<SequenceContextValue | null>(() => {
     if (!sequence) return null
     return {
       completeItem: (index: number) => {
+        // Only proceed if the completed item is the currently active one
         setActiveIndex((current) => (index === current ? current + 1 : current))
       },
       activeIndex,
-      sequenceStarted: sequenceHasStarted,
+      sequenceStarted: sequenceHasBegun, // Use the new state
     }
-  }, [sequence, activeIndex, sequenceHasStarted])
+  }, [sequence, activeIndex, sequenceHasBegun])
 
   const wrappedChildren = useMemo(() => {
     if (!sequence) return children

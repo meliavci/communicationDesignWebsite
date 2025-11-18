@@ -129,7 +129,7 @@ export default function ArticleTwo() {
             <div className="col-span-2 panel-right flex flex-col gap-6 h-full">
               <div className="panel side-panel border-8 border-black bg-white relative overflow-hidden"
                    style={{minHeight: '260px'}}>
-                <div className="flex items-center justify-center gap-6 h-full bg-[#ff6347]">
+                <div className="flex items-center justify-center gap-6 h-full bg-[#ff6347] cursor-pointer">
                   <div
                     className={`w-1/2 transform transition-transform duration-300 ${hovered === 'boy' ? 'scale-110' : ''}`}
                     onMouseEnter={() => setHovered('boy')}
@@ -160,12 +160,12 @@ export default function ArticleTwo() {
           <div className="comic-grid grid gap-6" style={{gridTemplateColumns: '1fr 1fr'}}>
             <div className="panel-full col-span-2 grid gap-6 mt-6" style={{gridColumn: '1 / -1'}}>
               <div className="grid grid-cols-2 gap-6">
-                <div className="col-span-1 border-8 border-black bg-[#70cbff] p-6 relative overflow-hidden"
+                <div className="col-span-1 border-8 border-black bg-[#70cbff] p-6 gap-6 relative overflow-hidden"
                      style={{minHeight: '220px'}}>
                   <div className="p-4 bg-white"
                        style={{border: '6px solid #000', boxShadow: '6px 6px 0 #00000022'}}>
                     <h1
-                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl">
+                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl mb-6">
                       How the {' '}
                       <LineShadowText className="italic">children</LineShadowText>{' '}
                       respond
@@ -221,7 +221,7 @@ export default function ArticleTwo() {
                     className="bg-white text-black px-3 py-1 rounded-sm p-4 mt-35 mx-6 mb-6"
                     style={{border: '4px solid #000', transform: 'skewX(-2deg)'}}>
                     <h1
-                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl">
+                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl mb-6">
                       Finding {' '}
                       <LineShadowText className="italic">healthier</LineShadowText>{' '}
                       habits
@@ -232,7 +232,7 @@ export default function ArticleTwo() {
                       than scrolling, it would be way better. She agrees that playing games is far healthier than
                       scrolling and that it could strengthen their cognitive abilities. So, for her belief, replacing
                       scrolling with games could be the easiest answer.</p>
-                    <p className="text-black comic-text">
+                    <p className="text-black comic-text pb-4">
                       The grandfather believes that finding things to do as a family outside of the home will help them.
                       Obviously, iPads are not allowed when outside the home. The more the grandsons play sports, eat
                       out with family or take a long trip to visit the cabin - with no internet or electricity, the

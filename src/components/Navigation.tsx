@@ -12,10 +12,10 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  {id: 'doomscrolling', label: 'Doomscrolling', color: 'bg-blue-950'},
-  {id: 'gaming', label: 'Gaming/Scrolling', color: 'bg-blue-600'},
-  {id: 'addiction', label: 'Addiction', color: 'bg-blue-900'},
-  {id: 'pressure', label: 'Pressure', color: 'bg-blue-700'},
+  {id: 'doomscrolling', label: 'DRUG', color: 'bg-blue-950'}, // 950 (Dunkelste)
+  {id: 'gaming', label: 'HABITS', color: 'bg-blue-900'},    // 900
+  {id: 'pressure', label: 'SYSTEM', color: 'bg-blue-800'},    // 800 (Um SYSTEM in die logische Reihenfolge zu bringen)
+  {id: 'addiction', label: 'ROT', color: 'bg-blue-700'},    // 700 (Hellste der Reihe)
 ];
 
 export default function Navigation({activeTab, setActiveTab}: NavigationProps) {

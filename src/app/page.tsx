@@ -12,12 +12,12 @@ import ArticleThree from "@/components/pages/ArticleThree"; // Wichtig: Import h
 export type TabType = 'doomscrolling' | 'addiction' | 'rehab' | 'pressure' | 'gaming' | 'socialMedia';
 
 const tabColors: Record<TabType, string> = {
-  doomscrolling: 'bg-blue-950',
-  addiction: 'bg-blue-900',
-  rehab: 'bg-blue-800',
-  pressure: 'bg-blue-700',
-  gaming: 'bg-blue-600',
-  socialMedia: 'bg-blue-500',
+  doomscrolling: 'bg-blue-950/80', // DRUG (950)
+  addiction: 'bg-blue-700/80', // ROT (700)
+  rehab: 'bg-blue-800/80',
+  pressure: 'bg-blue-800/80', // SYSTEM (800)
+  gaming: 'bg-blue-900/80', // HABITS (900)
+  socialMedia: 'bg-blue-500/80',
 };
 
 export default function Home() {
