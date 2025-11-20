@@ -411,7 +411,7 @@ export default function ArticleFour(): JSX.Element {
       content: (<>In 2023 and 2024, a new term has become mainstream. “Brain rot”, a phenomenon similar to
         doomscrolling’s negative effects, but with an added sense of mental fogginess. This article will define, explain
         and explore brain rot through studies and an interview with a 22-year-old student who believes he experiences it
-        every day. Doomscrolling is defined as a vicious cycle of endlessly consuming short-form content until one is
+        every day and who wants to be anonymous. Doomscrolling is defined as a vicious cycle of endlessly consuming short-form content until one is
         hit with exhaustion and regret. It is another phenomenon that became mainstream during Covid-19 and remained
         normalized afterward. Brain rot is best explained through Newsport Institute’s <a
           href="https://www.newportinstitute.com/resources/co-occurring-disorders/brain-rot/" target="_blank"

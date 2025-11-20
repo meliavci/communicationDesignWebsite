@@ -71,7 +71,7 @@ export default function ArticleTwo() {
                   habits, according to experts
                   and observation from families; gaming focused “iPad kids” and “doomscrollers.” This article includes
                   interviews with a grandfather experiencing the worrisome term iPad kids, and an interview with an
-                  older sister worried about her younger siblings’ excessive screentime not on iPad, but phones. The
+                  older sister worried about her younger siblings’ excessive screentime not on iPad, but phones. They both want to be anonymous. The
                   grandsons are 12 and 14, while both the twin sisters are 12. The similar experiences of the grandsons
                   and the twin sisters reveal interesting differences in how children use screen and how it affects
                   them.</p>
