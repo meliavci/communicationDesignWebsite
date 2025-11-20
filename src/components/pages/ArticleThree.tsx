@@ -6,7 +6,7 @@ import {TrendingUp, Zap} from 'lucide-react';
 import {LineShadowText} from "@/components/ui/line-shadow-text";
 import HoverableSequence from "@/components/HoverableSequence";
 import {motion} from "motion/react";
-
+import LoopingSequence from '@/components/LoopingSequence';
 
 interface SketchyTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   font?: 'CabinSketch' | 'default';
@@ -36,22 +36,6 @@ const SketchyTitle: React.FC<SketchyTitleProps> = ({children, className, font = 
   );
 };
 
-function LoopingSequence({basePath, frameCount, padDigits = 2, fileType = 'png', className = '', interval = 80}: {basePath: string, frameCount: number, padDigits?: number, fileType?: string, className?: string, interval?: number}) {
-  const [frame, setFrame] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setFrame(prev => (prev + 1) % frameCount);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [frameCount, interval]);
-
-  const frameStr = String(frame).padStart(padDigits, '0');
-  const src = `${basePath}${frameStr}.${fileType}`;
-
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={src} alt="" className={className}/>;
-}
 
 const StockTrendChart: React.FC = () => {
   const [activeLines, setActiveLines] = useState<Record<string, boolean>>({

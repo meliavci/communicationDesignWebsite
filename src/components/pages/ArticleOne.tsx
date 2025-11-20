@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ScrollSequence2 from "@/components/ScrollSequence2";
+import LoopingSequence from "@/components/LoopingSequence";
 
 const useIntersectionObserver = (ref: React.RefObject<HTMLElement>, options: IntersectionObserverInit) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -82,126 +83,117 @@ const ArticleOne: React.FC = () => {
               className="w-full grayscale-100"
             />
 
-            <p className="text-sm md:text-md italic text-gray-600 mt-150">
+            <p className="text-sm md:text-md italic text-gray-600 md:mt-150 mt-110">
               Once a coping mechanism during Covid-19, doomscrolling has evolved into a daily addiction for many teens.
             </p>
           </header>
 
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-12">
-
-            <div className="md:col-span-2">
-              <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-10">
-                <div className="w-full order-2 -mt-90 md:order-1 pt-10 md:-mt-78">
-                  <ScrollSequence2
-                    basePath="/Article1/armSequences/RECOVER_RECOVER_RECOVER_arm_"
-                    frameCount={25}
-                    padDigits={3}
-                    fileType="png"
-                    scrollLengthVh={38}
-                    scrollSpeedFactor={2.0}
-                    startFrame={500}
-                    className="!w-5/8 !h-auto z-10 grayscale-100"
-                  />
-                </div>
-                <div className="order-1 md:order-2">
-                  <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
-                    Hooked on the scroll
-                  </h2>
-                  <p className="mb-6 leading-relaxed text-sm break-words text-justify">
-                    What does right after waking up in the morning and before lying in bed have in common? Using our
-                    thumbs to continuously swipe up on our phones. It starts by checking what has been posted on social
-                    media and then scrolling past what you were curious about, ending up an hour later unmotivated and
-                    full of regret. Despite social media or news articles being gloomy, we still choose to absorb the
-                    energy by scrolling to the next short video or headline until we also become gloomy. That phenomenon
-                    is what the Oxford English Dictionary calls “doomscrolling”.
-                  </p>
-                </div>
-              </section>
-
-              <section className="mt-90 md:mt-8 sm:mt-25 w-full mb-20 z-20">
-                <div className="border-2 border-gray-300 overflow-hidden">
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setIsExpanded(v => !v)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        setIsExpanded(v => !v);
-                      }
-                    }}
-                    className="w-full flex items-center justify-between p-4 focus:outline-none cursor-pointer hover:bg-gray-100 transition-colors relative z-30 pointer-events-auto"
-                  >
-                    <h2 className="text-xl md:text-4xl font-playfair font-bold pointer-events-none">
-                      Grew larger during pandemic
-                    </h2>
-
-                    <svg
-                      className={`w-6 h-6 text-gray-600 transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'} pointer-events-none`}
-                      fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                  </div>
-
-                  <div
-                    className={`px-4 overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] pb-6' : 'max-h-0'}`}
-                  >
-                    <div className="pt-4 text-sm text-justify text-gray-700 font-merriweather">
-                      <p className="mb-4">
-                        Doomscrolling became a threat during the Covid-19 pandemic, by feeding off stress and fear from
-                        individuals throughout the world. Due to the uncertainty surrounding the pandemic, the internet
-                        and social media were the only ways to protect ourselves. The prolonged feeling of discomfort
-                        and lack of control increased an inner urge to gather as much information as possible to feel
-                        prepared and safe. This mostly leads to discovering negative social media and news that most end
-                        up unsatisfied and even more distressed. Thus, creating hope that the next article or social
-                        media post will lessen discomfort-until it doesn’t-and almost two hours have passed.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-
-              <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-10">
-                <div className="order-2 md:order-1 md:mt-0 mt-60">
-                  <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
-                    Fear to boredom
-                  </h2>
-                  <p className="mb-6 leading-relaxed text-sm break-words text-justify">
-                    Five years later Covid-19 is not a worldwide threat anymore, yet we still have not lost that urge to
-                    gather information. Most people have spent hours scrolling throughout the years, which has become a
-                    hobby to engage in at any given time. The Doomscrolling phenomenon has evolved into not only feeding
-                    off of fear, but boredom. Gathering information about a certain subject won’t last as many hours as
-                    scrolling through entertaining short videos. All social media platforms have a page solely based on
-                    short videos that users watch by scrolling upwards to view more. This time doomscrolling appears to
-                    be a vicious cycle in which users find themselves stuck in a pattern of wanting more entertainment
-                    no matter how much they already <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9580444/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline font-bold ml-1">absorbed</a>.
-                  </p>
-                </div>
-                <div className="w-full pt-10 -mt-100 md:-mt-68 order-1 md:order-2">
-                  <ScrollSequence2
-                    basePath="/Article1/messagesSequences/messages"
-                    frameCount={25}
-                    padDigits={2}
-                    fileType="png"
-                    scrollLengthVh={10}
-                    scrollSpeedFactor={2.0}
-                    startFrame={0}
-                    className="!w-full !h-auto z-0 grayscale-100"
-                  />
-                </div>
-              </section>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start z-20">
+            <div className="w-full md:order-1 pt-10">
+              <LoopingSequence
+                basePath="/Article1/armSequences/RECOVER_RECOVER_RECOVER_arm_"
+                frameCount={25}
+                padDigits={3}
+                fileType="png"
+                startFrame={500}
+                className="!w-4/8 !h-auto z-10 grayscale-100 ml-30 -mt-10"
+              />
             </div>
+            <div className="order-1 md:order-2">
+              <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
+                Hooked on the scroll
+              </h2>
+              <p className="mb-6 leading-relaxed text-sm break-words text-justify">
+                What does right after waking up in the morning and before lying in bed have in common? Using our
+                thumbs to continuously swipe up on our phones. It starts by checking what has been posted on social
+                media and then scrolling past what you were curious about, ending up an hour later unmotivated and
+                full of regret. Despite social media or news articles being gloomy, we still choose to absorb the
+                energy by scrolling to the next short video or headline until we also become gloomy. That phenomenon
+                is what the Oxford English Dictionary calls “doomscrolling”.
+              </p>
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start z-20">
+            <div className="order-2 md:order-1 md:mt-0">
+              <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2">
+                Fear to boredom
+              </h2>
+              <p className="mb-6 leading-relaxed text-sm break-words text-justify">
+                Five years later Covid-19 is not a worldwide threat anymore, yet we still have not lost that urge to
+                gather information. Most people have spent hours scrolling throughout the years, which has become a
+                hobby to engage in at any given time. The Doomscrolling phenomenon has evolved into not only feeding
+                off of fear, but boredom. Gathering information about a certain subject won’t last as many hours as
+                scrolling through entertaining short videos. All social media platforms have a page solely based on
+                short videos that users watch by scrolling upwards to view more. This time doomscrolling appears to
+                be a vicious cycle in which users find themselves stuck in a pattern of wanting more entertainment
+                no matter how much they already <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9580444/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline font-bold ml-1">absorbed</a>.
+              </p>
+            </div>
+            <div className="w-full pt-10 md:-mt-68 order-1 md:order-2">
+              <LoopingSequence
+                basePath="/Article1/messagesSequences/messages"
+                frameCount={25}
+                padDigits={2}
+                fileType="png"
+                startFrame={0}
+                className="!w-7/9 !h-auto z-0 grayscale-100 md:mt-40 ml-17 -mt-20"
+              />
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start z-20">
+            <div className="border-2 border-gray-300 overflow-hidden">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setIsExpanded(v => !v)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsExpanded(v => !v);
+                  }
+                }}
+                className="w-full flex items-center justify-between p-4 focus:outline-none cursor-pointer hover:bg-gray-100 transition-colors relative z-30 pointer-events-auto"
+              >
+                <h2 className="text-xl md:text-4xl font-playfair font-bold pointer-events-none">
+                  Grew larger during pandemic
+                </h2>
 
-            <aside className="md:col-span-1">
-              <div className="md:border-l-2 md:border-gray-300 md:pl-8 h-full">
+                <svg
+                  className={`w-6 h-6 text-gray-600 transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'} pointer-events-none`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+
+              <div
+                className={`px-4 overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] pb-6' : 'max-h-0'}`}
+              >
+                <div className="pt-4 text-sm text-justify text-gray-700 font-merriweather">
+                  <ul className="mb-4">
+                    <li><strong>Origins in the Pandemic</strong> — Doomscrolling became a significant threat during Covid-19, fueled by global stress and fear.</li>
+                    <li><strong>Reliance on Digital Media</strong> — Due to uncertainty, people turned to the internet and social media as their primary means of self-protection.</li>
+                    <li><strong>Psychological Drivers</strong> — A lack of control and prolonged discomfort created a compulsive urge to gather information in order to feel prepared and safe.</li>
+                    <li><strong>Counterproductive Results</strong> — This search usually leads to negative content, resulting in dissatisfaction and increased distress rather than safety.</li>
+                    <li><strong>The Cycle of Addiction</strong> — Users continue scrolling in the hope that the next post will provide relief, leading to hours of lost time without alleviating the discomfort.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start z-20">
+              <div className="w-full pt-10">
                 <VisibleImage
                   src="/Article1/Head.png"
                   alt="Image of a brain with a frustrated face"
                   className="grayscale-100" caption={""}                />
+              </div>
 
+              <div className="">
                 <h3 className="text-xl md:text-2xl font-playfair font-bold mb-4 border-b-2 border-gray-400 pb-2">
                   Hidden mental price
                 </h3>
@@ -218,22 +210,19 @@ const ArticleOne: React.FC = () => {
                   for more than two hours would not increase any harm to mental health, but passively scrolling through
                   social media does.
                 </p>
-
-                <VisibleImage
-                  src="/Article1/Pills.png"
-                  alt="Image of pills with social media logos"
-                  className="w-[90%] h-auto grayscale-100" caption={""}                />
               </div>
-            </aside>
-
+              <VisibleImage
+                src="/Article1/Pills.png"
+                alt="Image of pills with social media logos"
+                className="w-[90%] h-auto grayscale-100 -rotate-90 md:mt-35 mt-10" caption={""}                />
           </div>
 
 
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start border-t-2 pt-6 border-gray-300 z-20">
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-12 mt-8 sm:mt-12 items-start z-20">
 
             <section className="clear-right md:col-span-2 relative z-30">
-              <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 border-b-2 border-gray-400 pb-2 z-20">
+              <h2 className="text-2xl md:text-4xl font-playfair font-bold mb-5 md:mt-0 mt-10 border-b-2 border-gray-400 pb-2 z-20">
                 An addiction in disguise
               </h2>
               <p className="mb-6 leading-relaxed text-sm break-words text-justify">
@@ -258,16 +247,14 @@ const ArticleOne: React.FC = () => {
                 tomorrow.
               </p>
             </section>
-            <div className="-mt-68 md:-mt-58 md:pb-0 pb-150">
-              <ScrollSequence2
+            <div className="-mt-68 md:-mt-58">
+              <LoopingSequence
                 basePath="/Article1/bongSequences/bong"
                 frameCount={24}
                 padDigits={2}
                 fileType="png"
-                scrollLengthVh={10}
-                scrollSpeedFactor={2.0}
                 startFrame={0}
-                className="!w-full !h-auto grayscale-100 -z-1"
+                className="!w-full !h-auto grayscale-100 -z-1 mt-70"
               />
             </div>
           </div>

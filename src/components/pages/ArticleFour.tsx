@@ -779,10 +779,10 @@ export default function ArticleFour(): JSX.Element {
               >
                 {terminalLines.map((line, index) => (
                   <AnimatedSpan key={index} delay={index === 0 ? 500 : 300}>
-                    <span className={cn("font-bold mr-2", line.isWarning ? "text-yellow-500" : "text-green-500")}>
+                    <span className={cn("font-bold mr-2", line.isWarning ? "text-red-900" : "text-green-500")}>
                       {line.prefix}
                     </span>
-                    <span className={cn("text-white", line.isWarning && "text-yellow-500")}>
+                    <span className={cn("text-white", line.isWarning && "text-red-900")}>
                       {line.text}
                     </span>
                   </AnimatedSpan>
