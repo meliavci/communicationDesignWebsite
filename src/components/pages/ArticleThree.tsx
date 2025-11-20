@@ -336,8 +336,8 @@ export default function ArticleThree() {
 
                 <SketchyTitle className="mt-10 md:mt-20">Globalizing Fear of Missing Out</SketchyTitle>
                 <p className="blueprint-text mb-6">
-                  Another core ingredient is the phrase &ldquo;FOMO&rdquo;, which means "Fear Of Missing
-                  Out". This is something the professor mentions multiple times as the organizations’ way to collect
+                  Another core ingredient is the phrase &ldquo;FOMO&rdquo;, which means &#34;Fear Of Missing
+                  Out&#34;. This is something the professor mentions multiple times as the organizations’ way to collect
                   money effectively from its users.
                 </p>
 
