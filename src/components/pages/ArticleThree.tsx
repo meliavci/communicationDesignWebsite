@@ -106,7 +106,7 @@ const StockTrendChart: React.FC = () => {
         <div className="relative w-full flex flex-col md:flex-row" style={{ height: '300px' }}>
 
           <div className="w-full text-center mb-2 md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:-ml-28 md:pr-1 md:flex md:items-center md:h-full md:flex-shrink-0 z-10 pointer-events-none">
-            <span className="text-xs text-white/60 md:rotate-[-90deg] md:whitespace-nowrap md:ml-3">
+            <span className="text-xs text-white/60 md:rotate-[-90deg] md:whitespace-nowrap md:ml-10">
               Normalized Value (100 = 01/2019)
             </span>
           </div>
@@ -178,6 +178,7 @@ const StockTrendChart: React.FC = () => {
 
 
 export default function ArticleThree() {
+  const [moneyPlaying, setMoneyPlaying] = useState(false);
 
   return (
     <div className="bg-white h-full flex flex-col relative z-10 mx-auto max-w-full xl:max-w-[85%] overflow-hidden">
@@ -247,10 +248,10 @@ export default function ArticleThree() {
                 />
               </div>
 
-              <div className="flex flex-col items-center px-4 sm:px-10 lg:px-20 text-center mt-10 md:-mt-10">
-                <SketchyTitle className="mb-10">Systematic Addiction</SketchyTitle>
+              <div className="flex flex-col items-center px-4 sm:px-20 lg:px-20 mt-10 md:-mt-10">
+                <SketchyTitle className="mb-10 text-center">Systematic Addiction</SketchyTitle>
                 <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-0">
-                  <p className="blueprint-text p-4 lg:px-15 text-center lg:w-2/3">
+                  <p className="blueprint-text p-4 lg:px-15 text-start lg:w-2/3">
                     Doomscrolling, the vicious cycle of endlessly consuming short-form content has become increasingly
                     normalized in the years following the Covid-19 pandemic. One 57-year-old professor, who requested to
                     be anonymous due to his strong views and opinions, argues it is not a habit, but
@@ -261,31 +262,26 @@ export default function ArticleThree() {
                        alt="Professor playing chess with a game controller"/>
                 </div>
 
-                <SketchyTitle className="mt-10 md:mt-20">A life of control, not compulsion</SketchyTitle>
-                <p className="blueprint-text mb-6">
+                <SketchyTitle className="mt-10 md:mt-20 text-center">A life of control, not compulsion</SketchyTitle>
+                <p className="blueprint-text text-start mb-6">
                   The professor manages his screen time carefully and within control. He spends about two to three hours
                   a day on his phone, though part of it is multitasked. &ldquo;I cycle for an hour while I play
                   chess,&rdquo; he says, combining physical activity with mental stimulation. Beyond that, he works on
                   his computer for four to five hours and spends similar amount of time gaming. He thinks of gaming as a
                   tool to have a break from reality, and not as a tool that can gain control over him.
                 </p>
-                <blockquote className="my-6 p-4 border-l-4 border-yellow-400 bg-white/10 italic text-base md:text-lg lg:ml-4 w-full">
+                <blockquote className="my-6 p-4 border-l-4 text-start border-yellow-400 bg-white/10 italic text-base md:text-lg w-full">
                   &ldquo;I do not game because I have to, I choose to. I am not addicted to gaming, but I am addicted to
                   meaning and passion. As soon as I feel like the meaning within gaming is fading away, I choose to do
                   something else,&rdquo; he explains.
                 </blockquote>
 
                 <SketchyTitle className="mt-10 md:mt-20">Temptation of opening the door</SketchyTitle>
-                <p className="blueprint-text mb-6">
+                <p className="blueprint-text mb-6 text-start">
                   To prevent addiction, he avoids multiplayer games entirely, which he calls an &ldquo;open
-                  door&rdquo; to addictive traits.
-                </p>
-                <p className="blueprint-text mb-6">
-                  &ldquo;I remove the choice. I know what invites addiction, so I don’t open the door. Even if I am
+                  door&rdquo; to addictive traits. &ldquo;I remove the choice. I know what invites addiction, so I don’t open the door. Even if I am
                   tempted&rdquo;. His strategies have also influenced his daughter, who grew up with social media.
                   Despite spending a considerable amount of time on Tik Tok, it is still within control.
-                </p>
-                <p className="blueprint-text italic mb-6">
                   &ldquo;She grew up on social media. The difference is that she gets a lot of screen time because of
                   social media, I don’t have social media,&rdquo; he says.
                 </p>
@@ -303,7 +299,7 @@ export default function ArticleThree() {
                 </p>
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/Article3/chess.png" alt="Sequence showing profit extraction from users"
+                <img src="/Article3/chess2.png" alt="Sequence showing profit extraction from users"
                      className="w-full mt-10 md:mt-15 grayscale-60"/>
 
                 <p className="blueprint-text mb-6 mt-10 md:mt-15">
@@ -326,12 +322,28 @@ export default function ArticleThree() {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-8 items-start w-full">
-                  <blockquote
+                  <span
                     className="md:w-1/2 my-auto p-4 border-l-4 border-yellow-400 bg-white/10 italic text-base md:text-xl w-full">
-                    &ldquo;Fear of missing out has always been the fall of man. But now it’s built into a system. The
-                    only way to not miss out will always be one click away. And that is exactly how the algorithm
-                    keeps people online and the tech gets all the money,&rdquo; he explains.
-                  </blockquote>
+                    &ldquo;Fear of missing out has always been the fall of man. But now it’s built into a system. The only way to not miss out will always be{' '}
+                    <motion.span
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setMoneyPlaying(true)}
+                      title="Click to play animation"
+                      aria-pressed={moneyPlaying}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setMoneyPlaying(true); }}
+                      whileHover={{ scale: 1.04, textShadow: '0 0 8px rgba(255,255,255,0.9)' }}
+                      whileFocus={{ scale: 1.03, textShadow: '0 0 8px rgba(255,255,255,0.9)' }}
+                      className={cn(
+                        'inline-block cursor-pointer px-1 rounded transition-all outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2',
+                        moneyPlaying ? 'text-black font-semibold' : 'underline text-white/80'
+                      )}
+                    >
+                      one click away
+                    </motion.span>
+                    . And that is exactly how the algorithm keeps people online and the tech gets all the money,&rdquo;
+                  </span>
+
                   <HoverableSequence
                     basePath="/Article3/moneySequence/click-flew-money-ani"
                     startFrame={100}
@@ -341,28 +353,32 @@ export default function ArticleThree() {
                     className="w-full md:w-1/2 h-auto grayscale-60 -pr-4 md:-pr-40 -pl-4 md:-pl-20 -pt-4 md:-pt-20 -pb-4 md:-pb-20"
                     hoverScale={1.1}
                     interval={100}
+                    play={moneyPlaying}
+                    onPlay={setMoneyPlaying}
                   />
                 </div>
                 <SketchyTitle className='text-center mt-10 md:mt-20'>The Price of Attention</SketchyTitle>
                 <StockTrendChart/>
-                <SketchyTitle className="mt-10 md:mt-20">The awakening will not be gentle</SketchyTitle>
-                <p className="blueprint-text mb-6">
-                  Looking further ahead, the professor doubts that society can solve the doomscrolling problem
-                  gradually. He argues that change will only occur when people collectively realize the unhappiness it
-                  causes, creating a &ldquo;mass awakening&rdquo;.
-                </p>
-                <blockquote className="my-6 p-4 border-l-4 border-yellow-400 bg-white/10 italic text-base md:text-lg lg:ml-4 w-full">
-                  &ldquo;People will eventually get tired of social media, but not yet. It will get worse first. When
-                  enough people realize they’re not happy, then the awakening begins. If everything shuts off at once,
-                  there would be mass withdrawal. There will be a price to pay either way.&rdquo;
-                </blockquote>
-                <p className="blueprint-text mb-10 md:mb-15">
-                  &ldquo;The realization will build up until there’s a counterattack against the organizations. It will
-                  happen, just a matter of time.&rdquo;
-                </p>
+                <SketchyTitle className="mt-10 md:mt-20 text-center">The awakening will not be gentle</SketchyTitle>
+                <div className="flex flex-col items-start">
+                  <p className="blueprint-text mb-6">
+                    Looking further ahead, the professor doubts that society can solve the doomscrolling problem
+                    gradually. He argues that change will only occur when people collectively realize the unhappiness it
+                    causes, creating a &ldquo;mass awakening&rdquo;.
+                  </p>
+                  <blockquote className="my-6 p-4 border-l-4 border-yellow-400 bg-white/10 italic text-base md:text-lg w-full">
+                    &ldquo;People will eventually get tired of social media, but not yet. It will get worse first. When
+                    enough people realize they’re not happy, then the awakening begins. If everything shuts off at once,
+                    there would be mass withdrawal. There will be a price to pay either way.&rdquo;.
+                  </blockquote>
+                  <p className="blueprint-text mb-10 md:mb-15 text-start">
+                    &ldquo;The realization will build up until there’s a counterattack against the organizations. It will
+                    happen, just a matter of time.&rdquo;.
+                  </p>
+                </div>
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/Article3/buildings.png" alt="Company buildings" className="w-full max-w-lg md:max-w-xl xl:max-w-[550px] grayscale-60"/>
+                <img src="/Article3/burningBuildings2.png" alt="Company buildings" className="w-full max-w-lg md:max-w-2xl xl:max-w-4xl grayscale-60"/>
 
               </div>
               <footer

@@ -204,7 +204,7 @@ export default function ArticleTwo() {
                       sisters react is noticeable.
                     </p>
                   </div>
-                  <div className="-mt-90 lg:-mt-[280px]">
+                  <div className="-mt-90 lg:-mt-[210px]">
                     <ScrollSequence2
                       basePath="/Article2/vsSequences/vs"
                       frameCount={30}
@@ -213,13 +213,13 @@ export default function ArticleTwo() {
                       scrollLengthVh={60}
                       scrollSpeedFactor={1.4}
                       startFrame={0}
-                      className="w-full h-auto max-w-[680px]"
+                      className="w-full h-auto max-w-[650px]"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-1 relative border-8 border-black bg-[#8861ff] overflow-hidden">
-                  <div className="w-full flex items-center justify-center -mt-80 lg:-mt-[200px]">
+                  <div className="w-full flex items-center justify-center -mt-80 lg:-mt-[130px]">
                     <ScrollSequence2
                       basePath="/Article2/doorSequences/RECOVER_door"
                       frameCount={25}
@@ -228,14 +228,14 @@ export default function ArticleTwo() {
                       scrollLengthVh={60}
                       scrollSpeedFactor={1.4}
                       startFrame={0}
-                      className="w-full h-auto max-w-[760px] mx-auto lg:ml-24"
+                      className="md:w-240 w-170 md:mt-0 mt-55 ml-22 h-auto mx-auto lg:ml-24"
                     />
                   </div>
                   <div
-                    className="bg-white text-black px-3 py-1 rounded-sm p-4 mt-35 mx-6 mb-6"
+                    className="bg-white text-black px-3 py-1 rounded-sm p-4 mt-60 mx-6 mb-6"
                     style={{border: '4px solid #000', transform: 'skewX(-2deg)'}}>
                     <h1
-                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl mb-6">
+                      className="text-2xl text-black leading-none font-semibold tracking-tighter text-balance sm:text-3xl md:text-4xl lg:text-6xl mb-3 mt-2">
                       Finding {' '}
                       <LineShadowText className="italic">healthier</LineShadowText>{' '}
                       habits

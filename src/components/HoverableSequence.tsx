@@ -10,6 +10,8 @@ interface HoverableSequenceProps {
   className?: string;
   hoverScale?: number;
   interval?: number;
+  play?: boolean;
+  onPlay?: (playing: boolean) => void;
 }
 
 const HoverableSequence: React.FC<HoverableSequenceProps> = ({
@@ -21,10 +23,27 @@ const HoverableSequence: React.FC<HoverableSequenceProps> = ({
                                                                className = '',
                                                                hoverScale = 1.2,
                                                                interval = 80,
+                                                               play = false,
+                                                               onPlay,
                                                              }) => {
   const frameCount = endFrame - startFrame + 1;
   const [frame, setFrame] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // respond to external play prop
+  useEffect(() => {
+    if (play) {
+      setFrame(0);
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  }, [play]);
+
+  // notify parent when isPlaying changes
+  useEffect(() => {
+    onPlay?.(isPlaying);
+  }, [isPlaying, onPlay]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -32,6 +51,7 @@ const HoverableSequence: React.FC<HoverableSequenceProps> = ({
       timer = setInterval(() => {
         setFrame((prev) => {
           if (prev + 1 < frameCount) return prev + 1;
+          // stop at end
           setIsPlaying(false);
           return 0;
         });
@@ -50,7 +70,10 @@ const HoverableSequence: React.FC<HoverableSequenceProps> = ({
     <motion.div
       className={`relative ${className}`}
       whileHover={{ scale: hoverScale }}
-      onClick={() => setIsPlaying(true)}
+      onClick={() => {
+        setFrame(0);
+        setIsPlaying(true);
+      }}
     >
       <img src={src} alt="Hoverable sequence" className="w-full h-auto" />
     </motion.div>

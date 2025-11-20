@@ -259,7 +259,7 @@ const ArticleOne: React.FC = () => {
             </div>
           </div>
 
-          <footer className="mt-12 pt-8 border-t-2 border-gray-300 text-center text-gray-600 text-sm font-opensans">
+          <footer className="mt-12 pt-8 border-t-2 pb-15 md:pb-10 border-gray-300 text-center text-gray-600 text-sm font-opensans">
             <p>Communication Design 2025</p>
             <p>Melisa Avci, Raphael Tam-Dao, Daniel Betto, Ylva Romann Aas, Ingrid Christensen Øvrelid</p>
           </footer>
