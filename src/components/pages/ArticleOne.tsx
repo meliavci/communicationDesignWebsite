@@ -34,21 +34,33 @@ const VisibleImage: React.FC<{ src: string; alt: string; caption: string; classN
   const imageRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  const isVisible = useIntersectionObserver(imageRef, {threshold: 0.1});
+  const isVisible = useIntersectionObserver(imageRef, {
+    threshold: 0.25,
+    rootMargin: "0px 0px -10% 0px"
+  });
+
+  const [hasAppeared, setHasAppeared] = useState(false);
+
+  useEffect(() => {
+    if (isVisible && !hasAppeared) {
+      setHasAppeared(true);
+    }
+  }, [isVisible, hasAppeared]);
 
   return (
     <figure
       ref={imageRef}
-      className={`mb-10 transition-transform duration-1000 ease-out flex flex-col items-center ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1/4 opacity-0'}`}
+      className={`mb-10 transition-transform duration-1000 ease-out flex flex-col items-center ${hasAppeared ? "translate-y-0 opacity-100" : "translate-y-1/4 opacity-0"}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className={`w-[90%] h-auto grayscale-100 ${className || ''}`}/>
+      <img src={src} alt={alt} className={`w-[90%] h-auto grayscale-100 ${className || ""}`} />
       <figcaption className="text-xs text-gray-500 mt-2 text-center w-[90%]">
         {caption}
       </figcaption>
     </figure>
   );
 };
+
 
 
 const ArticleOne: React.FC = () => {
