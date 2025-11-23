@@ -37,8 +37,6 @@ export function NumberTicker({
     if (shouldStart) {
       const timer = setTimeout(() => {
         const target = direction === "down" ? startValue : value
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         animate(motionValue, target, { duration, easing: "easeOut" })
       }, delay * 1000)
       return () => clearTimeout(timer)
