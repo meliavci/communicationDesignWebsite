@@ -476,7 +476,19 @@ export default function ArticleFour() {
     " Any activity that leaves the user exhausted and overstimulated can be considered an experience of brain rot. ",
   ], []);
 
-  const tweetData = useMemo(() => [
+  type TweetDatum = {
+    username: string;
+    handle?: string;
+    avatarSeed: string;
+    title: string;
+    content: React.ReactNode;
+    replyCount: number;
+    retweetCount: number;
+    likeCount: number;
+  };
+
+
+  const tweetData = useMemo<TweetDatum[]>(() => [
     {
       username: "What is brain rot? ",
       handle: "@whatisbrainrot",
