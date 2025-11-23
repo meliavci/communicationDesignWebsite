@@ -1,15 +1,16 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MessageCircle, Repeat2, Heart, Share } from "lucide-react";
+import React from "react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { MessageCircle, Repeat2, Heart, Share } from "lucide-react"
 
-interface TweetProps {
-  username?: string;
-  handle?: string;
-  timestamp?: string;
-  content?: React.ReactNode;
-  avatarUrl?: string;
-  replyCount?: number;
-  retweetCount?: number;
-  likeCount?: number;
+export interface TweetProps {
+  username?: string
+  handle?: string
+  timestamp?: string
+  content?: React.ReactNode
+  avatarUrl?: string
+  replyCount?: number
+  retweetCount?: number
+  likeCount?: number
 }
 
 export function Tweet({
@@ -83,5 +84,7 @@ export function Tweet({
         </div>
       </div>
     </article>
-  );
+  )
 }
+
+export default Tweet
