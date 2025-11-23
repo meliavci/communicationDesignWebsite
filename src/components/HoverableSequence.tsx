@@ -75,6 +75,7 @@ const HoverableSequence: React.FC<HoverableSequenceProps> = ({
         setIsPlaying(true);
       }}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt="Hoverable sequence" className="w-full h-auto" />
     </motion.div>
   );

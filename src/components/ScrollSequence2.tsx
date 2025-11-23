@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ScrollSequenceProps {
   basePath: string;
@@ -27,8 +27,10 @@ export default function ScrollSequence2({
   const [images, setImages] = useState<(HTMLImageElement | null)[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const getFrameName = (i: number) =>
-    `${basePath}${String(startFrame + i).padStart(padDigits, "0")}.${fileType}`;
+  const getFrameName = useCallback((i: number) =>
+      `${basePath}${String(startFrame + i).padStart(padDigits, "0")}.${fileType}`,
+    [basePath, startFrame, padDigits, fileType]
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -59,7 +61,7 @@ export default function ScrollSequence2({
     return () => {
       isMounted = false;
     };
-  }, [basePath, frameCount, fileType, padDigits, startFrame]);
+  }, [frameCount, getFrameName]);
 
   useEffect(() => {
     if (!isLoaded || !canvasRef.current || !containerRef.current) return;

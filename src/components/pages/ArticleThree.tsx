@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useMemo, useState, useEffect} from 'react';
+import React, {useMemo, useState} from 'react';
 import {cn} from '@/lib/utils';
 import {TrendingUp, Zap} from 'lucide-react';
 import {LineShadowText} from "@/components/ui/line-shadow-text";
@@ -195,17 +195,17 @@ export default function ArticleThree() {
                 }
 
                 .blueprint-bg .blueprint-heading {
-                    color: #E0FFFF; 
+                    color: #E0FFFF;
                 }
 
                 .blueprint-bg a {
-                    color: #4CB0FF; 
+                    color: #4CB0FF;
                     text-decoration: underline;
                     text-decoration-color: #4CB0FF;
                 }
 
                 .blueprint-bg .blueprint-text {
-                    font-family: var(--font-schoolbell), cursive; 
+                    font-family: var(--font-schoolbell), cursive;
                     font-weight: 400;
                     line-height: 1.6;
                 }
