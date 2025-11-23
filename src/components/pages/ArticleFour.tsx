@@ -17,8 +17,6 @@ import {cn} from "@/lib/utils";
 import {Tweet} from "@/components/ui/tweet";
 import {Button} from "@/components/ui/button";
 
-const ACCENT_COLOR_BG = "bg-blue-900";
-const ACCENT_COLOR_HOVER = "hover:bg-blue-800";
 const ACCENT_COLOR_TEXT = "text-blue-900";
 
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -43,11 +41,17 @@ const Circle = forwardRef<
 Circle.displayName = "Circle";
 
 const Icons = {
+  // eslint-disable-next-line @next/next/no-img-element
   instagram: () => <img src="/Article4/Logos/Instagram.svg" alt="Instagram" className="w-5 h-5"/>,
+  // eslint-disable-next-line @next/next/no-img-element
   snapchat: () => <img src="/Article4/Logos/Snapchat.svg" alt="Snapchat" className="w-5 h-5"/>,
+  // eslint-disable-next-line @next/next/no-img-element
   tiktok: () => <img src="/Article4/Logos/TikTok.svg" alt="TikTok" className="w-5 h-5"/>,
+  // eslint-disable-next-line @next/next/no-img-element
   whatsapp: () => <img src="/Article4/Logos/Whatsapp.svg" alt="WhatsApp" className="w-5 h-5"/>,
+  // eslint-disable-next-line @next/next/no-img-element
   youtube: () => <img src="/Article4/Logos/Yotube.svg" alt="Youtube" className="w-5 h-5"/>,
+  // eslint-disable-next-line @next/next/no-img-element
   messenger: () => <img src="/Article4/Logos/Messenger.svg" alt="Messenger" className="w-5 h-5"/>,
 };
 
@@ -92,6 +96,7 @@ function AnimatedBeamSection() {
           </Circle>
 
           <Circle ref={useRef(null)} className="size-16 relative">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/Article4/Logos/brain.png"
               alt="Brain icon representing addiction/focus"
@@ -410,11 +415,12 @@ const BrainRotSurvey: React.FC<{ isEmbedded?: boolean }> = ({isEmbedded = false}
   );
 };
 
-export default function ArticleFour(): JSX.Element {
+export default function ArticleFour() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const [volume, setVolume] = useState<number>(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [volume] = useState<number>(() => {
     try {
       const v = typeof window !== "undefined" ? localStorage.getItem("article4_volume") : null;
       return v !== null ? Math.max(0, Math.min(1, Number(v))) : 0.15;
@@ -439,18 +445,19 @@ export default function ArticleFour(): JSX.Element {
   }, [volume]);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.loop = true;
-      audioRef.current.volume = volume;
+    const audio = audioRef.current;
+    if (audio) {
+      audio.loop = true;
+      audio.volume = volume;
       if (isAudioPlaying) {
-        void audioRef.current.play().catch(e => {
+        void audio.play().catch(() => {
         });
       } else {
-        audioRef.current.pause();
+        audio.pause();
       }
     }
     return () => {
-      audioRef.current?.pause();
+      audio?.pause();
     };
   }, [isAudioPlaying, volume]);
 
@@ -468,7 +475,7 @@ export default function ArticleFour(): JSX.Element {
       YouTube, scrolling on social media, or doing both simultaneously.</>),
     " It can also come from reading negative or distressing news articles online.",
     " Any activity that leaves the user exhausted and overstimulated can be considered an experience of brain rot. ",
-  ], [ACCENT_COLOR_TEXT]);
+  ], []);
 
   const tweetData = useMemo(() => [
     {
@@ -539,7 +546,7 @@ export default function ArticleFour(): JSX.Element {
       retweetCount: getRandomInt(20, 90),
       likeCount: getRandomInt(80, 250),
     },
-  ], [ACCENT_COLOR_TEXT]);
+  ], []);
 
   const fileTreeElements: TreeViewElement[] = useMemo(() => [
     {
@@ -715,6 +722,7 @@ export default function ArticleFour(): JSX.Element {
                     className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors shadow-xl backdrop-blur-sm"
                     aria-label={isAudioPlaying ? "Pause audio" : "Play audio"}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={isAudioPlaying ? iconOn : iconOff}
                       alt={isAudioPlaying ? "Speaker on" : "Speaker off"}
