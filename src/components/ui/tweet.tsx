@@ -13,16 +13,16 @@ export interface TweetProps {
   likeCount?: number
 }
 
-export function Tweet({
-                        username = "John Doe",
-                        handle = "@johndoe",
-                        timestamp = "2h",
-                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        avatarUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
-                        replyCount = 12,
-                        retweetCount = 34,
-                        likeCount = 156,
-                      }: TweetProps) {
+export const Tweet: React.FC<TweetProps> = ({
+                                              username = "John Doe",
+                                              handle = "@johndoe",
+                                              timestamp = "2h",
+                                              content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                                              avatarUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=johndoe",
+                                              replyCount = 12,
+                                              retweetCount = 34,
+                                              likeCount = 156,
+                                            }: TweetProps) => {
   return (
     <article className="bg-white border border-gray-200 p-4 hover:bg-gray-50 transition-colors cursor-pointer">
       <div className="flex gap-3">
