@@ -37,6 +37,7 @@ export function NumberTicker({
     if (shouldStart) {
       const timer = setTimeout(() => {
         const target = direction === "down" ? startValue : value
+        // @ts-expect-error - animate overload mismatch with MotionValue types
         animate(motionValue, target, { duration, easing: "easeOut" })
       }, delay * 1000)
       return () => clearTimeout(timer)
