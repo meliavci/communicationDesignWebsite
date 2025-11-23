@@ -419,7 +419,6 @@ export default function ArticleFour() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [volume] = useState<number>(() => {
     try {
       const v = typeof window !== "undefined" ? localStorage.getItem("article4_volume") : null;
@@ -672,6 +671,7 @@ export default function ArticleFour() {
       minute and a half, because Instagram does not let me speed them up”.
     </>
   );
+  
 
   return (
     <div className="bg-white h-full flex flex-col relative z-10 mx-auto max-w-full xl:max-w-[85%] overflow-hidden">
@@ -766,7 +766,7 @@ export default function ArticleFour() {
               username={tweetData[0].username}
               handle={tweetData[0].handle}
               timestamp="5h"
-              content={tweetData[0].content}
+              content={tweetData[0].content as unknown as string}
               avatarUrl={getRandomAvatar(tweetData[0].avatarSeed)}
               replyCount={tweetData[0].replyCount}
               retweetCount={tweetData[0].retweetCount}
@@ -802,7 +802,7 @@ export default function ArticleFour() {
               username={tweetData[1].username}
               handle={tweetData[1].handle}
               timestamp="11h"
-              content={tweetData[1].content}
+              content={tweetData[1].content as unknown as string}
               avatarUrl={getRandomAvatar(tweetData[1].avatarSeed)}
               replyCount={tweetData[1].replyCount}
               retweetCount={tweetData[1].retweetCount}
@@ -889,7 +889,7 @@ export default function ArticleFour() {
               username={tweetData[2].username}
               handle={tweetData[2].handle}
               timestamp="11h"
-              content={tweetData[2].content}
+              content={tweetData[2].content as unknown as string}
               avatarUrl={getRandomAvatar(tweetData[2].avatarSeed)}
               replyCount={tweetData[2].replyCount}
               retweetCount={tweetData[2].retweetCount}
@@ -902,7 +902,7 @@ export default function ArticleFour() {
               username={tweetData[3].username}
               handle={tweetData[3].handle}
               timestamp="11h"
-              content={tweetData[3].content}
+              content={tweetData[3].content as unknown as string}
               avatarUrl={getRandomAvatar(tweetData[3].avatarSeed)}
               replyCount={tweetData[3].replyCount}
               retweetCount={tweetData[3].retweetCount}
