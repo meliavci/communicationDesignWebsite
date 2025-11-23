@@ -288,7 +288,7 @@ export default function ArticleThree() {
                   social media, I don’t have social media,&rdquo; he says.
                 </p>
 
-                <SketchyTitle className="text-xl md:text-3xl mt-10 md:mt-20">It is all according to plan</SketchyTitle>
+                <SketchyTitle className="text-xl md:text-3xl mt-10 md:mt-20 w-full">It is all according to plan</SketchyTitle>
                 <p className="blueprint-text">
                   The professor believes doomscrolling is not accidental but an engineered business strategy. Fear,
                   instant gratification and algorithmic design combine to keep users engaged, often at the expense of
