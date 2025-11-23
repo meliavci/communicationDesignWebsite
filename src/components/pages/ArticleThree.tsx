@@ -71,12 +71,12 @@ const StockTrendChart: React.FC = () => {
 
   return (
     <div className="w-full p-6 bg-black/5 border border-white/10 rounded-lg shadow-inner backdrop-blur-sm overflow-hidden">
-      <h3 className="text-xl md:text-2xl font-bold mb-4 text-center text-white/80">
+      <h3 className="text-xl md:text-2xl font-bold mb-4 text-left text-white/80">
         The Price of Attention: Tech Stock Trend (2019-2024, Normalized Value)
       </h3>
 
       {/* DATA SOURCE */}
-      <p className='text-xs text-white/40 italic text-center -mt-2 mb-6'>
+      <p className='text-xs text-white/40 italic text-left -mt-2 mb-6'>
         Data Source: Normalized from year-end closing prices of NASDAQ histories (META, GOOGL)
       </p>
 
@@ -105,7 +105,7 @@ const StockTrendChart: React.FC = () => {
 
         <div className="relative w-full flex flex-col md:flex-row" style={{ height: '300px' }}>
 
-          <div className="w-full text-center mb-2 md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:-ml-28 md:pr-1 md:flex md:items-center md:h-full md:flex-shrink-0 z-10 pointer-events-none">
+          <div className="w-full text-left mb-2 md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:-ml-28 md:pr-1 md:flex md:items-center md:h-full md:flex-shrink-0 z-10 pointer-events-none">
             <span className="text-xs text-white/60 md:rotate-[-90deg] md:whitespace-nowrap md:ml-10">
               Normalized Value (100 = 01/2019)
             </span>
@@ -167,7 +167,7 @@ const StockTrendChart: React.FC = () => {
 
         </div>
 
-        <div className="w-full text-center mt-12 md:mt-10">
+        <div className="w-full text-left mt-12 md:mt-10">
           <span className="text-sm text-white/60">Timeframe</span>
         </div>
       </div>
@@ -212,7 +212,7 @@ export default function ArticleThree() {
             `}</style>
             <div className="blueprint-text">
 
-              <header className="pb-6 text-center p-5 md:p-10 lg:p-20">
+              <header className="pb-6 text-left p-5 md:p-10 lg:p-20">
                 <SketchyTitle
                   className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-none mb-4"
                 >
@@ -248,33 +248,35 @@ export default function ArticleThree() {
                 />
               </div>
 
-              <div className="flex flex-col items-center px-4 sm:px-20 lg:px-20 mt-10 md:-mt-10">
-                <SketchyTitle className="mb-10 text-center">Systematic Addiction</SketchyTitle>
-                <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-0">
-                  <p className="blueprint-text p-4 lg:px-15 text-start lg:w-2/3">
+              <div className="flex flex-col items-start px-4 sm:px-20 lg:px-20 mt-10 md:-mt-10 w-full">
+                <SketchyTitle className="mb-10 text-left w-full">Systematic Addiction</SketchyTitle>
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-20 w-full">
+                  <p className="blueprint-text w-full text-left lg:flex-1 lg:self-center">
                     Doomscrolling, the vicious cycle of endlessly consuming short-form content has become increasingly
                     normalized in the years following the Covid-19 pandemic. One 57-year-old professor, who requested to
                     be anonymous due to his strong views and opinions, argues it is not a habit, but
                     a &ldquo;system-built addiction&rdquo; deliberately encouraged by social media.
                   </p>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/Article3/controllerChess.png" className="w-full max-w-sm sm:max-w-md lg:w-1/3 xl:max-w-[258px] grayscale-60"
-                       alt="Professor playing chess with a game controller"/>
+
+                  <div className="w-full lg:flex-1 flex justify-center items-start">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/Article3/controllerChess.png"
+                      alt="Professor playing chess with a game controller"
+                      className="w-full h-auto object-contain grayscale-60"
+                    />
+                  </div>
                 </div>
 
-                <SketchyTitle className="mt-10 md:mt-20 text-center">A life of control, not compulsion</SketchyTitle>
-                <p className="blueprint-text text-start mb-6">
+
+                <SketchyTitle className="mt-10 md:mt-20 text-left">A life of control, not compulsion</SketchyTitle>
+                <p className="blueprint-text">
                   The professor manages his screen time carefully and within control. He spends about two to three hours
                   a day on his phone, though part of it is multitasked. &ldquo;I cycle for an hour while I play
                   chess,&rdquo; he says, combining physical activity with mental stimulation. Beyond that, he works on
                   his computer for four to five hours and spends similar amount of time gaming. He thinks of gaming as a
                   tool to have a break from reality, and not as a tool that can gain control over him.
                 </p>
-                <blockquote className="my-6 p-4 border-l-4 text-start border-yellow-400 bg-white/10 italic text-base md:text-lg w-full">
-                  &ldquo;I do not game because I have to, I choose to. I am not addicted to gaming, but I am addicted to
-                  meaning and passion. As soon as I feel like the meaning within gaming is fading away, I choose to do
-                  something else,&rdquo; he explains.
-                </blockquote>
 
                 <SketchyTitle className="mt-10 md:mt-20">Temptation of opening the door</SketchyTitle>
                 <p className="blueprint-text mb-6 text-start">
@@ -357,9 +359,14 @@ export default function ArticleThree() {
                     onPlay={setMoneyPlaying}
                   />
                 </div>
-                <SketchyTitle className='text-center mt-10 md:mt-20'>The Price of Attention</SketchyTitle>
-                <StockTrendChart/>
-                <SketchyTitle className="mt-10 md:mt-20 text-center">The awakening will not be gentle</SketchyTitle>
+                <div className="w-full flex flex-col items-center">
+                  <SketchyTitle className="text-start mt-10 md:mt-20 w-full">The Price of Attention</SketchyTitle>
+                  <div className="w-full flex justify-center">
+                    <StockTrendChart />
+                  </div>
+                </div>
+
+                <SketchyTitle className="mt-10 md:mt-20 text-left">The awakening will not be gentle</SketchyTitle>
                 <div className="flex flex-col items-start">
                   <p className="blueprint-text mb-6">
                     Looking further ahead, the professor doubts that society can solve the doomscrolling problem
@@ -378,11 +385,10 @@ export default function ArticleThree() {
                 </div>
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/Article3/burningBuildings2.png" alt="Company buildings" className="w-full max-w-lg md:max-w-2xl xl:max-w-4xl grayscale-60"/>
-
+                <img src="/Article3/burningBuildings2.png" alt="Company buildings" className="mx-auto block w-full max-w-lg md:max-w-2xl xl:max-w-4xl grayscale-60"/>
               </div>
               <footer
-                className="mt-12 pb-10 md:pb-30 pt-8 border-t-2 border-white/50 text-center text-white/70 text-sm font-open-sans w-full max-w-screen-xl">
+                className="mt-12 pt-8 border-t-2 px-4 sm:px-20 border-gray-300 text-center text-gray-600 text-sm font-opensans w-full max-w-screen-xl">
                 <p>Communication Design 2025</p>
                 <p>Melisa Avci, Raphael Tam-Dao, Daniel Betto, Ylva Romann Aas, Ingrid Christensen Øvrelid</p>
               </footer>
