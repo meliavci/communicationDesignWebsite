@@ -5,7 +5,7 @@ interface TweetProps {
   username?: string;
   handle?: string;
   timestamp?: string;
-  content?: string;
+  content?: React.ReactNode;
   avatarUrl?: string;
   replyCount?: number;
   retweetCount?: number;
